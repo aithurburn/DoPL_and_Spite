@@ -1,0 +1,807 @@
+---
+title: "Experiment_2"
+author: "Andrew Ithurburn"
+date: "11/05/2021"
+output: 
+  html_document:
+    toc: yes
+    toc_float:
+      smooth_scroll: yes
+    code_folding: hide
+    fig_caption: yes
+    number_sections: yes
+    css: table_styling.css
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(DT)
+library(ggplot2)
+library(ggthemes)
+library(tidyverse)
+library(papaja)
+library(brms)
+library(rstan)
+library(bayestestR)
+library(sjPlot)
+library(psych)
+library(BayesFactor)
+library(bayesplot)
+library(kableExtra)
+library(ggcorrplot)
+library(ggprism)
+options(mc.corrs = parallel::detectCores()) # can run chains in parallel with each other
+rstan_options(auto_write = TRUE)
+options(control = list(adapt_delta = 0.99999))
+options(brms.backend = "cmdstanr")
+
+bayesplot::bayesplot_theme_set(theme_apa())
+locfunc <- function(data, to){
+  which(colnames({{data}})=={{to}})
+}
+
+lfunc <- function(dataset, to, from) {
+  loc1 <- which(colnames({{dataset}}) == {{to}})
+  loc2 <- which(colnames({{dataset}}) == {{from}})
+  length({{dataset}}[loc1:loc2])
+}
+theme_set(theme_apa(base_size = 12))
+```
+
+## Cleanup
+
+```{r, cleanup, message=FALSE, warning=FALSE}
+experiment_two_DS_time <- read.csv("Experiment_2_Dataset_clean.csv")
+experiment_two_DS <- read.csv("Experiment_2_Dataset_clean_noTime.csv")
+m2prior <- readRDS("m2prior.rds")
+corr_table <- readRDS("corr_table.rds")
+m4 <- readRDS("m4.rds")
+m5 <- readRDS("m5.rds")
+m5_gen <- readRDS("m5_gen.rds")
+m7 <- readRDS("m7.rds")
+m8 <- readRDS("m8.rds")
+m8_gen <- readRDS("m8_gen.rds")
+m8_Age <- readRDS("m8_Age.rds")
+dm0 <- readRDS("dm0.rds")
+dm1 <- readRDS("dm1.rds")
+dm2 <- readRDS("dm2.rds")
+dm3 <- readRDS("dm3.rds")
+dm4 <- readRDS("dm4.rds")
+dm5 <- readRDS("dm5.rds")
+demographicQuestions <- c("Age", "Gender", "Ethnicity", "Eth.ori", "Edu")
+sjsQuestions <- c("SJS.1", "SJS.2", "SJS.3")
+srpsQuestions <- c("SRPS.1"
+, "SRPS.2"
+, "SRPS.3"
+, "SRPS.4"
+, "SRPS.5"
+, "SRPS.6"
+, "SRPS.7"
+, "SRPS.8"
+, "SRPS.9"
+, "SRPS.10"
+, "SRPS.11"
+, "SRPS.12"
+, "SRPS.13"
+, "SRPS.14"
+, "SRPS.15"
+, "SRPS.17"
+, "SRPS.18"
+, "SRPS.19"
+, "SRPS.20"
+, "SRPS.21"
+, "SRPS.22"
+, "SRPS.23"
+, "SRPS.24")
+
+srps.rcQuestions <- c("SRPS.1"
+, "SRPS.2"
+, "SRPS.3"
+, "SRPS.4"
+, "SRPS.5"
+, "SRPS.6"
+, "SRPS.7"
+, "SRPS.8"
+, "SRPS.9"
+, "SRPS.10"
+, "SRPS.11"
+, "SRPS.12"
+, "SRPS.13"
+, "SRPS.14"
+, "SRPS.15")
+
+srps.dmQuestions <- c("SRPS.17"
+, "SRPS.18"
+, "SRPS.19"
+, "SRPS.20"
+, "SRPS.21"
+, "SRPS.22"
+, "SRPS.23"
+, "SRPS.24")
+
+ssesQuestions <- c("SSES.1"
+, "SSES.2"
+, "SSES.3"
+, "SSES.4"
+, "SSES.5"
+, "SSES.6"
+, "SSES.7"
+, "SSES.8"
+, "SSES.9"
+, "SSES.10")
+
+spiteQuestions <- c("Spite.1"
+, "Spite.2"
+, "Spite.3"
+, "Spite.4"
+, "Spite.5"
+, "Spite.6"
+, "Spite.7"
+, "Spite.8"
+, "Spite.9"
+, "Spite.10"
+, "Spite.11"
+, "Spite.12"
+, "Spite.13"
+, "Spite.14"
+, "Spite.15"
+, "Spite.16")
+
+Vign.Sex <- c("Vign.1", "Vign.2", "Vign.4", "Vign.7", "Vign.10")
+Vign.noSex <- c("Vign.3", "Vign.5", "Vign.6", "Vign.8", "Vign.9")
+Vign.Overall <- c("Vign.1", "Vign.2", "Vign.4", "Vign.7", "Vign.10", "Vign.3", "Vign.5", "Vign.6", "Vign.8", "Vign.9")
+
+Real.Sex <- c("Real.1", "Real.2", "Real.4", "Real.7", "Real.10")
+Real.noSex <- c("Real.3", "Real.5", "Real.6", "Real.8", "Real.9")
+Real.Overall <- c("Real.1", "Real.2", "Real.4", "Real.7", "Real.10", "Real.3", "Real.5", "Real.6", "Real.8", "Real.9")
+
+doplQuestions <- c('DoPL_1', 'DoPL_6', 'DoPL_11', 'DoPL_13', 'DoPL_14', 'DoPL_16', 'DoPL_5', 'DoPL_7', 'DoPL_8', 'DoPL_12', 'DoPL_17', 'DoPL_18', 'DoPL_2', 'DoPL_3', 'DoPL_4', 'DoPL_9', 'DoPL_10', 'DoPL_15')
+
+dominanceQuestions <- c('DoPL_2','DoPL_3','DoPL_4','DoPL_9','DoPL_10','DoPL_15')
+prestigeQuestions <- c('DoPL_5','DoPL_7','DoPL_8','DoPL_12','DoPL_17','DoPL_18')
+leadershipQuestions <- c('DoPL_1','DoPL_6','DoPL_11','DoPL_13','DoPL_14','DoPL_16')
+
+UMSQuestions <- c('UMS_1', 'UMS_2', 'UMS_3', 'UMS_4','UMS_5','UMS_6','UMS_7','UMS_8','UMS_9','UMS_11', 'UMS_12')
+UMSIntimacyQuestions <- c('UMS_11', 'UMS_12')
+UMSAffiliationQuestions <- c('UMS_1', 'UMS_2', 'UMS_3', 'UMS_4','UMS_5','UMS_6','UMS_7','UMS_8','UMS_9')
+
+savedQuestionsBefore <- c('subjectID', "Age", "Duration..in.seconds.", "Gender", "Ethnicity", "Eth.ori", "Edu",
+                     "DoPLSum"
+,"dominanceSum"
+,"prestigeSum"
+,"leadershipSum"
+,"UMSSum"
+,"UMSIntimacySum"
+,"UMSAffiliationSum"
+,"sjsSum"
+,"ssesSum"
+, "Spite"
+,"Vign.Sex"
+,"Vign.noSex"
+,"Vign.Ovr.Score"
+,"Real.Sex"
+,"Real.noSex"
+,"Real.Ovr.Score"
+,"srps.rc.rescale"
+,"srps.dm.rescale"
+,"srps.sum.rescale",
+"Power",
+"Vign.1",
+"Vign.2",
+"Vign.3",
+"Vign.4",
+"Vign.5",
+"Vign.6",
+"Vign.7",
+"Vign.8",
+"Vign.9",
+"Vign.10",
+"Real.1",
+"Real.2",
+"Real.3",
+"Real.4",
+"Real.5",
+"Real.6",
+"Real.7",
+"Real.8",
+"Real.9",
+"Real.10")
+
+savedQuestionsAfter <- c('subjectID', "Age", "Duration..in.seconds.", "Gender", "Ethnicity", "Eth.ori", "Edu",
+                     "DoPLSum"
+,"dominanceSum"
+,"prestigeSum"
+,"leadershipSum"
+,"UMSSum"
+,"UMSIntimacySum"
+,"UMSAffiliationSum"
+,"sjsSum"
+,"ssesSum"
+, "Spite"
+,"Vign.Sex"
+,"Vign.noSex"
+,"Vign.Ovr.Score"
+,"Real.Sex"
+,"Real.noSex"
+,"Real.Ovr.Score"
+,"srps.rc.rescale"
+,"srps.dm.rescale"
+,"srps.sum.rescale"
+,"Content",
+"Vignette",
+"Justification",
+"Realism",
+"Power")
+```
+
+## Recoding variables
+```{r recoding variables, message=FALSE, warning=FALSE}
+
+experiment_two_DS <- experiment_two_DS %>%
+  mutate_at(vars(locfunc(experiment_two_DS, "Gender")), ~as.numeric(recode(.,"Male" = 0, "Female" = 1))) %>%
+  mutate_at(vars(locfunc(experiment_two_DS, "Edu")), ~as.numeric(recode(., "Prefer not to answer" = 0, "Primary School" = 1, "GCSes or Equivalent" = 2, "A-Levels or Equivalent" = 3, "University Undergraduate Program" = 4, "University Post-Graduate Program" = 5, "Doctoral Degree" = 6))) %>%
+   mutate_at(vars(locfunc(experiment_two_DS, 'Ethnicity')), ~as.numeric(recode(., "Prefer not to answer" = 0, "White" = 1, "Mixed or Multiple ethnic origins" = 2, "Asian or Asian Scottish or Asian British" = 3, "African" = 4, "Caribbean or Black" = 5,"Arab" = 6, "Other ethnic group" = 7))) %>%
+  mutate_at(vars(locfunc(experiment_two_DS, 'Eth.ori')), ~as.numeric(recode(., "Prefer not to answer" = 0, "Scottish" = 1, "English" = 2, "European" = 3, "Latin American" = 4, "Asian" = 5, "Arab" = 6, 
+                             "African" = 7, "Other" = 8 ))) %>%
+  mutate_at(vars(locfunc(experiment_two_DS, "DoPL_1"):locfunc(experiment_two_DS, "DoPL_5")), ~as.numeric(recode(., "Strongly disagree" = 0, "Disagree" = 1, "Somewhat disagree" = 2, "Somewhat agree" = 3, "Agree" = 4, "Strongly agree" = 5)))  %>%
+  mutate_at(vars(locfunc(experiment_two_DS, "DoPL_6"), locfunc(experiment_two_DS, "DoPL_14")), ~as.numeric(recode(., "Strongly disagree" = 5, "Disagree" = 4, "Somewhat disagree" = 3, "Somewhat agree" = 2, "Agree" = 1, "Strongly agree" = 0))) %>%
+  mutate_at(vars(locfunc(experiment_two_DS, "DoPL_7"):locfunc(experiment_two_DS, "DoPL_13")), ~as.numeric(recode(., "Strongly disagree" = 0, "Disagree" = 1, "Somewhat disagree" = 2, "Somewhat agree" = 3, "Agree" = 4, "Strongly agree" = 5))) %>%
+  mutate_at(vars(locfunc(experiment_two_DS, "DoPL_15"):locfunc(experiment_two_DS, "DoPL_16")), ~as.numeric(recode(., "Strongly disagree" = 0, "Disagree" = 1, "Somewhat disagree" = 2, "Somewhat agree" = 3, "Agree" = 4, "Strongly agree" = 5))) %>%
+  mutate_at(vars(locfunc(experiment_two_DS, "UMS_1"):locfunc(experiment_two_DS, "UMS_9")), ~as.numeric(recode(., "Strongly disagree" = 0, "Disagree" = 1, "Somewhat disagree" = 2, "Somewhat agree" = 3, "Agree" = 4, "Strongly agree" = 5))) %>%
+  mutate_at(vars(locfunc(experiment_two_DS, "DoPL_17"):locfunc(experiment_two_DS, "DoPL_18")), ~as.numeric(recode(., "Not Important To Me" = 0, "Of Little Importance To me" = 1, "Of Some Importance To Me" = 2, "Important To Me" = 3, "Very Important To me" = 4, "Extremely Important To Me" = 5))) %>%
+  mutate_at(vars(locfunc(experiment_two_DS, "UMS_10"):locfunc(experiment_two_DS, "UMS_12")), ~as.numeric(recode(., "Not Important To Me" = 1, "Of Little Importance To me" = 2, "Of Some Importance To Me" = 3, "Important To Me" = 4, "Very Important To me" = 5, "Extremely Important To Me" = 6))) %>%
+  mutate_at(vars(locfunc(experiment_two_DS, "Spite.1"):locfunc(experiment_two_DS, "Spite.13")), ~as.numeric(recode(., "Strongly disagree" = 1, "Disagree" = 2, "Neither agree nor disagree" = 3, "Agree" = 4, "Strongly agree" = 5, "Strongly Disagree" = 1, "Somewhat disagree" = 2))) %>%
+  mutate_at(vars(locfunc(experiment_two_DS, "Spite.14"):locfunc(experiment_two_DS, "Spite.16")), ~as.numeric(recode(., "Strongly disagree" = 5, "Disagree" = 4, "Neither agree nor disagree" = 3, "Agree" = 2, "Strongly agree" = 1, "Strongly Disagree" = 5))) %>%
+  mutate_at(vars(locfunc(experiment_two_DS, "SSES.1"):locfunc(experiment_two_DS, "SSES.3")), ~as.numeric(recode(., "Agree" = 1, "Slightly agree" = 2, "Neither agree nor disagree" = 3, "Slightly Disagree" = 4, "Disagree" = 5, "Slight Disagree" = 4, "Slight disagree" = 4, "Slightly disagree" = 4))) %>%
+  mutate_at(vars(locfunc(experiment_two_DS, "SSES.4"):locfunc(experiment_two_DS, "SSES.5")), ~as.numeric(recode(., "Agree" = 5, "Slightly agree" = 4, "Neither agree nor disagree" = 3, "Slightly Disagree" = 2, "Disagree" = 1, "Slight Disagree" = 2, "Slight disagree" = 2, "Slightly disagree" = 2))) %>%
+   mutate_at(vars(locfunc(experiment_two_DS, "SSES.6")), ~as.numeric(recode(., "Agree" = 1, "Slightly agree" = 2, "Neither agree nor disagree" = 3, "Slightly Disagree" = 4, "Disagree" = 5, "Slight Disagree" = 4, "Slight disagree" = 4, "Slightly disagree" = 4))) %>%
+  mutate_at(vars(locfunc(experiment_two_DS, "SSES.7")), ~as.numeric(recode(., "Agree" = 5, "Slightly agree" = 4, "Neither agree nor disagree" = 3, "Slightly Disagree" = 2, "Disagree" = 1, "Slight Disagree" = 2, "Slight disagree" = 2, "Slightly disagree" = 2))) %>%
+mutate_at(vars(locfunc(experiment_two_DS, "SSES.8")), ~as.numeric(recode(., "Agree" = 1, "Slightly agree" = 2, "Neither agree nor disagree" = 3, "Slightly Disagree" = 4, "Disagree" = 5, "Slight Disagree" = 4, "Slight disagree" = 4, "Slightly disagree" = 4))) %>%
+mutate_at(vars(locfunc(experiment_two_DS, "SSES.9"):locfunc(experiment_two_DS, "SSES.10")), ~as.numeric(recode(., "Agree" = 5, "Slightly agree" = 4, "Neither agree nor disagree" = 3, "Slightly Disagree" = 2, "Disagree" = 1, "Slight Disagree" = 2, "Slight disagree" = 2,  "Slightly disagree" = 2))) %>%
+  mutate_at(vars(locfunc(experiment_two_DS, "SRPS.1"):locfunc(experiment_two_DS, "SRPS.15")), ~as.numeric(recode(., "Strongly agree" = 1, "Agree" = 2, "Disagree" = 3, "Strongly disagree" = 4))) %>%
+  mutate_at(vars(locfunc(experiment_two_DS, "SRPS.17"):locfunc(experiment_two_DS, "SRPS.24")), ~as.numeric(recode(., "Your Partner" = 1, "Both of You Equally" = 2, "You" = 3))) %>%
+  mutate_at(vars(locfunc(experiment_two_DS, "SJS.1"):locfunc(experiment_two_DS, "SJS.3")), ~as.numeric(recode(., "Strongly disagree" = 1, "Disagree" = 2, "Somewhat disagree" = 3, "Somewhat agree" = 4, "Agree" = 5, "Strongly agree" = 6))) %>%
+  mutate_at(vars(locfunc(experiment_two_DS, "Real.1"):locfunc(experiment_two_DS, "Real.10")), ~as.numeric(recode(., "Strongly agree" = 1, "Agree" = 2, "Neither agree nor disagree" = 3, "Disagree" = 4, "Strongly disagree" = 5))) %>%
+  mutate_at(vars(locfunc(experiment_two_DS, "Vign.1"):locfunc(experiment_two_DS, "Vign.10")), ~as.numeric(recode(., "Not justified at all" = 1, "Somewhat unjustified" = 2, "Neither justified or unjustified" = 3, "Slightly justified" = 4, "Very justified" = 5)))
+  
+  
+```
+
+## Summing data
+
+```{r, message=FALSE, warning=FALSE}
+# DOPL----
+experiment_two_DS$DoPLSum  <- rowSums(experiment_two_DS[, doplQuestions])
+experiment_two_DS$dominanceSum <-
+  rowSums(experiment_two_DS[, dominanceQuestions])
+experiment_two_DS$prestigeSum <-
+  rowSums(experiment_two_DS[, prestigeQuestions])
+experiment_two_DS$leadershipSum <-
+  rowSums(experiment_two_DS[, leadershipQuestions])
+
+# UMS----
+experiment_two_DS$UMSSum  <- rowSums(experiment_two_DS[, UMSQuestions])
+experiment_two_DS$UMSIntimacySum  <- rowSums(experiment_two_DS[, UMSIntimacyQuestions])
+experiment_two_DS$UMSAffiliationSum  <- rowSums(experiment_two_DS[, UMSAffiliationQuestions])
+
+# Spite ----
+
+experiment_two_DS$Spite  <- rowSums(experiment_two_DS[, spiteQuestions])
+
+# SJS----
+experiment_two_DS$sjsSum <- rowSums(experiment_two_DS[, sjsQuestions])
+
+# SSES----
+experiment_two_DS$ssesSum <- rowSums(experiment_two_DS[, ssesQuestions])
+
+# Vign----
+experiment_two_DS$Vign.Sex <- rowSums(experiment_two_DS[, Vign.Sex])
+experiment_two_DS$Vign.noSex <- rowSums(experiment_two_DS[, Vign.noSex])
+experiment_two_DS$Vign.Ovr.Score <- rowSums(experiment_two_DS[, Vign.Overall])
+
+# Realism----
+experiment_two_DS$Real.Sex <- rowSums(experiment_two_DS[, Real.Sex])
+experiment_two_DS$Real.noSex <- rowSums(experiment_two_DS[, Real.noSex])
+experiment_two_DS$Real.Ovr.Score <- rowSums(experiment_two_DS[, Real.Overall])
+
+# SRPS----
+experiment_two_DS$srps.rc.sum <- rowSums(experiment_two_DS[, srps.rcQuestions])
+experiment_two_DS$srps.dm.sum <- rowSums(experiment_two_DS[, srps.dmQuestions])
+
+# SRPS Rescaled----
+experiment_two_DS$srps.rc.rescale <- ((experiment_two_DS$srps.rc.sum - 15)/(60 - 15)) * 3 + 1
+experiment_two_DS$srps.dm.rescale <- ((experiment_two_DS$srps.dm.sum - 8)/(24 - 8)) * 3 + 1
+experiment_two_DS$srps.sum <- ((experiment_two_DS$srps.dm.sum + experiment_two_DS$srps.rc.sum)/2)
+experiment_two_DS$srps.sum.rescale <- ((experiment_two_DS$srps.sum - 11.5) / (42 - 11.5)) * 3 + 1
+
+experiment_two_DS <- experiment_two_DS %>% mutate(Power = case_when(
+  experiment_two_DS$srps.sum.rescale < 2.420 ~ "Low",
+  experiment_two_DS$srps.sum.rescale > 2.420 & experiment_two_DS$srps.sum.rescale < 2.820   ~ "Medium",
+  experiment_two_DS$srps.sum.rescale > 2.820 ~ "High"
+))
+```
+
+## Renaming
+
+```{r Experiment 2 dataset for analysis, message=FALSE, warning=FALSE}
+
+experiment_two_DS <- rowid_to_column(experiment_two_DS, "subjectID")
+
+newDF <- experiment_two_DS[savedQuestionsBefore]
+
+analysisDF <- newDF %>%
+  pivot_longer("Vign.1":"Vign.10", names_to = "Vignette", values_to = "Justification")
+  
+tester1 <- newDF %>%
+  pivot_longer("Real.1":"Real.10", names_to = "Real", values_to = "Realism")
+
+analysisDF['Realism'] = tester1["Realism"]
+
+
+
+analysisDF <- analysisDF %>% mutate(Content = case_when(
+ analysisDF$Vignette == "Vign.1" ~ "Sexual",
+analysisDF$Vignette == "Vign.2" ~  "Sexual",
+analysisDF$Vignette == "Vign.3" ~ "Nonsexual",
+analysisDF$Vignette == "Vign.4" ~  "Sexual",
+analysisDF$Vignette == "Vign.5" ~  "Nonsexual",
+analysisDF$Vignette == "Vign.6" ~ "Nonsexual",
+analysisDF$Vignette == "Vign.7" ~ "Sexual",
+analysisDF$Vignette == "Vign.8" ~ "Nonsexual",
+analysisDF$Vignette == "Vign.9" ~ "Nonsexual",
+analysisDF$Vignette == "Vign.10" ~ "Sexual"
+))
+
+analysisDF <- analysisDF %>% mutate(Vignette = case_when(
+ analysisDF$Vignette == "Vign.1" ~  1,
+analysisDF$Vignette == "Vign.2" ~  2,
+analysisDF$Vignette == "Vign.3" ~  3,
+analysisDF$Vignette == "Vign.4" ~  4,
+analysisDF$Vignette == "Vign.5" ~  5,
+analysisDF$Vignette == "Vign.6" ~  6,
+analysisDF$Vignette == "Vign.7" ~  7,
+analysisDF$Vignette == "Vign.8" ~  8,
+analysisDF$Vignette == "Vign.9" ~  9,
+analysisDF$Vignette == "Vign.10" ~ 10
+))
+
+analysisDF <- analysisDF[, savedQuestionsAfter]
+
+analysisDF <- analysisDF %>%
+rename("subjectID" = "subjectID") %>%
+rename("Duration" = "Duration..in.seconds.") %>%
+rename("Age" = "Age") %>%
+rename("Gender" = "Gender") %>%
+rename("Ethnicity" = "Ethnicity") %>%
+rename("Ethnic_Origin" = "Eth.ori") %>%
+rename("Education" = "Edu") %>%
+rename("DoPL" = "DoPLSum") %>%
+rename("Dominance" = "dominanceSum") %>%
+rename("Prestige" = "prestigeSum") %>%
+rename("Leadership" = "leadershipSum") %>%
+rename("UMS" = "UMSSum") %>%
+rename("UMS_Intimacy" = "UMSIntimacySum") %>%
+rename("UMS_Affiliation" = "UMSAffiliationSum") %>%
+rename("SJS" = "sjsSum") %>%
+rename("SSES" = "ssesSum") %>%
+rename("Vign.Sex" = "Vign.Sex") %>%
+rename("Vign.noSex" = "Vign.noSex") %>%
+rename("Vign.Ovr.Score" = "Vign.Ovr.Score") %>%
+rename("Realism_Sex" = "Real.Sex") %>%
+rename("Realism_NoSex" = "Real.noSex") %>%
+rename("Realism_Overall" = "Real.Ovr.Score") %>%
+rename("SRPS_RC" = "srps.rc.rescale") %>%
+rename("SRPS_DM" = "srps.dm.rescale") %>%
+rename("SRPS" = "srps.sum.rescale") %>%
+rename("Vignette" = "Vignette") %>%
+rename("Justification" = "Justification") %>%
+rename("Realism" = "Realism") %>%
+rename("Content" = "Content")
+```
+## Fixing class
+
+```{r Analysis, message=FALSE, warning=FALSE}
+analysisDF$Vignette <- factor(analysisDF$Vignette)
+analysisDF$subjectID <- factor(analysisDF$subjectID)
+analysisDF$Spite_z <- scale(analysisDF$Spite)
+analysisDF$SSES_z <- scale(analysisDF$SSES)
+analysisDF$SRPS_z <- scale(analysisDF$SRPS)
+analysisDF$SJS_z <- scale(analysisDF$SJS)
+analysisDF$Justification_z <- scale(analysisDF$Justification)
+analysisDF$Realism_z <- scale(analysisDF$Realism)
+analysisDF$DoPL_z <- scale(analysisDF$DoPL)
+analysisDF$Dominance_z <- scale(analysisDF$Dominance)
+analysisDF$Leadership_z <- scale(analysisDF$Leadership)
+analysisDF$Prestige_z <- scale(analysisDF$Prestige)
+analysisDF$UMS_z <- scale(analysisDF$UMS)
+analysisDF$UMS_Intimacy_z <- scale(analysisDF$UMS_Intimacy)
+analysisDF$UMS_Affiliation_z <- scale(analysisDF$UMS_Affiliation)
+```
+
+## Basic gglots
+```{r Basic ggplots, echo=TRUE, message=FALSE, warning=FALSE}
+ggplot(analysisDF, aes(x = DoPL, y = Justification, color = Content)) + geom_point() + geom_smooth(method = "lm")
+ggplot(analysisDF, aes(x = Dominance, y = Justification, color = Content)) + geom_point() + geom_smooth(method = "lm")
+ggplot(analysisDF, aes(x = Leadership, y = Justification, color = Content)) + geom_point() + geom_smooth(method = "lm")
+ggplot(analysisDF, aes(x = Prestige, y = Justification, color = Content)) + geom_point() + geom_smooth(method = "lm")
+
+```
+
+# Initial Bayesian Analysis
+```{r}
+
+```
+
+```{r Bayesian, eval = F, message=FALSE, warning=FALSE, class.source = "fold-show"}
+
+
+
+m0 <- brm(Justification_z ~ 1 + (1|Vignette) + (1|subjectID), data = analysisDF, 
+         warmup = 500, control = list(adapt_delta = 0.95)), iter = 8000, chains = 4, cores = 4, save_all_pars = T,
+          prior = c(prior(normal(0,1), class = 'Intercept')))
+
+# models 
+m1 <- brm(Justification_z ~ Spite_z * Content + (1|Vignette) + (1|subjectID), data = analysisDF, 
+        warmup = 500, control = list(adapt_delta = 0.95)), iter = 8000, chains = 4, cores = 6, save_all_pars = T,
+         prior = c(prior(normal(0,1), class = 'Intercept'),
+                   prior(normal(0,1), class = 'b'),
+                   prior(normal(0.151, 0.0723), class = b, coef = "Spite_z:ContentSexual")))
+summary(m1) 
+
+m2 <- brm(Justification ~ Spite_z * Content + Realism_z + (1|Vignette) + (1|subjectID), data = analysisDF, 
+        warmup = 500, control = list(adapt_delta = 0.95)), iter = 8000, chains = 4, cores = 4, save_all_pars = T,
+         prior = c(prior(normal(0,1), class = 'Intercept'),
+                   prior(normal(0,1), class = 'b'),
+                   prior(normal(0.151, 0.0723), class = b, coef = "Spite_z:ContentSexual")))
+summary(m2)
+
+m3 <- brm(Justification ~ Spite_z * Content + Realism_z + SSES + SRPS + SJS + (1|Vignette) + 
+           (1|subjectID), data = analysisDF,warmup = 500, control = list(adapt_delta = 0.95)), iter = 8000, chains = 4, cores = 6, 
+         save_all_pars = T,
+         prior = c(prior(normal(0,1), class = 'Intercept'),
+                   prior(normal(0,1), class = 'b'),
+                   prior(normal(0.151, 0.0723), class = b, coef = "Spite_z:ContentSexual")))
+summary(m3)
+
+m4 <- brm(Justification ~ Spite_z * Content * Realism_z + SSES_z + SRPS_z + SJS_z + (1|Vignette) + 
+           (1|subjectID), data = analysisDF,warmup = 500, control = list(adapt_delta = 0.95), iter = 8000, chains = 4, cores = 6, 
+         save_all_pars = T,
+         prior = c(prior(normal(0,1), class = 'Intercept'),
+                   prior(normal(0,1), class = 'b'),
+                   prior(normal(0.151, 0.0723), class = b, coef = "Spite_z:ContentSexual")))
+
+```
+
+### Bayesian Correlation
+
+```{r, eval = F, message=FALSE, warning=FALSE, class.source = "fold-show"}
+scale_corr <- brm(mvbind(SSES, SRPS, Spite, SJS, Dominance, Prestige, Leadership) ~ 1, data = analysisDF, iter = 8000, warmup = 500, chains = 4, cores = 6, 
+                  prior = c(prior(normal(0, 1), class = "Intercept")), save_all_pars = T)
+cor_1 <- summary(scale_corr)
+corr_table <- cor_1[["rescor_pars"]]
+```
+
+
+```{r}
+kable(corr_table, format = "html", booktabs = T, escape = F, longtabe = F, digits = 2, col.names = c('Estimate',	'Est.Error',	'l-95% CI',	'u-95% CI',	'Rhat',	'Bulk_ESS',	'Tail_ESS')) %>%
+  kable_styling(full_width = F)  %>%
+  remove_column(6:8)
+```
+
+### DoPL motives predicting risky behavior (by content) in addition to spitefulness
+
+```{r Bayesian Analysis, eval = F, message=FALSE, warning=FALSE, class.source = "fold-show"}
+dm0 <- brm(Justification ~ 1 + (1|Vignette) + (1|subjectID), data = analysisDF, iter = 8000, warmup = 500, chains = 4, cores = 6
+           ,prior = c(prior(normal(0, 1), class = "Intercept")), save_all_pars = T)
+
+summary(dm0)
+
+dm1 <- brm(Justification ~ Dominance_z * Gender + Prestige_z * Gender + Leadership_z * Gender + (1|Vignette) + (1|subjectID), data = analysisDF, iter = 8000,control = list(adapt_delta = 0.99), warmup = 500, chains = 4, cores = 6
+           ,prior = c(prior(normal(0, 1), class = "Intercept"),
+                      prior(normal(3, 1), class = "b", coef = "Dominance_z:Gender"),
+                      prior(normal(0, 1), class = "b", coef = "Gender:Leadership_z"), 
+                      prior(normal(0, 1), class = "b", coef = "Gender:Prestige_z"),
+                      prior(normal(0, 1), class = "b", coef = "Dominance_z"),
+                      prior(normal(0, 1), class = "b", coef = "Leadership_z"),
+                      prior(normal(0, 1), class = "b", coef = "Prestige_z")), save_all_pars = T)
+
+summary(dm1)
+
+dm3 <- brm(Justification ~ Dominance_z * Gender + Prestige_z * Gender + Leadership_z * Gender + Age + (1|Vignette) + (1|subjectID), data = analysisDF, iter = 8000, warmup = 500, chains = 4, cores = 6
+           ,prior = c(prior(normal(0, 1), class = "Intercept")), save_all_pars = T)
+
+summary(dm3)
+
+dm2 <- brm(Justification ~ Dominance_z * Gender + Prestige_z * Gender + Leadership_z * Gender + SJS_z + SRPS_z + SSES_z + Spite_z +  (1|Vignette) + (1|subjectID), control = list(adapt_delta = 0.99), data = analysisDF, iter = 8000, warmup = 500, chains = 4, cores = 6
+           ,prior = c(prior(normal(0, 1), class = "Intercept"),
+                      prior(normal(3, 1), class = "b", coef = "Dominance_z:Gender"),
+                      prior(normal(0, 1), class = "b", coef = "Gender:Leadership_z"), 
+                      prior(normal(0, 1), class = "b", coef = "Gender:Prestige_z"),
+                      prior(normal(0, 1), class = "b", coef = "Dominance_z"),
+                      prior(normal(0, 1), class = "b", coef = "Leadership_z"),
+                      prior(normal(0, 1), class = "b", coef = "Prestige_z")), save_all_pars = T)
+
+summary(dm2)
+
+dm4 <- brm(Justification ~ Dominance_z * Gender * Content + Prestige_z * Gender * Content + Leadership_z * Gender * Content + SJS_z + SRPS_z + SSES_z + Spite_z +  (1|Vignette) + (1|subjectID), control = list(adapt_delta = 0.99), data = analysisDF, iter = 8000, warmup = 500, chains = 4, cores = 6
+           ,prior = c(prior(normal(0, 1), class = "Intercept"),
+                      prior(normal(3, 1), class = "b", coef = "Dominance_z:Gender"),
+                      prior(normal(0, 1), class = "b", coef = "Gender:Leadership_z"), 
+                      prior(normal(0, 1), class = "b", coef = "Gender:Prestige_z"),
+                      prior(normal(0, 1), class = "b", coef = "Dominance_z"),
+                      prior(normal(0, 1), class = "b", coef = "Leadership_z"),
+                      prior(normal(0, 1), class = "b", coef = "Prestige_z")), save_all_pars = T)
+
+summary(dm4)
+
+dm4_hdi <- bayestestR::hdi(dm4, effects = "fixed", component = "conditional", ci = .95)
+dm4_hdi[sign(dm4_hdi$CI_low) == sign(dm4_hdi$CI_high),
+            c('Parameter', 'CI','CI_low', 'CI_high')]
+
+dm5 <- brm(Justification ~ Dominance_z * Realism_z * Content * Gender + Prestige_z * Realism_z * Content * Gender + Leadership_z * Gender * Realism_z * Content + SJS_z + SRPS_z + SSES_z + Spite_z * Content +  (1|Vignette) + (1|subjectID), control = list(adapt_delta = 0.99), data = analysisDF, iter = 8000, warmup = 500, chains = 4, cores = 6
+           ,prior = c(prior(normal(0, 1), class = "Intercept"),
+                      prior(normal(0, 1), class = "b", coef = "Dominance_z"),
+                      prior(normal(0, 1), class = "b", coef = "Leadership_z"),
+                      prior(normal(0, 1), class = "b", coef = "Prestige_z"),
+                      prior(normal(3, 1), class = "b", coef = "Dominance_z:Gender"),
+                      prior(normal(0, 1), class = "b", coef = "Gender:Leadership_z"), 
+                      prior(normal(0, 1), class = "b", coef = "Gender:Prestige_z")), save_all_pars = T)
+
+summary(dm5)
+
+loo(dm1, dm2, dm4, dm5)
+```
+
+### DoPL motives predicting risky behavior (by content) in addition to spitefulness HDI
+
+```{r Bayesian Analysis HDI, message=FALSE, warning=FALSE}
+dm5_hdi <- bayestestR::hdi(dm5, effects = "fixed", component = "conditional", ci = .95)
+kable(dm5_hdi[sign(dm5_hdi$CI_low) == sign(dm5_hdi$CI_high),
+            c('Parameter', 'CI','CI_low', 'CI_high')], format = "html", booktabs = T, escape = F, longtable = F, digits = 2) %>% kable_styling(full_width = T)
+
+
+```
+
+
+
+
+### Bayesian analysis m4
+
+```{r}
+summary(m4)
+
+m4_hdi <- bayestestR::hdi(m4, effects = "fixed", component = "conditional", ci = .95)
+kable(m4_hdi[sign(m4_hdi$CI_low) == sign(m4_hdi$CI_high),
+            c('Parameter', 'CI','CI_low', 'CI_high')] , format = "html", booktabs = T, escape = F, longtable = F, digits = 2) %>% kable_styling(full_width = T)
+```
+
+```{r, eval = F, message=FALSE, warning=FALSE, class.source = "fold-show"}
+m5 <- brm(Justification ~ Dominance_z + Leadership_z + Prestige_z + (1|Vignette) + (1|subjectID), data = analysisDF,warmup = 500, control = list(adapt_delta = 0.95)), iter = 8000, chains = 4, cores = 6, prior = c(prior(normal(0,1), class = 'Intercept'),
+                   prior(normal(0,1), class = 'b')))
+summary(m5)
+
+m5_gen <- brm(Justification_z ~ Dominance_z*Gender + Leadership_z*Gender + Prestige_z*Gender + (1|Vignette) + (1|subjectID), data = analysisDF, warmup = 500, control = list(adapt_delta = 0.95), iter = 8000, chains = 4, cores = 6, 
+  prior = c(prior(normal(0,1), class = 'Intercept'), 
+                   prior(normal(3, 1), class = 'b', coef = "Dominance_z:Gender"),
+                   prior(normal(0, 1), class = 'b', coef = "Gender:Leadership_z"),
+                   prior(normal(0, 1), class = 'b', coef = "Gender:Prestige_z")),
+                   save_all_pars = T)
+summary(m5_gen)
+
+```
+
+### DoPL and Justification
+
+```{r}
+summary(m5_gen)
+
+m5_gen_hdi <- bayestestR::hdi(m5_gen, effects = "fixed", component = "conditional", ci = .95)
+kable(m5_gen_hdi[sign(m5_gen_hdi$CI_low) == sign(m5_gen_hdi$CI_high),
+            c('Parameter', 'CI','CI_low', 'CI_high')] , format = "html", booktabs = T, escape = F, longtable = F, digits = 2) %>% kable_styling(full_width = T)
+
+
+```
+
+### Spite and DoPL
+
+```{r Exploratory Analyses, eval = F, message=FALSE, warning=FALSE, class.source = "fold-show"}
+m7 <- brm(Spite_z ~ Dominance_z*Gender + Leadership_z*Gender + Prestige_z*Gender, data = analysisDF, warmup = 500, iter = 8000, chains = 4, cores = 6,
+          prior = c(prior(normal(0, 1), class = "Intercept"),
+                   prior(normal(3, 1), class = "b", coef = "Dominance_z:Gender"),
+                   prior(normal(0, 1), class = 'b', coef = "Gender:Leadership_z"),
+                   prior(normal(0, 1), class = 'b', coef = "Gender:Prestige_z")),
+                   save_all_pars = T)
+
+```
+
+
+```{r Exploratory Analyses HDI}
+m7_hdi <- bayestestR::hdi(m7, effects = "fixed", component = "conditional", ci = .95)
+kable(m7_hdi[sign(m7_hdi$CI_low) == sign(m7_hdi$CI_high),
+            c('Parameter', 'CI','CI_low', 'CI_high')] , format = "html", booktabs = T, escape = F, longtable = F, digits = 2) %>% kable_styling(full_width = T)
+
+summary(m7)
+```
+
+### DoPL and Measures
+
+```{r DoPL and measures, eval = F, message=FALSE, warning=FALSE, class.source = "fold-show"}
+m8 <- brm(mvbind(Dominance, Prestige, Leadership) ~ Spite_z + SSES + SRPS + SJS, data = analysisDF, iter = 8000, warmup = 500, chains = 4, cores = 6, 
+          prior = c(prior(normal(0, 1), class = "Intercept")), save_all_pars = T)
+
+```
+
+
+```{r DoPL and measures HDI}
+
+summary(m8)
+
+m8_hdi <- bayestestR::hdi(m8, effects = "fixed", component = "conditional", ci = .95)
+kable(m8_hdi[sign(m8_hdi$CI_low) == sign(m8_hdi$CI_high),
+            c('Parameter', 'CI','CI_low', 'CI_high')] , format = "html", booktabs = T, escape = F, longtable = F, digits = 2) %>% kable_styling(full_width = T)
+
+```
+
+### DoPL and Measures * Gender
+```{r m8 with gender interaction, eval = F, message=FALSE, warning=FALSE, class.source = "fold-show"}
+m8_gen <- brm(mvbind(Dominance, Prestige, Leadership) ~ Spite_z*Gender + SSES*Gender + SRPS*Gender + SJS*Gender, data = analysisDF, iter = 8000, warmup = 500, chains = 4, cores = 6, 
+          prior = c(prior(normal(0, 1), class = "Intercept")), save_all_pars = T)
+
+
+```
+
+
+```{r m8 with gender interaction HDI}
+m8_gen_hdi <- bayestestR::hdi(m8_gen, effects = "fixed", component = "conditional", ci = .95)
+kable(m8_gen_hdi[sign(m8_gen_hdi$CI_low) == sign(m8_gen_hdi$CI_high),
+            c('Parameter', 'CI','CI_low', 'CI_high')] , format = "html", booktabs = T, escape = F, longtable = F, digits = 2) %>% kable_styling(full_width = T)
+
+summary(m8_gen)
+
+```
+
+### DoPL and Measures * Age
+
+```{r m8*Age, eval = F, message=FALSE, warning=FALSE, class.source = "fold-show"}
+m8_Age <- brm(mvbind(Dominance, Prestige, Leadership) ~ Spite_z*Age + SSES*Age + SRPS*Age + SJS*Age, data = analysisDF, iter = 8000, warmup = 500, chains = 4, cores = 6, 
+          prior = c(prior(normal(0, 1), class = "Intercept")), save_all_pars = T)
+
+```
+
+
+```{r m8*Age HDI}
+m8_Age_hdi <- bayestestR::hdi(m8_Age, effects = "fixed", component = "conditional", ci = .95)
+kable(m8_Age_hdi[sign(m8_Age_hdi$CI_low) == sign(m8_Age_hdi$CI_high),
+            c('Parameter', 'CI','CI_low', 'CI_high')] , format = "html", booktabs = T, escape = F, longtable = F, digits = 2) %>% kable_styling(full_width = T)
+
+summary(m8_Age)
+```
+
+# Justification and Content type
+
+```{r message=FALSE, warning=FALSE}
+
+ggplot(analysisDF, aes(y = Justification, x = Vignette, fill = Content, group = Vignette)) +
+       geom_violin() +  
+  scale_shape_prism() + 
+  scale_y_continuous(guide = "prism_offset") + 
+  scale_x_discrete(guide = "prism_offset")
+
+```
+
+# Demographic Information
+
+
+```{r message=FALSE, warning=FALSE}
+ggplot(experiment_two_DS, aes(x = Age)) + 
+  geom_histogram(stat = "count") +
+scale_fill_gradient("Count", low = "#FFEDA0", high = "#800F26")  + aes(fill = ..count..) + scale_shape_prism() + scale_y_continuous(limits = c(0, 10), guide = "prism_offset") + scale_x_continuous(guide = "prism_offset")
+```
+
+```{r Demographic table, message=FALSE, warning=FALSE, include=FALSE}
+
+demo_table_1 <- experiment_two_DS[, demographicQuestions]
+
+demo_table_1 <- demo_table_1 %>% mutate(Gender = case_when(
+demo_table_1$Gender == 0 ~ "Male",
+demo_table_1$Gender == 1 ~  "Female"
+)) %>% mutate(Ethnicity = case_when(
+  demo_table_1$Ethnicity == 0 ~ "Prefer not to answer",
+demo_table_1$Ethnicity == 1 ~ "White",
+demo_table_1$Ethnicity == 2 ~ "Mixed or Multiple ethnic origins",
+demo_table_1$Ethnicity == 3 ~ "Asian or Asian Scottish or Asian British",
+demo_table_1$Ethnicity == 4 ~ "African",
+demo_table_1$Ethnicity == 5 ~ "Caribbean or Black",
+demo_table_1$Ethnicity == 6 ~ "Arab",
+demo_table_1$Ethnicity == 7 ~ "Other ethnic group"
+)) %>% mutate(Eth.ori = case_when(
+  demo_table_1$Eth.ori == 0 ~ "Prefer not to answer",
+demo_table_1$Eth.ori == 1 ~ "Scottish",
+demo_table_1$Eth.ori == 2 ~ "English",
+demo_table_1$Eth.ori == 3 ~ "European" ,
+demo_table_1$Eth.ori == 4 ~ "Latin American",
+demo_table_1$Eth.ori == 5 ~ "Asian",
+demo_table_1$Eth.ori == 6 ~ "Arab",
+demo_table_1$Eth.ori == 7 ~ "African",
+demo_table_1$Eth.ori == 8 ~ "Other"
+)) %>% mutate(Edu = case_when(
+demo_table_1$Edu == 0 ~ "Prefer not to answer",
+demo_table_1$Edu == 1 ~ "Primary School",
+demo_table_1$Edu == 2 ~ "GCSes or Equivalent",
+demo_table_1$Edu == 3 ~ "A-Levels or Equivalent",
+demo_table_1$Edu == 4 ~ "University Undergraduate Program",
+demo_table_1$Edu == 5 ~ "University Post-Graduate Program",
+demo_table_1$Edu == 6 ~ "Doctoral Degree"
+))
+
+
+options(digits = 2)
+demo_names <- matrix(1:24, nrow = 24)
+  for (i in names(demo_table_1)){
+  if(is.numeric(demo_table_1[[i]])){
+    options(digits = 2)
+    demo_table_1_sd <- sd(demo_table_1$Age)
+    demo_table_1_mean <- mean(demo_table_1$Age)
+    demo_table_1_median <- median(demo_table_1$Age)
+    demo_table_1_min <- min(demo_table_1$Age)
+    demo_table_1_max <- max(demo_table_1$Age)
+    age_demo_table_1 <- data.frame("Mean (SD)", demo_table_1_mean, demo_table_1_sd)
+    age_demo_table_2 <- data.frame("Median [Min, Max]", demo_table_1_median, demo_table_1_min, demo_table_1_max)
+    age_demo_table_2$Freq <- paste0(age_demo_table_2$demo_table_1_median, " [", age_demo_table_2$demo_table_1_min, ",", age_demo_table_2$demo_table_1_max, "]")
+    age_demo_table_2 <- age_demo_table_2[, -c(2:4)]
+    age_demo_table_1$Freq <- paste0(round(age_demo_table_1$demo_table_1_mean, digits = 2), " (", round(age_demo_table_1$demo_table_1_sd, digits = 2), ")")
+    age_demo_table_1 <- age_demo_table_1[, -c(2:3)]
+    colnames(age_demo_table_1) <- c("Var1", "new")
+colnames(age_demo_table_2) <- c("Var1", "new")
+    }
+  for (i in colnames(demo_table_1)){
+ 
+ if(!is.numeric(demo_table_1[[i]])){
+   options(digits = 2)
+     Education_Table <- data.frame(table(demo_table_1$Edu))
+     Education_Table_percentage <- data.frame(sprintf("(%.1f%%)",round(prop.table(table(demo_table_1$Edu))*100, 3)))
+     colnames(Education_Table_percentage) <- "Freq"
+     Ethnicity_Table <- data.frame(table(demo_table_1$Ethnicity))
+     Ethnicity_Table_percentage <- data.frame(sprintf("(%.1f%%)",round(prop.table(table(demo_table_1$Ethnicity))*100, 3)))
+      colnames(Ethnicity_Table_percentage) <- "Freq"
+     Ethnic_Origin_Table <- data.frame(table(demo_table_1$Eth.ori))
+     Ethnic_Origin_Table_percentage <- data.frame(sprintf("(%.1f%%)",round(prop.table(table(demo_table_1$Eth.ori))*100, 3)))
+      colnames(Ethnic_Origin_Table_percentage) <- "Freq"
+     Gender_Table <- data.frame(table(demo_table_1$Gender))
+     Gender_Table_percentage <- data.frame(sprintf("(%.1f%%)",round(prop.table(table(demo_table_1$Gender))*100, 3)))
+      colnames(Gender_Table_percentage) <- "Freq"
+ }
+  }
+  }
+
+options(digits = 2)
+demographic_table <- rbind(Gender_Table, Education_Table, Ethnic_Origin_Table, Ethnicity_Table)
+demographic_table_percentage <- rbind(Gender_Table_percentage, Education_Table_percentage, Ethnic_Origin_Table_percentage, Ethnicity_Table_percentage)
+demographic_table["Percentage"] <- demographic_table_percentage["Freq"]
+demographic_table$new <- paste(demographic_table$Freq, demographic_table$Percentage)
+
+demographic_table <- demographic_table[, -c(2:3)]
+demographic_table <- rbind(age_demo_table_1, age_demo_table_2, demographic_table)
+```
+
+```{r}
+kable(demographic_table, format = "html", bootabs = T, escape = F, longtable = T,
+      col.names = c("", "Overall *n* = 92"),
+      align = c("l", "c"),
+      caption = "*Participant Demographic Information*") %>%
+  kable_styling(full_width = F)%>%
+  row_spec(row = 0, align = "c")%>%
+  column_spec(column = 1, width = "1.5in" )%>%
+  column_spec(column = 2, width = "1in") %>%
+  pack_rows("Age",1, 2 )%>%
+  pack_rows("Gender", 3, 4)%>%
+  pack_rows("Ethnicity", 11, 17)%>%
+  pack_rows("Ethnic Origin", 18, 22)%>%
+  pack_rows("Educational Attainment", 5, 10)
+
+```
+
+
+

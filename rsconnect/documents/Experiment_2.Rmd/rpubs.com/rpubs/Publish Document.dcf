@@ -1,0 +1,11 @@
+name: Publish Document
+title:
+username:
+account: rpubs
+server: rpubs.com
+hostUrl: rpubs.com
+appId: https://api.rpubs.com/api/v1/document/781839/8f82ae790cdb4a08aca3cacea268fab1
+bundleId: https://api.rpubs.com/api/v1/document/781839/8f82ae790cdb4a08aca3cacea268fab1
+url: http://rpubs.com/aithurburn/781839
+when: 1623934504.83029
+lastSyncTime: 1623934504.83029

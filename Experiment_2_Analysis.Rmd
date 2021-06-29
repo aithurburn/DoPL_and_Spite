@@ -1,0 +1,467 @@
+---
+title: "Experiment 2 Analysis"
+author: "Andrew Ithurburn"
+date: "23/06/2021"
+output: 
+   html_document: 
+     toc: yes
+     toc_float:
+       smooth_scroll: yes
+     code_folding: hide
+     fig_caption: yes
+     number_sections: yes
+     css: table_styling.css
+     theme: paper
+editor_options: 
+  chunk_output_type: inline
+---
+# Experiment 2
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(DT)
+library(ggplot2)
+library(ggthemes)
+library(tidyverse)
+library(papaja)
+library(brms)
+library(rstan)
+library(bayestestR)
+library(sjPlot)
+library(psych)
+library(BayesFactor)
+library(bayesplot)
+library(kableExtra)
+library(ggcorrplot)
+library(ggprism)
+options(mc.corrs = parallel::detectCores()) # can run chains in parallel with each other
+rstan_options(auto_write = TRUE)
+options(control = list(adapt_delta = 0.99999))
+options(brms.backend = "cmdstanr")
+source("prior_function_file.R")
+source("Priors.R")
+bayesplot::bayesplot_theme_set(theme_apa())
+locfunc <- function(data, to){
+  which(colnames({{data}})=={{to}})
+}
+
+lfunc <- function(dataset, to, from) {
+  loc1 <- which(colnames({{dataset}}) == {{to}})
+  loc2 <- which(colnames({{dataset}}) == {{from}})
+  length({{dataset}}[loc1:loc2])
+}
+theme_set(theme_apa(base_size = 12))
+```
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+experiment_two_DS_time <- read.csv("Experiment_2_Dataset_clean.csv")
+experiment_two_DS <- read.csv("Experiment_2_Dataset_clean_noTime.csv")
+df1 <- read.csv("df1.csv")
+corr_table <- readRDS("corr_table.rds")
+m4 <- readRDS("m4.rds")
+m5 <- readRDS("m5.rds")
+m5_gen <- readRDS("m5_gen.rds")
+m7 <- readRDS("m7.rds")
+m8 <- readRDS("m8.rds")
+m8_gen <- readRDS("m8_gen.rds")
+m8_Age <- readRDS("m8_Age.rds")
+dm0 <- readRDS("dm0.rds")
+dm1 <- readRDS("dm1.rds")
+dm2 <- readRDS("dm2.rds")
+dm3 <- readRDS("dm3.rds")
+dm4 <- readRDS("dm4.rds")
+dm5 <- readRDS("dm5.rds")
+demographic_table <- readRDS("demographic_table.rds")
+m2prior <- readRDS("m2prior.rds")
+dopl_1_prior <- readRDS("m4prior.rds")
+m7prior <- readRDS("m7prior.rds")
+m1_intPrior <- readRDS("m1_intPrior.rds")
+analysisDF <- read.csv("analysisDF.csv")
+demographicQuestions <- c("Age", "Gender", "Ethnicity", "Eth.ori", "Edu")
+sjsQuestions <- c("SJS.1", "SJS.2", "SJS.3")
+srpsQuestions <- c("SRPS.1"
+, "SRPS.2"
+, "SRPS.3"
+, "SRPS.4"
+, "SRPS.5"
+, "SRPS.6"
+, "SRPS.7"
+, "SRPS.8"
+, "SRPS.9"
+, "SRPS.10"
+, "SRPS.11"
+, "SRPS.12"
+, "SRPS.13"
+, "SRPS.14"
+, "SRPS.15"
+, "SRPS.17"
+, "SRPS.18"
+, "SRPS.19"
+, "SRPS.20"
+, "SRPS.21"
+, "SRPS.22"
+, "SRPS.23"
+, "SRPS.24")
+
+srps.rcQuestions <- c("SRPS.1"
+, "SRPS.2"
+, "SRPS.3"
+, "SRPS.4"
+, "SRPS.5"
+, "SRPS.6"
+, "SRPS.7"
+, "SRPS.8"
+, "SRPS.9"
+, "SRPS.10"
+, "SRPS.11"
+, "SRPS.12"
+, "SRPS.13"
+, "SRPS.14"
+, "SRPS.15")
+
+srps.dmQuestions <- c("SRPS.17"
+, "SRPS.18"
+, "SRPS.19"
+, "SRPS.20"
+, "SRPS.21"
+, "SRPS.22"
+, "SRPS.23"
+, "SRPS.24")
+
+ssesQuestions <- c("SSES.1"
+, "SSES.2"
+, "SSES.3"
+, "SSES.4"
+, "SSES.5"
+, "SSES.6"
+, "SSES.7"
+, "SSES.8"
+, "SSES.9"
+, "SSES.10")
+
+spiteQuestions <- c("Spite.1"
+, "Spite.2"
+, "Spite.3"
+, "Spite.4"
+, "Spite.5"
+, "Spite.6"
+, "Spite.7"
+, "Spite.8"
+, "Spite.9"
+, "Spite.10"
+, "Spite.11"
+, "Spite.12"
+, "Spite.13"
+, "Spite.14"
+, "Spite.15"
+, "Spite.16")
+
+Vign.Sex <- c("Vign.1", "Vign.2", "Vign.4", "Vign.7", "Vign.10")
+Vign.noSex <- c("Vign.3", "Vign.5", "Vign.6", "Vign.8", "Vign.9")
+Vign.Overall <- c("Vign.1", "Vign.2", "Vign.4", "Vign.7", "Vign.10", "Vign.3", "Vign.5", "Vign.6", "Vign.8", "Vign.9")
+
+Real.Sex <- c("Real.1", "Real.2", "Real.4", "Real.7", "Real.10")
+Real.noSex <- c("Real.3", "Real.5", "Real.6", "Real.8", "Real.9")
+Real.Overall <- c("Real.1", "Real.2", "Real.4", "Real.7", "Real.10", "Real.3", "Real.5", "Real.6", "Real.8", "Real.9")
+
+doplQuestions <- c('DoPL_1', 'DoPL_6', 'DoPL_11', 'DoPL_13', 'DoPL_14', 'DoPL_16', 'DoPL_5', 'DoPL_7', 'DoPL_8', 'DoPL_12', 'DoPL_17', 'DoPL_18', 'DoPL_2', 'DoPL_3', 'DoPL_4', 'DoPL_9', 'DoPL_10', 'DoPL_15')
+
+dominanceQuestions <- c('DoPL_2','DoPL_3','DoPL_4','DoPL_9','DoPL_10','DoPL_15')
+prestigeQuestions <- c('DoPL_5','DoPL_7','DoPL_8','DoPL_12','DoPL_17','DoPL_18')
+leadershipQuestions <- c('DoPL_1','DoPL_6','DoPL_11','DoPL_13','DoPL_14','DoPL_16')
+
+UMSQuestions <- c('UMS_1', 'UMS_2', 'UMS_3', 'UMS_4','UMS_5','UMS_6','UMS_7','UMS_8','UMS_9','UMS_11', 'UMS_12')
+UMSIntimacyQuestions <- c('UMS_11', 'UMS_12')
+UMSAffiliationQuestions <- c('UMS_1', 'UMS_2', 'UMS_3', 'UMS_4','UMS_5','UMS_6','UMS_7','UMS_8','UMS_9')
+
+savedQuestionsBefore <- c('subjectID', "Age", "Duration..in.seconds.", "Gender", "Ethnicity", "Eth.ori", "Edu",
+                     "DoPLSum"
+,"dominanceSum"
+,"prestigeSum"
+,"leadershipSum"
+,"UMSSum"
+,"UMSIntimacySum"
+,"UMSAffiliationSum"
+,"sjsSum"
+,"ssesSum"
+, "Spite"
+,"Vign.Sex"
+,"Vign.noSex"
+,"Vign.Ovr.Score"
+,"Real.Sex"
+,"Real.noSex"
+,"Real.Ovr.Score"
+,"srps.rc.rescale"
+,"srps.dm.rescale"
+,"srps.sum.rescale",
+"Power",
+"Vign.1",
+"Vign.2",
+"Vign.3",
+"Vign.4",
+"Vign.5",
+"Vign.6",
+"Vign.7",
+"Vign.8",
+"Vign.9",
+"Vign.10",
+"Real.1",
+"Real.2",
+"Real.3",
+"Real.4",
+"Real.5",
+"Real.6",
+"Real.7",
+"Real.8",
+"Real.9",
+"Real.10")
+
+savedQuestionsAfter <- c('subjectID', "Age", "Duration..in.seconds.", "Gender", "Ethnicity", "Eth.ori", "Edu",
+                     "DoPLSum"
+,"dominanceSum"
+,"prestigeSum"
+,"leadershipSum"
+,"UMSSum"
+,"UMSIntimacySum"
+,"UMSAffiliationSum"
+,"sjsSum"
+,"ssesSum"
+, "Spite"
+,"Vign.Sex"
+,"Vign.noSex"
+,"Vign.Ovr.Score"
+,"Real.Sex"
+,"Real.noSex"
+,"Real.Ovr.Score"
+,"srps.rc.rescale"
+,"srps.dm.rescale"
+,"srps.sum.rescale"
+,"Content",
+"Vignette",
+"Justification",
+"Realism",
+"Power")
+```
+
+# Experiment 1 Demographics
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+kable(demographic_table, format = "html", bootabs = T, escape = F, longtable = T,
+      col.names = c("", "Overall *n* = 92"),
+      align = c("l", "c"),
+      caption = "*Participant Demographic Information*") %>%
+  kable_styling(full_width = F)%>%
+  row_spec(row = 0, align = "c")%>%
+  column_spec(column = 1, width = "1.5in" )%>%
+  column_spec(column = 2, width = "1in") %>%
+  pack_rows("Age",1, 2 )%>%
+  pack_rows("Gender", 3, 4)%>%
+  pack_rows("Ethnicity", 11, 17)%>%
+  pack_rows("Ethnic Origin", 18, 22)%>%
+  pack_rows("Educational Attainment", 5, 10)
+
+```
+
+## DoPL motives predicting risky behavior (by content) ggplot {.tabset}
+
+### Dominance
+
+```{r}
+ggplot(analysisDF, aes(x = Dominance, y = Justification, col = Content)) + 
+  geom_point(size = .7,
+             alpha = .8,
+             position = "jitter") + 
+  geom_smooth(method = "lm", 
+              se = F,
+              size = 2, 
+              alpha = .8)
+```
+
+### Prestige
+```{r}
+ggplot(analysisDF, aes(x = Prestige, y = Justification, col = Content)) + 
+  geom_point(size = .7,
+             alpha = .8,
+             position = "jitter") + 
+  geom_smooth(method = "lm", 
+              se = F,
+              size = 2, 
+              alpha = .8)
+```
+
+### Leadership
+```{r}
+ggplot(analysisDF, aes(x = Leadership, y = Justification, col = Content)) + 
+  geom_point(size = .7,
+             alpha = .8,
+             position = "jitter") + 
+  geom_smooth(method = "lm", 
+              se = F,
+              size = 2, 
+              alpha = .8)
+```
+
+### Spitefulness
+```{r}
+ggplot(analysisDF, aes(x = Spite, y = Justification, col = Content)) + 
+  geom_point(size = .7,
+             alpha = .8,
+             position = "jitter") + 
+  geom_smooth(method = "lm", 
+              se = F,
+              size = 2, 
+              alpha = .8) 
+```
+
+# Initial Bayesian Analysis
+
+```{r Bayesian, eval = F, message=FALSE, warning=FALSE, class.source = "fold-show"}
+
+
+
+m0 <- brm(Justification_z ~ 1 + (1|Vignette) + (1|subjectID), data = analysisDF, 
+         warmup = 500, control = list(adapt_delta = 0.95), iter = 8000, chains = 4, cores = 6, save_all_pars = T,
+          prior = prior_m0)
+
+# models 
+m1 <- brm(Justification_z ~ Spite_z * Content + (1|Vignette) + (1|subjectID), data = analysisDF, 
+        warmup = 500, control = list(adapt_delta = 0.95)), iter = 8000, chains = 4, cores = 6, save_all_pars = T,
+         prior = prior_m1)
+summary(m1) 
+
+m2 <- brm(Justification ~ Spite_z * Content + Realism_z + (1|Vignette) + (1|subjectID), data = analysisDF, 
+        warmup = 500, control = list(adapt_delta = 0.95)), iter = 8000, chains = 4, cores = 4, save_all_pars = T,
+         prior = prior_m2)
+summary(m2)
+
+m3 <- brm(Justification ~ Spite_z * Content + Realism_z + SSES + SRPS + SJS + (1|Vignette) + 
+           (1|subjectID), data = analysisDF,warmup = 500, control = list(adapt_delta = 0.95)), iter = 8000, chains = 4, cores = 6, 
+         save_all_pars = T,
+         prior = prior_m3)
+summary(m3)
+
+m4 <- brm(Justification ~ Spite_z * Content * Realism_z + SSES_z + SRPS_z + SJS_z + (1|Vignette) + 
+           (1|subjectID), data = analysisDF,warmup = 500, control = list(adapt_delta = 0.95), iter = 8000, chains = 4, cores = 6, 
+         save_all_pars = T,
+         prior = prior_m4)
+
+```
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, include=FALSE}
+experiment_1_priors <- prior_function(m2prior)
+dopl_1_priors <- prior_function(m7prior)
+m1_intPrior <- prior_function(m1_intPrior)
+print(experiment_1_priors)
+
+```
+
+
+## Bayesian Correlation
+
+```{r, eval = F, message=FALSE, warning=FALSE, class.source = "fold-show"}
+scale_corr <- brm(mvbind(SSES, SRPS, Spite, SJS, Dominance, Prestige, Leadership) ~ 1, data = analysisDF, iter = 8000, warmup = 500, chains = 4, cores = 6, 
+                  prior = c(prior(normal(0, 1), class = "Intercept")), save_all_pars = T)
+cor_1 <- summary(scale_corr)
+corr_table <- cor_1[["rescor_pars"]]
+```
+
+
+```{r}
+kable(corr_table, format = "html", booktabs = T, escape = F, longtabe = F, digits = 2, col.names = c('Estimate',	'Est.Error',	'l-95% CI',	'u-95% CI',	'Rhat',	'Bulk_ESS',	'Tail_ESS')) %>%
+  kable_styling(full_width = F)  %>%
+  remove_column(6:8)
+```
+
+## DoPL motives predicting risky behavior (by content) in addition to spitefulness
+
+```{r Bayesian Analysis, eval = F, message=FALSE, warning=FALSE, class.source = "fold-show"}
+dm0 <- brm(Justification ~ 1 + (1|Vignette) + (1|subjectID), data = analysisDF, iter = 8000, warmup = 500, chains = 4, cores = 6
+           ,prior = prior_dm0, save_all_pars = T)
+
+summary(dm0)
+
+dm1 <- brm(Justification ~ Dominance_z * Gender + Prestige_z * Gender + Leadership_z * Gender + (1|Vignette) + (1|subjectID), data = analysisDF, iter = 8000,control = list(adapt_delta = 0.99), warmup = 500, chains = 4, cores = 6
+           ,prior = prior_dm1, save_all_pars = T)
+
+summary(dm1)
+
+dm3 <- brm(Justification ~ Dominance_z * Gender + Prestige_z * Gender + Leadership_z * Gender + Age + (1|Vignette) + (1|subjectID), data = analysisDF, iter = 8000, warmup = 500, chains = 4, cores = 6
+           ,prior = c(prior(normal(0, 1), class = "Intercept")), save_all_pars = T)
+
+summary(dm3)
+
+dm2 <- brm(Justification ~ Dominance_z * Gender + Prestige_z * Gender + Leadership_z * Gender + SJS_z + SRPS_z + SSES_z + Spite_z +  (1|Vignette) + (1|subjectID), control = list(adapt_delta = 0.99), data = analysisDF, iter = 8000, warmup = 500, chains = 4, cores = 6
+           ,prior = prior_dm2, save_all_pars = T)
+
+summary(dm2)
+
+dm4 <- brm(Justification ~ Dominance_z * Gender * Content + Prestige_z * Gender * Content + Leadership_z * Gender * Content + SJS_z + SRPS_z + SSES_z + Spite_z +  (1|Vignette) + (1|subjectID), control = list(adapt_delta = 0.99), data = analysisDF, iter = 8000, warmup = 500, chains = 4, cores = 6
+           ,prior = prior_dm4, save_all_pars = T)
+
+summary(dm4)
+
+dm4_hdi <- bayestestR::hdi(dm4, effects = "fixed", component = "conditional", ci = .95)
+dm4_hdi[sign(dm4_hdi$CI_low) == sign(dm4_hdi$CI_high),
+            c('Parameter', 'CI','CI_low', 'CI_high')]
+
+
+dm5 <- brm(Justification ~ Dominance_z * Realism_z * Content * Gender + Prestige_z * Realism_z * Content * Gender + Leadership_z * Gender * Realism_z * Content + Spite_z * Content +  (1|Vignette) + (1|subjectID), control = list(adapt_delta = 0.99), data = analysisDF, iter = 8000, warmup = 500, chains = 4, cores = 6
+           ,prior = prior_dm5, save_all_pars = T)
+
+summary(dm5)
+
+bm4 <- brm(Justification ~ Dominance_z * Realism_z * Content * Gender + Prestige_z * Realism_z * Content * Gender + Leadership_z * Realism_z * Content * Gender + Spite_z * Content * Gender + (1|Vignette) + (1|subjectID), control = list(adapt_delta = 0.99), data = analysisDF, iter = 8000, warmup = 500, chains = 4, cores = 6, save_all_pars = T)
+
+loo(dm1, dm2, dm4, dm5)
+```
+
+## DoPL motives predicting risky behavior (by content) in addition to spitefulness HDI
+
+```{r Bayesian Analysis HDI, message=FALSE, warning=FALSE}
+dm5_hdi <- bayestestR::hdi(dm5, effects = "fixed", component = "conditional", ci = .95)
+kable(dm5_hdi[sign(dm5_hdi$CI_low) == sign(dm5_hdi$CI_high),
+            c('Parameter', 'CI','CI_low', 'CI_high')], format = "html", booktabs = T, escape = F, longtable = F, digits = 2) %>% kable_styling(full_width = T)
+
+
+```
+
+
+
+
+
+## Bayesian analysis m4
+
+```{r}
+summary(m4)
+
+m4_hdi <- bayestestR::hdi(m4, effects = "fixed", component = "conditional", ci = .95)
+kable(m4_hdi[sign(m4_hdi$CI_low) == sign(m4_hdi$CI_high),
+            c('Parameter', 'CI','CI_low', 'CI_high')] , format = "html", booktabs = T, escape = F, longtable = F, digits = 2) %>% kable_styling(full_width = T)
+```
+
+```{r, eval = F, message=FALSE, warning=FALSE, class.source = "fold-show"}
+m5 <- brm(Justification ~ Dominance_z + Leadership_z + Prestige_z + (1|Vignette) + (1|subjectID), data = analysisDF,warmup = 500, control = list(adapt_delta = 0.95)), iter = 8000, chains = 4, cores = 6, prior = c(prior(normal(0,1), class = 'Intercept'),
+                   prior(normal(0,1), class = 'b')))
+summary(m5)
+
+m5_gen <- brm(Justification_z ~ Dominance_z*Gender + Leadership_z*Gender + Prestige_z*Gender + (1|Vignette) + (1|subjectID), data = analysisDF, warmup = 500, control = list(adapt_delta = 0.95), iter = 8000, chains = 4, cores = 6, 
+  prior = c(prior(normal(0,1), class = 'Intercept'), 
+                   prior(normal(3, 1), class = 'b', coef = "Dominance_z:Gender"),
+                   prior(normal(0, 1), class = 'b', coef = "Gender:Leadership_z"),
+                   prior(normal(0, 1), class = 'b', coef = "Gender:Prestige_z")),
+                   save_all_pars = T)
+summary(m5_gen)
+
+```
+
+## DoPL and Justification
+
+```{r}
+summary(m5_gen)
+
+m5_gen_hdi <- bayestestR::hdi(m5_gen, effects = "fixed", component = "conditional", ci = .95)
+kable(m5_gen_hdi[sign(m5_gen_hdi$CI_low) == sign(m5_gen_hdi$CI_high),
+            c('Parameter', 'CI','CI_low', 'CI_high')] , format = "html", booktabs = T, escape = F, longtable = F, digits = 2) %>% kable_styling(full_width = T)
+
+
+```
