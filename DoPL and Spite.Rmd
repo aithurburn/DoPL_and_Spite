@@ -69,15 +69,53 @@ output            : papaja::apa6_pdf
 ```{r setup, include = FALSE}
 library("papaja")
 r_refs("r-references.bib")
+analysisDF <- read.csv('analysisDF.csv')
+
 ```
 
 ```{r analysis-preferences}
 # Seed for random number generation
+library('languageserver')
 set.seed(42)
 knitr::opts_chunk$set(cache.extra = knitr::rand_seed)
+library(DT)
+library(ggplot2)
+library(ggthemes)
+library(tidyverse)
+library(papaja)
+library(brms)
+library(rstan)
+library(bayestestR)
+library(sjPlot)
+library(psych)
+library(BayesFactor)
+library(bayesplot)
+library(kableExtra)
+
+
+library(ggcorrplot)
+library(ggprism)
+
+options(mc.corrs = parallel::detectCores()) # can run chains in parallel with each other
+rstan_options(auto_write = TRUE)
+options(control = list(adapt_delta = 0.99999))
+options(brms.backend = "cmdstanr")
+
+bayesplot::bayesplot_theme_set(theme_apa())
+locfunc <- function(data, to){
+  which(colnames({{data}})=={{to}})
+}
+
+lfunc <- function(dataset, to, from) {
+  loc1 <- which(colnames({{dataset}}) == {{to}})
+  loc2 <- which(colnames({{dataset}}) == {{from}})
+  length({{dataset}}[loc1:loc2])
+}
+theme_set(theme_apa(base_size = 12))
 ```
 
 # Introduction
+Every day individuals make decisions be they mundane such as which cereal to eat in the morning to the more complex of which job should they accept. The consequences for making those decisions can be equally complex. Decisions with lasting effects often are more consequential during the decision-making process
 
 *Issue*
 
@@ -88,11 +126,11 @@ knitr::opts_chunk$set(cache.extra = knitr::rand_seed)
 
 # Methodology
 ##	*Methods*
-Participants: Participants were a convenience sample of 82 (Mage = 25.6, SD = 7.54) individuals from Prolific Academic crowdsourcing platform (“www.prolific.co”). Requirements for participation were: (1) be 18 years of age or older and (2) and as part of Prolific Academics policy, have a prolific rating of 90 or above. Participants received £4 or £8 an hour as compensation for completing the survey.  The University of Edinburgh’s Research Ethics Committee approved all study procedures (approval reference number: 330-1920/1). 
+Participants: Participants were a convenience sample of 82 (Mage = `r mean(analysisDF$Age)`, SD = `r sd(analysisDF$Age)`) individuals from Prolific Academic crowdsourcing platform (“www.prolific.co”). Requirements for participation were: (1) be 18 years of age or older and (2) and as part of Prolific Academics policy, have a prolific rating of 90 or above. Participants received £4 or £8 an hour as compensation for completing the survey.  The University of Edinburgh’s Research Ethics Committee approved all study procedures (approval reference number: 330-1920/1). 
 
 ### *Materials*:
 *Demographic Questionnaire*:
-Prior to the psychometric scales, participants are asked to share their demographic characteristics. 
+Prior to the psychometric scales, participants are asked to share their demographic characteristics (e.g., age, gender, ethnicity, ethnic origin, and educational attainment). 
 
 *Dominance, Prestige, and Leadership Orientation*. 
 The 18-item Dominance, Prestige, and Leadership scale [DoPL; @suessenbach_dominance_2019], is used to measure dominance, prestige, and leadership orientation. Each question corresponds to one of the three domains. Each domain is scored across six unique items related to those domains (e.g., "I relish opportunities in which I can lead others" for leadership) rated on a scale from 0 (Strongly disagree) to 5 (Strongly agree). Internal consistency reliability for the current sample is $

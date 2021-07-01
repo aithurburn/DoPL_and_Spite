@@ -5,10 +5,14 @@
 \documentclass[
   english,
   man]{apa7}
+\title{The title}
+\author{Ithurburn, Andrew\textsuperscript{1} \& Moore, Adam\textsuperscript{1}}
+\date{}
+
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
-\usepackage{ifxetex,ifluatex}
-\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+\usepackage{iftex}
+\ifPDFTeX
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
@@ -71,6 +75,29 @@
   \let\oldsubparagraph\subparagraph
   \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
 \fi
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newlength{\cslentryspacingunit} % times entry-spacing
+\setlength{\cslentryspacingunit}{\parskip}
+\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
+ {% don't indent paragraphs
+  \setlength{\parindent}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1
+  \let\oldpar\par
+  \def\par{\hangindent=\cslhangindent\oldpar}
+  \fi
+  % set entry spacing
+  \setlength{\parskip}{#2\cslentryspacingunit}
+ }%
+ {}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{#1\hfill\break}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 % Manuscript styling
 \usepackage{upgreek}
 \captionsetup{font=singlespacing,justification=justified}
@@ -139,7 +166,7 @@
 \linenumbers
 \usepackage{csquotes}
 \raggedbottom
-\ifxetex
+\ifXeTeX
   % Load polyglossia as late as possible: uses bidi with RTL langages (e.g. Hebrew, Arabic)
   \usepackage{polyglossia}
   \setmainlanguage[]{english}
@@ -149,33 +176,9 @@
 \let\LanguageShortHands\languageshorthands
 \def\languageshorthands#1{}
 \fi
-\ifluatex
+\ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
-\newlength{\cslhangindent}
-\setlength{\cslhangindent}{1.5em}
-\newlength{\csllabelwidth}
-\setlength{\csllabelwidth}{3em}
-\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
- {% don't indent paragraphs
-  \setlength{\parindent}{0pt}
-  % turn on hanging indent if param 1 is 1
-  \ifodd #1 \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces\fi
-  % set entry spacing
-  \ifnum #2 > 0
-  \setlength{\parskip}{#2\baselineskip}
-  \fi
- }%
- {}
-\usepackage{calc}
-\newcommand{\CSLBlock}[1]{#1\hfill\break}
-\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
-\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
-\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
-
-\title{The title}
-\author{Ithurburn, Andrew\textsuperscript{1} \& Moore, Adam\textsuperscript{1}}
-\date{}
 
 
 \authornote{
@@ -216,6 +219,7 @@ Two or three sentences to provide a \textbf{broader perspective}, readily compre
 \hypertarget{introduction}{%
 \section{Introduction}\label{introduction}}
 
+Every day individuals make decisions be they mundane such as which cereal to eat in the morning to the more complex of which job should they accept. The consequences for making those decisions can be equally complex. Some consequences such as choosing the incorrect cereal can be minor
 \emph{Issue}
 
 \emph{Spitefulness}
@@ -228,13 +232,13 @@ Two or three sentences to provide a \textbf{broader perspective}, readily compre
 \hypertarget{methods}{%
 \subsection{\texorpdfstring{\emph{Methods}}{Methods}}\label{methods}}
 
-Participants: Participants were a convenience sample of 82 (Mage = 25.6, SD = 7.54) individuals from Prolific Academic crowdsourcing platform (``www.prolific.co''). Requirements for participation were: (1) be 18 years of age or older and (2) and as part of Prolific Academics policy, have a prolific rating of 90 or above. Participants received £4 or £8 an hour as compensation for completing the survey. The University of Edinburgh's Research Ethics Committee approved all study procedures (approval reference number: 330-1920/1).
+Participants: Participants were a convenience sample of 82 (Mage = 26.14, SD = 8.65) individuals from Prolific Academic crowdsourcing platform (``www.prolific.co''). Requirements for participation were: (1) be 18 years of age or older and (2) and as part of Prolific Academics policy, have a prolific rating of 90 or above. Participants received £4 or £8 an hour as compensation for completing the survey. The University of Edinburgh's Research Ethics Committee approved all study procedures (approval reference number: 330-1920/1).
 
 \hypertarget{materials}{%
 \subsubsection{\texorpdfstring{\emph{Materials}:}{Materials:}}\label{materials}}
 
 \emph{Demographic Questionnaire}:
-Prior to the psychometric scales, participants are asked to share their demographic characteristics.
+Prior to the psychometric scales, participants are asked to share their demographic characteristics (e.g., age, gender, ethnicity, ethnic origin, and educational attainment).
 
 \emph{Dominance, Prestige, and Leadership Orientation}.
 The 18-item Dominance, Prestige, and Leadership scale {[}DoPL; Suessenbach et al. (2019){]}, is used to measure dominance, prestige, and leadership orientation. Each question corresponds to one of the three domains. Each domain is scored across six unique items related to those domains (e.g., ``I relish opportunities in which I can lead others'' for leadership) rated on a scale from 0 (Strongly disagree) to 5 (Strongly agree). Internal consistency reliability for the current sample is \$
@@ -293,19 +297,19 @@ Bayesian multilevel models were used to test differences between levels of justi
 
 \hypertarget{refs}{}
 \begin{CSLReferences}{1}{0}
-\leavevmode\hypertarget{ref-marcus_psychology_2014}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-marcus_psychology_2014}{}}%
 Marcus, D. K., Zeigler-Hill, V., Mercer, S. H., \& Norris, A. L. (2014). The psychology of spite and the measurement of spitefulness. \emph{Psychological Assessment}, \emph{26}(2), 563--574. \url{https://doi.org/10.1037/a0036039}
 
-\leavevmode\hypertarget{ref-pulerwitz_measuring_2000}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-pulerwitz_measuring_2000}{}}%
 Pulerwitz, J., Gortmaker, S., \& DeJong, W. (2000). Measuring sexual relationships in {HIV}/{STD} research. \emph{Sex Roles}, \emph{42}(7), 637--660. \url{https://doi.org/10.1023/A:1007051506972}
 
-\leavevmode\hypertarget{ref-snell_sexuality_1989}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-snell_sexuality_1989}{}}%
 Snell, W. E., \& Papini, D. R. (1989). The sexuality scale: An instrument to measure sexual-esteem, sexual-depression, and sexual-preoccupation. \emph{The Journal of Sex Research}, \emph{26}(2), 256--263. \url{https://doi.org/10.1080/00224498909551510}
 
-\leavevmode\hypertarget{ref-suessenbach_dominance_2019}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-suessenbach_dominance_2019}{}}%
 Suessenbach, F., Loughnan, S., Schönbrodt, F. D., \& Moore, A. B. (2019). The dominance, prestige, and leadership account of social power motives. \emph{European Journal of Personality}, \emph{33}(1), 7--33. \url{https://doi.org/10.1002/per.2184}
 
-\leavevmode\hypertarget{ref-worley_exploring_2014}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-worley_exploring_2014}{}}%
 Worley, T., \& Samp, J. (2014). Exploring the associations between relational uncertainty, jealousy about partner's friendships, and jealousy expression in dating relationships. \emph{Communication Studies}, \emph{65}(4), 370--388. \url{https://doi.org/10.1080/10510974.2013.833529}
 
 \end{CSLReferences}

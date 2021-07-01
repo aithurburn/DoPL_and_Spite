@@ -11,4 +11,5 @@ prior_function <- function(modelName) {
   df2 <- cbind(Mean, SD)
   df2 <- data.frame(t(df2))
 }
+9 + 1
 

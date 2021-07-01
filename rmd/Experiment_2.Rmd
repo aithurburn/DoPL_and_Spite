@@ -17,6 +17,7 @@ editor_options:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
 library(DT)
 library(ggplot2)
 library(ggthemes)
@@ -30,8 +31,11 @@ library(psych)
 library(BayesFactor)
 library(bayesplot)
 library(kableExtra)
+
+
 library(ggcorrplot)
 library(ggprism)
+
 options(mc.corrs = parallel::detectCores()) # can run chains in parallel with each other
 rstan_options(auto_write = TRUE)
 options(control = list(adapt_delta = 0.99999))
@@ -48,6 +52,7 @@ lfunc <- function(dataset, to, from) {
   length({{dataset}}[loc1:loc2])
 }
 theme_set(theme_apa(base_size = 12))
+
 ```
 
 ## Cleanup
@@ -132,6 +137,7 @@ ssesQuestions <- c("SSES.1"
 , "SSES.9"
 , "SSES.10")
 
+
 spiteQuestions <- c("Spite.1"
 , "Spite.2"
 , "Spite.3"
@@ -148,6 +154,7 @@ spiteQuestions <- c("Spite.1"
 , "Spite.14"
 , "Spite.15"
 , "Spite.16")
+
 
 Vign.Sex <- c("Vign.1", "Vign.2", "Vign.4", "Vign.7", "Vign.10")
 Vign.noSex <- c("Vign.3", "Vign.5", "Vign.6", "Vign.8", "Vign.9")
@@ -444,7 +451,7 @@ m0 <- brm(Justification_z ~ 1 + (1|Vignette) + (1|subjectID), data = analysisDF,
 
 # models 
 m1 <- brm(Justification_z ~ Spite_z * Content + (1|Vignette) + (1|subjectID), data = analysisDF, 
-        warmup = 500, control = list(adapt_delta = 0.95)), iter = 8000, chains = 4, cores = 6, save_all_pars = T,
+        warmup = 500, control = list(adapt_delta = 0.95), iter = 8000, chains = 4, cores = 6, save_all_pars = T,
          prior = c(prior(normal(0,1), class = 'Intercept'),
                    prior(normal(0,1), class = 'b'),
                    prior(normal(0.151, 0.0723), class = b, coef = "Spite_z:ContentSexual")))
@@ -689,13 +696,14 @@ ggplot(analysisDF, aes(y = Justification, x = Vignette, fill = Content, group = 
   scale_y_continuous(guide = "prism_offset") + 
   scale_x_discrete(guide = "prism_offset")
 
-```
+timstop <- 2 + 3
 
+```
 # Demographic Information
 
 
 ```{r message=FALSE, warning=FALSE}
-ggplot(experiment_two_DS, aes(x = Age)) + 
+ggplotimage <- ggplot(experiment_two_DS, aes(x = Age)) + 
   geom_histogram(stat = "count") +
 scale_fill_gradient("Count", low = "#FFEDA0", high = "#800F26")  + aes(fill = ..count..) + scale_shape_prism() + scale_y_continuous(limits = c(0, 10), guide = "prism_offset") + scale_x_continuous(guide = "prism_offset")
 ```
