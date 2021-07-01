@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Seed for random number generation</title>
+        <style>
+/* From extension vscode.markdown-math */
+/* Error */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.katex-error {
+	color: var(--vscode-editorError-foreground);
+}
+
+</style>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        <script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+        
+    </head>
+    <body class="vscode-body">
+        <hr>
+<p>title             : &quot;The psychology of risk and power: Power desires and sexual choices&quot;<br>
+shorttitle        : &quot;Risk and Power&quot;</p>
+<p>author:</p>
+<ul>
+<li>name          : &quot;Ithurburn, Andrew&quot;<br>
+affiliation   : &quot;1&quot;<br>
+corresponding : yes    # Define only one corresponding author<br>
+address       : &quot;7 George Square, Edinburgh, EH8 9JZ&quot;<br>
+email         : &quot;<a href="mailto:a.ithurburn@sms.ed.ac.uk">a.ithurburn@sms.ed.ac.uk</a>&quot;<br>
+role:         # Contributorship roles (e.g., CRediT, <a href="https://casrai.org/credit/">https://casrai.org/credit/</a>)
+<ul>
+<li>Conceptualization</li>
+<li>Writing - Original Draft Preparation</li>
+<li>Writing - Review &amp; Editing</li>
+</ul>
+</li>
+<li>name          : &quot;Moore, Adam&quot;<br>
+affiliation   : &quot;1&quot;<br>
+role:
+<ul>
+<li>Writing - Review &amp; Editing</li>
+</ul>
+</li>
+</ul>
+<p>affiliation:</p>
+<ul>
+<li>id            : &quot;1&quot;<br>
+institution   : &quot;The University of Edinburgh&quot;</li>
+</ul>
+<p>authornote: |<br>
+Add complete departmental affiliations for each author here. Each new line herein must be indented, like this line.</p>
+<p>Enter author note here.</p>
+<p>abstract: |<br>
+One or two sentences providing a <strong>basic introduction</strong> to the field,  comprehensible to a scientist in any discipline.</p>
+<p>Two to three sentences of <strong>more detailed background</strong>, comprehensible  to scientists in related disciplines.</p>
+<p>One sentence clearly stating the <strong>general problem</strong> being addressed by  this particular study.</p>
+<p>One sentence summarizing the main result (with the words &quot;<strong>here we show</strong>&quot; or their equivalent).</p>
+<p>Two or three sentences explaining what the <strong>main result</strong> reveals in direct comparison to what was thought to be the case previously, or how the  main result adds to previous knowledge.</p>
+<p>One or two sentences to put the results into a more <strong>general context</strong>.</p>
+<p>Two or three sentences to provide a <strong>broader perspective</strong>, readily comprehensible to a scientist in any discipline.</p>
+  <!-- https://tinyurl.com/ybremelq -->
+<p>keywords          : &quot;keywords&quot;<br>
+wordcount         : &quot;X&quot;</p>
+<p>bibliography      : [&quot;r-references.bib&quot;, &quot;references.bib&quot;]</p>
+<p>floatsintext      : no<br>
+figurelist        : no<br>
+tablelist         : no<br>
+footnotelist      : no<br>
+linenumbers       : yes<br>
+mask              : no<br>
+draft             : no<br>
+mainfont: &quot;Times New Roman&quot;<br>
+always_allow_html: true<br>
+header-includes:</p>
+<ul>
+<li>\raggedbottom</li>
+</ul>
+<h2 id="documentclass------apa7csl----------------apa-cvcslclassoption--------a4paperoutput-------------papajaapa6_pdf">documentclass     : &quot;apa7&quot;<br>
+csl               : &quot;apa-cv.csl&quot;<br>
+classoption       : &quot;a4paper&quot;<br>
+output            : papaja::apa6_pdf</h2>
+<pre><code class="language-{r"><code><div>library(&quot;papaja&quot;)
+r_refs(&quot;r-references.bib&quot;)
+analysisDF &lt;- read.csv('analysisDF.csv')
+
+</div></code></code></pre>
+<pre><code class="language-{r"><code><div># Seed for random number generation
+library('languageserver')
+set.seed(42)
+knitr::opts_chunk$set(cache.extra = knitr::rand_seed)
+library(DT)
+library(ggplot2)
+library(ggthemes)
+library(tidyverse)
+library(papaja)
+library(brms)
+library(rstan)
+library(bayestestR)
+library(sjPlot)
+library(psych)
+library(BayesFactor)
+library(bayesplot)
+library(kableExtra)
+
+
+library(ggcorrplot)
+library(ggprism)
+
+options(mc.corrs = parallel::detectCores()) # can run chains in parallel with each other
+rstan_options(auto_write = TRUE)
+options(control = list(adapt_delta = 0.99999))
+options(brms.backend = &quot;cmdstanr&quot;)
+
+bayesplot::bayesplot_theme_set(theme_apa())
+locfunc &lt;- function(data, to){
+  which(colnames({{data}})=={{to}})
+}
+
+lfunc &lt;- function(dataset, to, from) {
+  loc1 &lt;- which(colnames({{dataset}}) == {{to}})
+  loc2 &lt;- which(colnames({{dataset}}) == {{from}})
+  length({{dataset}}[loc1:loc2])
+}
+theme_set(theme_apa(base_size = 12))
+</div></code></code></pre>
+<h1 id="introduction">Introduction</h1>
+<p>Every day individuals make decisions be they mundane such as which cereal to eat in the morning to the more complex of which job should they accept. The consequences for making those decisions can be equally complex. Some decisions are more difficult to quantify and understand while others can be relatively easy like choosing what cereal to eat in the morning. However, some are increasingly more difficult to model. For example, two adult males (or a man and a woman) who are intending to have sex must decide whether or not to have sex with or without a condom. The consequences can have lasting effects depending on what the couple choose.</p>
+<p><em>Issue</em></p>
+<p><em>Spitefulness</em></p>
+<p><em>DoPL</em></p>
+<h1 id="methodology">Methodology</h1>
+<h2 id="methods"><em>Methods</em></h2>
+<p><em>Participants</em>: Participants were a convenience sample of 82 (Mage = <code>r mean(analysisDF$Age)</code>, SD = <code>r sd(analysisDF$Age)</code>) individuals from Prolific Academic crowdsourcing platform (“<a href="http://www.prolific.co">www.prolific.co</a>”). Requirements for participation were: (1) be 18 years of age or older and (2) and as part of Prolific Academics policy, have a prolific rating of 90 or above. Participants received £4 or £8 an hour as compensation for completing the survey.  The University of Edinburgh’s Research Ethics Committee approved all study procedures (approval reference number: 330-1920/1).</p>
+<h3 id="materials"><em>Materials</em>:</h3>
+<p><em>Demographic Questionnaire</em>:<br>
+Prior to the psychometric scales, participants are asked to share their demographic characteristics (e.g., age, gender, ethnicity, ethnic origin, and educational attainment).</p>
+<p><em>Dominance, Prestige, and Leadership Orientation</em>.<br>
+The 18-item Dominance, Prestige, and Leadership scale [DoPL; @suessenbach_dominance_2019], is used to measure dominance, prestige, and leadership orientation. Each question corresponds to one of the three domains. Each domain is scored across six unique items related to those domains (e.g., &quot;I relish opportunities in which I can lead others&quot; for leadership) rated on a scale from 0 (Strongly disagree) to 5 (Strongly agree). Internal consistency reliability for the current sample is $</p>
+<p><em>Spitefulness Scale</em>.<br>
+The Spitefulness scale [@marcus_psychology_2014] is a measure with seventeen one sentence vignettes to assess the spitefulness of participants. The original spitefulness scale has 31-items. In the original Marcus and colleagues’ paper, fifteen were removed. For the present study however, 4-items were removed because they did not meet the parameters for the study i.e., needed to be dyadic, more personal. Three reverse scored items from the original thirty-one were added after meeting the requirements. Example questions included, &quot;It might be worth risking my reputation in order to spread gossip about someone I did not like.&quot; and,and &quot;Part of me enjoys seeing the people I do not like fail even if their failure hurts me in some way.&quot; Items are scored on a 5-point scale ranging from 1 (“Strongly disagree”) to 5 (“Strongly agree”). Higher spitefulness scores represent higher acceptance of spiteful attitudes.</p>
+<p><em>Sexuality Self-Esteem Subscale</em>:<br>
+The Sexuality Self-Esteem subscale (SSES; [@snell_sexuality_1989]) is a subset of the Sexuality scale that measures the overall self-esteem of participants. Due to the nature of the study, the sexuality subscale was chosen from the overall 30-item scale. The 10-items chosen reflected questions on the sexual esteem of participants on a 5-point scale of +2 (Agree) and -2 (Disagree). For ease of online use the scale was changed to 1 (“Disagree”) and 5 (“Agree”), data analysis will follow the sexuality scale scoring procedure. Example questions are, “I am a good sexual partner,” and “I sometimes have doubts about my sexual competence.” Higher scores indicate a higher acceptance of high self-esteem statements.</p>
+<p><em>Sexual Jealousy Subscale</em>:<br>
+The Sexual Jealousy subscale ([@worley_exploring_2014]) are 3-items from the 12-item Jealousy scale. The overall jealousy scale measures jealousy in friendships ranging from sexual to companionship. The 3-items are “I would worry about my partner being sexually unfaithful to me.”, “I would suspect there is something going on sexually between my partner and their friend.”, and “I would suspect sexual attraction between my partner and their friend.” The items are scored on a 5-point scale ranging from 1 (“Strongly disagree”) to 5 (“Strongly agree”). Higher scores indicate a tendency to be more sexually jealous.</p>
+<p><em>Sexual Relationship Power Scale</em>:<br>
+The Sexual Relationship Power Scale (SRPS; [@pulerwitz_measuring_2000]) is a 23-item scale that measures the overall power distribution in a sexually active relationship. The SRPS is split into the Relationship Control Factor/Subscale (RCF) and the Decision-Making Dominance Factor/Subscale (DMDF). The RCF measures the relationship between the partners on their agreement with statements such as, “If I asked my partner to use a condom, he [they] would get violent.”, and “I feel trapped or stuck in our relationship.” Items from the RCF are scored on a 4-point scale ranging from 1 (“Strongly agree”) to 4 (“Strongly disagree”). Lower scores indicate an imbalance in the relationship where the participant indicates they believe they have less control in the relationship.<br>
+The DMDF measures the dominance level of sexual and social decisions in the relationship. Example questions include, “Who usually has more say about whether you have sex?”, and “Who usually has more say about when you talk about serious things?” Items on the DMDF are scored on a 3-item scale of 1 (“Your Partner”), 2 (“Both of You Equally”), and 3 (“You”). Higher scores indicate more dominance by the participant in the relationship.</p>
+<p><em>Scenario Realism Question</em>:<br>
+Following Worley and Samp in their 2014 paper on using vignettes/scenarios in psychological studies, a question asking the participant how realistic or how much they can visualize the scenario is. The 1-item question is “This type of situation is realistic.” The item is scored on a 5-point scale of the participants agreement with the above statement, 1 (“Strongly agree”) to 5 (“Strongly disagree”). Higher scores indicate disagreement with the statement and reflects the belief that the scenario is not realistic.</p>
+<p><em>Spiteful Vignettes</em>:<br>
+After participants complete the above scales, they are presented with 10-hypothetical vignettes. Each vignette was written to reflect a dyadic or triadic relationship with androgynous names to control for gender. Five vignettes have a sexual component while five are sexually neutral. An example vignette is,</p>
+<blockquote>
+<p>“Casey and Cole have been dating for 6 years. A year ago, they both moved into a new flat together just outside of the city. Casey had an &gt;affair with Cole's best-friend. Casey had recently found out that they had an STI that they had gotten from Cole's best-friend. Casey and &gt;Cole had sex and later Cole found out they had an STI.”</p>
+</blockquote>
+<p>For each vignette, the participant is asked to rate each vignette on how justified they believe the primary individual, Casey in the above, is with their spiteful reaction. Scoring ranges from 1 (“Not justified at all”) to 5 (“Being very justified”). Higher scores overall indicate higher agreement with spiteful behaviors.</p>
+<h3 id="procedure"><em>Procedure</em>:</h3>
+<p>Participants were recruited on Prolific Academic. Participants must be 18-years of age or older, restriction by study design and Prolific Academic’s user policy. The published study is titled, “Moral Choice and Behavior.” The study description follows the participant information sheet including participant compensation. Participants were asked to accept their participation in the study. Participants were then automatically sent to the main survey (Qualtrics, Inc.).<br>
+Once participants accessed the main survey, they were presented with the consent form for which to accept they responded with selecting “Yes.”. Participants were then asked to provide demographic characteristics such as gender, ethnicity, and educational attainment. Participants would then complete in order, the spitefulness scale, the sexual relationship power scale, the sexual jealousy subscale, and sexuality self-esteem subscale. Next, participants were presented ten vignettes where they were instructed to rate on the level of justification for the action carried out in the vignette. After each vignette, participants would rate the realism of the scenario. Upon completion of the survey (median completion time ####17 minutes and 5 seconds), participants were shown a debriefing message and shown the contact information of the Primary Investigator (Andrew Ithurburn). Participants were then compensated at £8/hr. via Prolific Academic.</p>
+<h3 id="data-analysis"><em>Data Analysis</em>:</h3>
+<p>Demographic characteristics were analyzed using a one-way analysis for continuous variables (age) and Chi-squares tests for categorical variables (sex, ethnicity, ethnic origin, and educational attainment). Means and standard deviations were calculated for the surveys along with correlational analyses (e.g., spitefulness, SESS, SRPS, SJS).<br>
+Bayesian multilevel models were used to test differences between levels of justifications of vignettes that are either sexually or non-sexually vindictive in behavior. Model 1</p>
+<h1 id="results">Results</h1>
+<h1 id="discussion">Discussion</h1>
+<p>\newpage</p>
+<h1 id="references">References</h1>
+<p>\begingroup<br>
+\setlength{\parindent}{-0.5in}<br>
+\setlength{\leftskip}{0.5in}</p>
+<div id="refs" custom-style="Bibliography"></div>
+\endgroup
+
+    </body>
+    </html>

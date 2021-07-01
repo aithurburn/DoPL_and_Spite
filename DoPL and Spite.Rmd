@@ -1,6 +1,6 @@
 ---
-title             : "The title"
-shorttitle        : "Title"
+title             : "The psychology of risk and power: Power desires and sexual choices"
+shorttitle        : "Risk and Power"
 
 author: 
   - name          : "Ithurburn, Andrew"
@@ -62,7 +62,7 @@ header-includes:
   
 documentclass     : "apa7"
 csl               : "apa-cv.csl"
-classoption       : "man"
+classoption       : "a4paper"
 output            : papaja::apa6_pdf
 ---
 
@@ -115,7 +115,7 @@ theme_set(theme_apa(base_size = 12))
 ```
 
 # Introduction
-Every day individuals make decisions be they mundane such as which cereal to eat in the morning to the more complex of which job should they accept. The consequences for making those decisions can be equally complex. Decisions with lasting effects often are more consequential during the decision-making process
+Every day individuals make decisions be they mundane such as which cereal to eat in the morning to the more complex of which job should they accept. The consequences for making those decisions can be equally complex. Some decisions are more difficult to quantify and understand while others can be relatively easy like choosing what cereal to eat in the morning. However, some are increasingly more difficult to model. For example, two adult males (or a man and a woman) who are intending to have sex must decide whether or not to have sex with or without a condom. The consequences can have lasting effects depending on what the couple choose. 
 
 *Issue*
 
@@ -126,7 +126,7 @@ Every day individuals make decisions be they mundane such as which cereal to eat
 
 # Methodology
 ##	*Methods*
-Participants: Participants were a convenience sample of 82 (Mage = `r mean(analysisDF$Age)`, SD = `r sd(analysisDF$Age)`) individuals from Prolific Academic crowdsourcing platform (“www.prolific.co”). Requirements for participation were: (1) be 18 years of age or older and (2) and as part of Prolific Academics policy, have a prolific rating of 90 or above. Participants received £4 or £8 an hour as compensation for completing the survey.  The University of Edinburgh’s Research Ethics Committee approved all study procedures (approval reference number: 330-1920/1). 
+*Participants*: Participants were a convenience sample of 82 (Mage = `r mean(analysisDF$Age)`, SD = `r sd(analysisDF$Age)`) individuals from Prolific Academic crowdsourcing platform (“www.prolific.co”). Requirements for participation were: (1) be 18 years of age or older and (2) and as part of Prolific Academics policy, have a prolific rating of 90 or above. Participants received £4 or £8 an hour as compensation for completing the survey.  The University of Edinburgh’s Research Ethics Committee approved all study procedures (approval reference number: 330-1920/1). 
 
 ### *Materials*:
 *Demographic Questionnaire*:
