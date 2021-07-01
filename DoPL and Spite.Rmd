@@ -59,8 +59,6 @@ mainfont: "Times New Roman"
 always_allow_html: true
 header-includes:
   - \raggedbottom
-  - \shorttitle{}
-  - \renewcommand{\headrulewidth}{0pt}
 documentclass     : "apa7"
 csl               : "apa-cv.csl"
 classoption       : "a4paper"
