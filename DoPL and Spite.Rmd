@@ -60,9 +60,6 @@ always_allow_html: true
 header-includes:
   - \raggedbottom
   - \shorttitle{}
-  - \fancyheadoffset[L]{0pt}  
-  - \fancyhf{}
-  - \fancyhead[RO,LE]{\small\thepage} 
   - \renewcommand{\headrulewidth}{0pt}
 documentclass     : "apa7"
 csl               : "apa-cv.csl"
