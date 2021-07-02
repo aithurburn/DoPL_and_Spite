@@ -32,7 +32,7 @@ abstract: |
 keywords          : "keywords"
 wordcount         : !expr wordcountaddin::word_count("DoPL and Spite.Rmd")
 
-bibliography      : ["references.bib"]
+bibliography      : [C:\\Users\\s1932788\\OneDrive\\Documents\\1_UoE\\Research\\PhD\\Literature Review\\bibtex\\references.bib]
 
 floatsintext      : no
 figurelist        : no
@@ -109,7 +109,7 @@ Every day individuals make decisions be they mundane such as which cereal to eat
 *Issue*
 
 *Spitefulness*
-
+\TeX this is a test 
 
 *DoPL*
 
@@ -122,7 +122,7 @@ Every day individuals make decisions be they mundane such as which cereal to eat
   Apart from dominance motivated individuals that continually have to fight for their right to have power over others, individuals that seek or were given power through a prestige motivation are not generally challenged in the same sense as dominant individuals. Displaying behaviors that the community would see as beneficial would indere them into the community making the survival of the community as a whole better (citation needed). Evolutionarily this would increase viability of the prestigious individual and their genes. Similar to the dominance perspective, the prestige perspective overall increases the power and future survivability of the individual. However, due to the natural difference between prestige and dominance, dominance seeking individuals are challenged more often resulting in more danger to their position (citation).\
 
 *Leadership*
-Apart from dominance and prestige, leadership raises some interesting questions on deference and why individuals would defer to others in power. Psychologically, leadership is the deference to authority and working together towards a shared common goal [@vanvugt2006]. 
+Apart from dominance and prestige, leadership raises some interesting questions on deference and why individuals would defer to others in power. Psychologically, leadership is the deference to authority and working together towards a shared common goal [@vanvugt2006]
 
 #	*Methods*
 *Participants*: Participants were a convenience sample of 82 (Mage = `r mean(analysisDF$Age)`, SD = `r sd(analysisDF$Age)`) individuals from Prolific Academic crowdsourcing platform (“www.prolific.co”). Requirements for participation were: (1) be 18 years of age or older and (2) and as part of Prolific Academics policy, have a prolific rating of 90 or above. Participants received £4 or £8 an hour as compensation for completing the survey.  The University of Edinburgh’s Research Ethics Committee approved all study procedures (approval reference number: 330-1920/1). 
@@ -135,7 +135,7 @@ Prior to the psychometric scales, participants are asked to share their demograp
 The 18-item Dominance, Prestige, and Leadership scale [DoPL; @suessenbach2019], is used to measure dominance, prestige, and leadership orientation. Each question corresponds to one of the three domains. Each domain is scored across six unique items related to those domains (e.g., "I relish opportunities in which I can lead others" for leadership) rated on a scale from 0 (Strongly disagree) to 5 (Strongly agree). Internal consistency reliability for the current sample is $
 
 *Spitefulness Scale*. 
-The Spitefulness scale [@marcus2014] is a measure with seventeen one sentence vignettes to assess the spitefulness of participants. The original spitefulness scale has 31-items. In the original Marcus and colleagues’ paper, fifteen were removed. For the present study however, 4-items were removed because they did not meet the parameters for the study i.e., needed to be dyadic, more personal. Three reverse scored items from the original thirty-one were added after meeting the requirements. Example questions included, "It might be worth risking my reputation in order to spread gossip about someone I did not like." ,and "Part of me enjoys seeing the people I do not like fail even if their failure hurts me in some way." Items are scored on a 5-point scale ranging from 1 (“Strongly disagree”) to 5 (“Strongly agree”). Higher spitefulness scores represent higher acceptance of spiteful attitudes. 
+The Spitefulness scale [@marcus2014] is a measure with seventeen one sentence vignettes to assess the spitefulness of participants. The original spitefulness scale has 31-items. In the original Marcus and colleagues’ paper, fifteen were removed. For the present study however, 4-items were removed because they did not meet the parameters for the study i.e., needed to be dyadic, more personal. Three reverse scored items from the original thirty-one were added after meeting the requirements. Example questions included, "It might be worth risking my reputation in order to spread gossip about someone I did not like." and,and "Part of me enjoys seeing the people I do not like fail even if their failure hurts me in some way." Items are scored on a 5-point scale ranging from 1 (“Strongly disagree”) to 5 (“Strongly agree”). Higher spitefulness scores represent higher acceptance of spiteful attitudes. 
 
 *Sexuality Self-Esteem Subscale*: 
 The Sexuality Self-Esteem subscale (SSES; @snell1989) is a subset of the Sexuality scale that measures the overall self-esteem of participants. Due to the nature of the study, the sexuality subscale was chosen from the overall 30-item scale. The 10-items chosen reflected questions on the sexual esteem of participants on a 5-point scale of +2 (Agree) and -2 (Disagree). For ease of online use the scale was changed to 1 (“Disagree”) and 5 (“Agree”), data analysis will follow the sexuality scale scoring procedure. Example questions are, “I am a good sexual partner,” and “I sometimes have doubts about my sexual competence.” Higher scores indicate a higher acceptance of high self-esteem statements. 

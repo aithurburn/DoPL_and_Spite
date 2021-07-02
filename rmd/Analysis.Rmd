@@ -325,17 +325,17 @@ m0 <- brm(Justification_z ~ 1 + (1|Vignette) + (1|subjectID), data = analysisDF,
 
 # models 
 m1 <- brm(Justification_z ~ Spite_z * Content + (1|Vignette) + (1|subjectID), data = analysisDF, 
-        warmup = 500, control = list(adapt_delta = 0.95)), iter = 8000, chains = 4, cores = 6, save_all_pars = T,
+        warmup = 500, control = list(adapt_delta = 0.95), iter = 8000, chains = 4, cores = 6, save_all_pars = T,
          prior = prior_m1)
 summary(m1) 
 
 m2 <- brm(Justification ~ Spite_z * Content + Realism_z + (1|Vignette) + (1|subjectID), data = analysisDF, 
-        warmup = 500, control = list(adapt_delta = 0.95)), iter = 8000, chains = 4, cores = 4, save_all_pars = T,
+        warmup = 500, control = list(adapt_delta = 0.95), iter = 8000, chains = 4, cores = 4, save_all_pars = T,
          prior = prior_m2)
 summary(m2)
 
 m3 <- brm(Justification ~ Spite_z * Content + Realism_z + SSES + SRPS + SJS + (1|Vignette) + 
-           (1|subjectID), data = analysisDF,warmup = 500, control = list(adapt_delta = 0.95)), iter = 8000, chains = 4, cores = 6, 
+           (1|subjectID), data = analysisDF,warmup = 500, control = list(adapt_delta = 0.95), iter = 8000, chains = 4, cores = 6, 
          save_all_pars = T,
          prior = prior_m3)
 summary(m3)
@@ -440,7 +440,7 @@ kable(m4_hdi[sign(m4_hdi$CI_low) == sign(m4_hdi$CI_high),
 ```
 
 ```{r, eval = F, message=FALSE, warning=FALSE, class.source = "fold-show"}
-m5 <- brm(Justification ~ Dominance_z + Leadership_z + Prestige_z + (1|Vignette) + (1|subjectID), data = analysisDF,warmup = 500, control = list(adapt_delta = 0.95)), iter = 8000, chains = 4, cores = 6, prior = c(prior(normal(0,1), class = 'Intercept'),
+m5 <- brm(Justification ~ Dominance_z + Leadership_z + Prestige_z + (1|Vignette) + (1|subjectID), data = analysisDF,warmup = 500, control = list(adapt_delta = 0.95), iter = 8000, chains = 4, cores = 6, prior = c(prior(normal(0,1), class = 'Intercept'),
                    prior(normal(0,1), class = 'b')))
 summary(m5)
 
