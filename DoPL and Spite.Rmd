@@ -32,7 +32,7 @@ abstract: |
 keywords          : "keywords"
 wordcount         : !expr wordcountaddin::word_count("DoPL and Spite.Rmd")
 
-bibliography      : ["references.bib"]
+bibliography      : [C:\\Users\\s1932788\\OneDrive\\Documents\\1_UoE\\Research\\PhD\\Literature_Review\\bibtex\\Library.json]
 
 floatsintext      : no
 figurelist        : no
@@ -47,7 +47,7 @@ header-includes:
   - \raggedbottom
 documentclass     : "apa7"
 csl               : "apa-cv.csl"
-classoption       : "man"
+classoption       : "a4paper"
 output            : papaja::apa6_pdf
 ---
 
@@ -106,15 +106,14 @@ theme_set(theme_apa(base_size = 12))
 
 # Introduction
 Every day individuals make decisions be they mundane such as which cereal to eat in the morning to the more complex of which job should they accept. The consequences for making those decisions can be equally complex. Some decisions are more difficult to quantify and understand while others can be relatively easy like choosing what cereal to eat in the morning. However, some are increasingly more difficult to model. For example, two adult males (or a man and a woman) who are intending to have sex must decide whether or not to have sex with or without a condom. The consequences can have lasting effects depending on what the couple chooses. 
-*Issue*
 
 *Spitefulness*
-
+These lasting effects can be twofold. For example, deciding not to wear a condom could result in an unplanned pregnancy or exposing one or another person to a sexually transmitted infection. Behaviors/decisions that have negative consequences for both individuals is the original understanding of spite to where psychologically spite is understood as intentionally harming oneself to punish another [@marcus2014; @critchfield2008]. Spiteful behavior that has often been overlooked in psychological research. Spite has been seen in behavioral economic experiments, preschoolers with ultimatum games, and daily life [@marcus2014; @bauer2014; @bugelmayer2014a]. Preschool boys tended to be more spiteful than their female counterparts. Younger men followed suit and tended to be more spiteful than their counterparts [@!marcus2014]. Age plays a role whereas people age they tend to be less spiteful and more egalitarian [@bugelmayer2014a]. 
 
 *DoPL*
 
 *Dominance*
-  The dominance motive is one of the more researched methods and well depicted power motives. Individuals with a dominance orientation display the more primal of human behavior. These individuals will seek power through direct methods such as asserting dominance, control over resources, or physically assaulting someone [@johnson2012; @winter1993]. Early research in dominance motives has shown that acts of dominance ranging from asserting physical dominance over another to physical displays of violence has been shown in many mammalian species, including humans (citation needed).\ 
+  The dominance motive is one of the more researched methods and well depicted power motives. Individuals with a dominance orientation display the more primal of human behavior. These individuals will seek power through direct methods such as asserting dominance, control over resources, or physically assaulting someone [@johnson2012; @winter1993]. Early research in dominance motives has shown that acts of dominance ranging from asserting physical dominance over another to physical displays of violence has been shown in many mammalian species, including humans .\
   Individuals high in dominance are often high in machiavellianism, narcissism, and often are prone to risky behavior (discussion further in the next section). Continued research has hinted at a possible tendency for males to display these dominant seeking traits more than females (citation needed). When high dominance individuals assert themselves they are doing so to increase their own individual sense of power (citation needed). Asserting ones own sense of dominance over another can be a dangerous task. In the animal kingdom it can often leader to injury. While, in humans asserting dominance can take a multitude of actions such as leering behaviors, physical distance, or other non-verbal methods to display dominance (citation needed). Power from a dominance perspective is often never bestowed upon someone. Often, high dominance individuals will take control and hold onto it.
 
 *Prestige*
@@ -127,7 +126,8 @@ Apart from dominance and prestige, leadership raises some interesting questions 
 #	*Methods*
 *Participants*: Participants were a convenience sample of 82 (Mage = `r mean(analysisDF$Age)`, SD = `r sd(analysisDF$Age)`) individuals from Prolific Academic crowdsourcing platform (“www.prolific.co”). Requirements for participation were: (1) be 18 years of age or older and (2) and as part of Prolific Academics policy, have a prolific rating of 90 or above. Participants received £4 or £8 an hour as compensation for completing the survey.  The University of Edinburgh’s Research Ethics Committee approved all study procedures (approval reference number: 330-1920/1). 
 
-### *Materials*:
+
+## Methodology:
 *Demographic Questionnaire*:
 Prior to the psychometric scales, participants are asked to share their demographic characteristics (e.g., age, gender, ethnicity, ethnic origin, and educational attainment). 
 
