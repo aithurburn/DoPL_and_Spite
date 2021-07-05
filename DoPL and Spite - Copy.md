@@ -108,7 +108,7 @@ theme_set(theme_apa(base_size = 12))
 Every day individuals make decisions be they mundane such as which cereal to eat in the morning to the more complex of which job should they accept. The consequences for making those decisions can be equally complex. Some decisions are more difficult to quantify and understand while others can be relatively easy like choosing what cereal to eat in the morning. However, some are increasingly more difficult to model. For example, two adult males (or a man and a woman) who are intending to have sex must decide whether or not to have sex with or without a condom. The consequences can have lasting effects depending on what the couple chooses. 
 *Issue*
 
-*Spitefulness*
+*Spitefulness* 
 \TeX this is a test 
 
 *DoPL*
