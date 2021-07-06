@@ -25,14 +25,14 @@ authornote: |
   University of Edinburgh Department of Psychology
 
 abstract: |
- 
+ Placeholder Text
   
   <!-- https://tinyurl.com/ybremelq -->
   
 keywords          : "keywords"
-wordcount         : !expr wordcountaddin::word_count("DoPL and Spite.Rmd")
+wordcount         : !expr wordcountaddin::word_count("DoPL_and_Spite.Rmd")
 
-bibliography      : [D:\\Andrew\\OneDrive\\Documents\\1_UoE\\Research\\PhD\\LiteratureReview\\bibtex\\Library.bib]
+bibliography      : [C:\\Users\\s1932788\\OneDrive\\Documents\\1_UoE\\Research\\PhD\\LiteratureReview\\bibtex\\Library.bib]
 
 floatsintext      : no
 figurelist        : no
@@ -131,9 +131,8 @@ The pilot study sought to test out our materials and understanding of the litera
 )
 #	*Methods*
 *Participants*: Participants were a convenience sample of 82 (Mage = `r mean(analysisDF$Age)`, SD = `r sd(analysisDF$Age)`) individuals from Prolific Academic crowdsourcing platform (“www.prolific.co”). Requirements for participation were: (1) be 18 years of age or older and (2) and as part of Prolific Academics policy, have a prolific rating of 90 or above. Participants received £4 or £8 an hour as compensation for completing the survey.  The University of Edinburgh’s Research Ethics Committee approved all study procedures (approval reference number: 330-1920/1).\
-Experiment one sought to build on from the pilot study and refine the materials used. Specifically the vignettes of the experiment. Experiment two then furthered our understanding and investigates spitefulnesses possible connection to dominance, prestige, and leadership orientation with risky sexual decision-making.\
-Based on the literature we predicted that individuals high in spitefulness would endorse spiteful actions and behaviors by rating such actions as justified. Furthermore, we predicted based on the literature that individuals high in dominance orientation would be more likely to justify spiteful behaviors with sexually spiteful behaviors being more dominant. These experiments seek to further our understanding 
-
+Experiment one sought to build on from the pilot study and refine the materials used. Specifically the vignettes of the experiment. Experiment two then furthered our understanding and investigates spitefulness possible connection to dominance, prestige, and leadership orientation with risky sexual decision-making.\
+Based on the literature we predicted that individuals high in spitefulness would endorse spiteful actions and behaviors by rating such actions as justified. Furthermore, we predicted based on the literature that individuals high in dominance orientation would be more likely to justify spiteful behaviors with sexually spiteful behaviors being more dominant. These experiments seek to further our understanding of human behavior in the face of risky sexual/nonsexual decisions. These experiments were approved by the University of Edinburgh Psychology Research Ethics Committee (Approval Numbers 330-1920/1, 330-1920/2, 330-1920/3).
 
 ## Methodology:
 *Demographic Questionnaire*:
