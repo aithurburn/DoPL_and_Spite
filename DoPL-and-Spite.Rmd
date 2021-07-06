@@ -32,7 +32,7 @@ abstract: |
 keywords          : "keywords"
 wordcount         : !expr wordcountaddin::word_count("DoPL and Spite.Rmd")
 
-bibliography      : [C:\\Users\\s1932788\\OneDrive\\Documents\\1_UoE\\Research\\PhD\\LiteratureReview\\bibtex\\Library.bib]
+bibliography      : [D:\\Andrew\\OneDrive\\Documents\\1_UoE\\Research\\PhD\\LiteratureReview\\bibtex\\Library.bib]
 
 floatsintext      : no
 figurelist        : no
@@ -124,14 +124,20 @@ part from dominance motivated individuals that continually have to fight for the
 *Leadership*
 Apart from dominance and prestige, leadership raises some interesting questions on deference and why individuals would defer to others in power. Psychologically, leadership is the deference to authority and working together towards a shared common goal [@vanvugt2006]. 
 
+*The Present Experiment*
+The present experiments sought to investigate a possible relationship between spitefulness and risky sexual behaviors. As with past experiments in moral judgment and decision making vignettes were used to create situations of interest. The present study comprises two experiments and a pilot study (pilot study data and results included in supplemental materials).\
+The pilot study sought to test out our materials and understanding of the literature. Statistical analyses followed the hypotheses laid out on our preregistration (insert preregistration
+)
 #	*Methods*
-*Participants*: Participants were a convenience sample of 82 (Mage = `r mean(analysisDF$Age)`, SD = `r sd(analysisDF$Age)`) individuals from Prolific Academic crowdsourcing platform (“www.prolific.co”). Requirements for participation were: (1) be 18 years of age or older and (2) and as part of Prolific Academics policy, have a prolific rating of 90 or above. Participants received £4 or £8 an hour as compensation for completing the survey.  The University of Edinburgh’s Research Ethics Committee approved all study procedures (approval reference number: 330-1920/1). 
+*Participants*: Participants were a convenience sample of 82 (Mage = `r mean(analysisDF$Age)`, SD = `r sd(analysisDF$Age)`) individuals from Prolific Academic crowdsourcing platform (“www.prolific.co”). Requirements for participation were: (1) be 18 years of age or older and (2) and as part of Prolific Academics policy, have a prolific rating of 90 or above. Participants received £4 or £8 an hour as compensation for completing the survey.  The University of Edinburgh’s Research Ethics Committee approved all study procedures (approval reference number: 330-1920/1).\
+Experiment one sought to build on from the pilot study and refine the materials used. Specifically the vignettes of the experiment. Experiment two then furthered our understanding and investigates spitefulnesses possible connection to dominance, prestige, and leadership orientation with risky sexual decision-making.\
+Based on the literature we predicted that individuals high in spitefulness would endorse spiteful actions and behaviors by rating such actions as justified. Furthermore, we predicted based on the literature that individuals high in dominance orientation would be more likely to justify spiteful behaviors with sexually spiteful behaviors being more dominant. These experiments seek to further our understanding 
 
 
 ## Methodology:
 *Demographic Questionnaire*:
 Prior to the psychometric scales, participants are asked to share their demographic characteristics (e.g., age, gender, ethnicity, ethnic origin, and educational attainment). 
-
+[@]
 *Dominance, Prestige, and Leadership Orientation*. 
 The 18-item Dominance, Prestige, and Leadership scale [DoPL; @suessenbach2019], is used to measure dominance, prestige, and leadership orientation. Each question corresponds to one of the three domains. Each domain is scored across six unique items related to those domains (e.g., "I relish opportunities in which I can lead others" for leadership) rated on a scale from 0 (Strongly disagree) to 5 (Strongly agree). Internal consistency reliability for the current sample is $
 
