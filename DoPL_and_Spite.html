@@ -74,7 +74,7 @@ Placeholder Text</p>
 <p>keywords          : &quot;keywords&quot;<br>
 wordcount         : !expr wordcountaddin::word_count(&quot;DoPL_and_Spite.Rmd&quot;)</p>
 <p>bibliography      : [C:\Users\s1932788\OneDrive\Documents\1_UoE\Research\PhD\LiteratureReview\bibtex\Library.bib]</p>
-<p>floatsintext      : no<br>
+<p>floatsintext      : yes<br>
 figurelist        : no<br>
 tablelist         : no<br>
 footnotelist      : no<br>
@@ -119,11 +119,8 @@ library(psych)
 library(BayesFactor)
 library(bayesplot)
 library(kableExtra)
-
-
 library(ggcorrplot)
 library(ggprism)
-
 options(mc.corrs = parallel::detectCores()) # can run chains in parallel with each other
 rstan_options(auto_write = TRUE)
 options(control = list(adapt_delta = 0.99999))
@@ -140,60 +137,83 @@ lfunc &lt;- function(dataset, to, from) {
   length({{dataset}}[loc1:loc2])
 }
 theme_set(theme_apa(base_size = 12))
+experiment_two_DS_time &lt;- read.csv(&quot;Experiment_2_Dataset_clean.csv&quot;)
+experiment_two_DS &lt;- read.csv(&quot;Experiment_2_Dataset_clean_noTime.csv&quot;)
+df1 &lt;- read.csv(&quot;df1.csv&quot;)
+corr_table &lt;- readRDS(&quot;corr_table.rds&quot;)
+m4 &lt;- readRDS(&quot;m4.rds&quot;)
+m5 &lt;- readRDS(&quot;m5.rds&quot;)
+m5_gen &lt;- readRDS(&quot;m5_gen.rds&quot;)
+m7 &lt;- readRDS(&quot;m7.rds&quot;)
+m8 &lt;- readRDS(&quot;m8.rds&quot;)
+m8_gen &lt;- readRDS(&quot;m8_gen.rds&quot;)
+m8_Age &lt;- readRDS(&quot;m8_Age.rds&quot;)
+dm0 &lt;- readRDS(&quot;dm0.rds&quot;)
+dm1 &lt;- readRDS(&quot;dm1.rds&quot;)
+dm2 &lt;- readRDS(&quot;dm2.rds&quot;)
+dm3 &lt;- readRDS(&quot;dm3.rds&quot;)
+dm4 &lt;- readRDS(&quot;dm4.rds&quot;)
+dm5 &lt;- readRDS(&quot;dm5.rds&quot;)
+demographic_table &lt;- readRDS(&quot;demographic_table.rds&quot;)
+m2prior &lt;- readRDS(&quot;m2prior.rds&quot;)
+dopl_1_prior &lt;- readRDS(&quot;m4prior.rds&quot;)
+m7prior &lt;- readRDS(&quot;m7prior.rds&quot;)
+m1_intPrior &lt;- readRDS(&quot;m1_intPrior.rds&quot;)
+analysisDF &lt;- read.csv(&quot;analysisDF.csv&quot;)
 </div></code></code></pre>
 <h1 id="introduction">Introduction</h1>
 <p>Every day individuals make decisions be they mundane such as which cereal to eat in the morning to the more complex of which job should they accept. The consequences for making those decisions can be equally complex. Some decisions are more difficult to quantify and understand while others can be relatively easy like choosing what cereal to eat in the morning. However, some are increasingly more difficult to model. For example, two adult males (or a man and a woman) who are intending to have sex must decide whether to have sex with or without a condom. The consequences can have lasting effects depending on what the couple chooses.</p>
-<p><em>Spitefulness</em><br>
-These lasting effects can be twofold. For example, deciding not to wear a condom could result in an unplanned pregnancy or exposing one or another person to a sexually transmitted infection. Behaviors/decisions that have negative consequences for both individuals is the original understanding of spite to where psychologically spite is understood as intentionally harming oneself to punish another [@marcus2014; @critchfield2008]. Spiteful behavior that has often been overlooked in psychological research. Spite has been seen in behavioral economic experiments, preschoolers with ultimatum games, and daily life [@marcus2014; @bauer2014; @bugelmayer2014a]. Preschool boys tended to be more spiteful than their female counterparts. Younger men followed suit and tended to be more spiteful than their counterparts [@marcus2014]. Age plays a role whereas people age they tend to be less spiteful and more egalitarian [@bugelmayer2014a].</p>
-<p><em>DoPL</em><br>
-Research in power desire motives have focused on three sub-domains: dominance, leadership, and prestige [@suessenbach2019]. Each of these three different power motives are explanations as to different ways or methods that individuals in power sought power or were bestowed upon them.</p>
-<p><em>Dominance</em><br>
-The dominance motive is one of the more researched methods and well depicted power motives. Individuals with a dominance orientation display the more primal of human behavior. These individuals will seek power through direct methods such as asserting dominance, control over resources, or physically assaulting someone [@johnson2012; @winter1993]. Early research in dominance motives has shown that acts of dominance ranging from asserting physical dominance over another to physical displays of violence has been shown in many mammalian species, including humans [@petersen2018; @witkower2020].<br>
+<h2 id="spitefulness">Spitefulness</h2>
+<p>These lasting effects can be twofold. For example, deciding not to wear a condom could result in an unplanned pregnancy or exposing one or another person to a sexually transmitted infection. Behaviors/decisions that have negative consequences for both individuals is the original understanding of spite to where psychologically spite is understood as intentionally harming oneself to punish another [@marcus2014; @critchfield2008]. Spiteful behavior that has often been overlooked in psychological research. Spite has been seen in behavioral economic experiments, preschoolers with ultimatum games, and daily life [@marcus2014; @bauer2014; @bugelmayer2014a]. Preschool boys tended to be more spiteful than their female counterparts. Younger men followed suit and tended to be more spiteful than their counterparts [@marcus2014]. Age plays a role whereas people age they tend to be less spiteful and more egalitarian [@bugelmayer2014a].</p>
+<h2 id="dopl">DoPL</h2>
+<p>Research in power desire motives have focused on three sub-domains: dominance, leadership, and prestige [@suessenbach2019]. Each of these three different power motives are explanations as to different ways or methods that individuals in power sought power or were bestowed upon them.</p>
+<h3 id="dominance">Dominance</h3>
+<p>The dominance motive is one of the more researched methods and well depicted power motives. Individuals with a dominance orientation display the more primal of human behavior. These individuals will seek power through direct methods such as asserting dominance, control over resources, or physically assaulting someone [@johnson2012; @winter1993]. Early research in dominance motives has shown that acts of dominance ranging from asserting physical dominance over another to physical displays of violence has been shown in many mammalian species, including humans [@petersen2018; @witkower2020].<br>
 Individuals high in dominance are often high in machiavellianism, narcissism, and often are prone to risky behavior (discussion further in the next section). Continued research has hinted at a possible tendency for males to display these dominant seeking traits more than females (citation needed). When high dominance individuals assert themselves they are doing so to increase their own individual sense of power (citation needed). Asserting ones own sense of dominance over another can be a dangerous task. In the animal kingdom it can often leader to injury. While, in humans asserting dominance can take a multitude of actions such as leering behaviors, physical distance, or other non-verbal methods to display dominance (citation needed). Power from a dominance perspective is often never bestowed upon someone. Often, high dominance individuals will take control and hold onto it.</p>
-<p><em>Prestige</em><br>
-Contrary to the dominance motivation of using intimidation and aggression to gain more power, a prestige motivation or prestige in general is bestowed upon an individual from others in the community (citation needed). Differently from the dominance motivation, a prestige motivation is generally unique to the human species (citation needed). Do in part to ancestral human groups being smaller hunter-gatherer societies, individuals that displayed and used important behaviors beneficial to the larger group were often valued and admired by the group. Therein, the social group bestows the authority onto the individual. Generally, this type of behavior can be passively achieved by the prestigious individual. However, this does not remove the intent of the actor in that they too can see prestige from the group, but method of achieving that social status greatly differs from that of dominance seeking individuals.<br>
-part from dominance motivated individuals that continually have to fight for their right to have power over others, individuals that seek or were given power through a prestige motivation are not generally challenged in the same sense as dominant individuals. Displaying behaviors that the community would see as beneficial would indere them into the community making the survival of the community as a whole better (citation needed). Evolutionarily this would increase viability of the prestigious individual and their genes. Similar to the dominance perspective, the prestige perspective overall increases the power and future survivability of the individual. However, due to the natural difference between prestige and dominance, dominance seeking individuals are challenged more often resulting in more danger to their position (citation).\</p>
-<p><em>Leadership</em><br>
-Apart from dominance and prestige, leadership raises some interesting questions on deference and why individuals would defer to others in power. Psychologically, leadership is the deference to authority and working together towards a shared common goal [@vanvugt2006].</p>
-<p><em>The Present Experiment</em><br>
-The present experiments sought to investigate a possible relationship between spitefulness and risky sexual behaviors. As with past experiments in moral judgment and decision making vignettes were used to create situations of interest. The present study comprises two experiments and a pilot study (pilot study data and results included in supplemental materials).<br>
-The pilot study sought to test out our materials and understanding of the literature. Statistical analyses followed the hypotheses laid out on our preregistration (insert preregistration<br>
-)</p>
-<h1 id="methods"><em>Methods</em></h1>
-<p><em>Participants</em>: Participants were a convenience sample of 82 (Mage = <code>r mean(analysisDF$Age)</code>, SD = <code>r sd(analysisDF$Age)</code>) individuals from Prolific Academic crowdsourcing platform (“<a href="http://www.prolific.co">www.prolific.co</a>”). Requirements for participation were: (1) be 18 years of age or older and (2) and as part of Prolific Academics policy, have a prolific rating of 90 or above. Participants received £4 or £8 an hour as compensation for completing the survey.  The University of Edinburgh’s Research Ethics Committee approved all study procedures (approval reference number: 330-1920/1).<br>
+<h3 id="prestige">Prestige</h3>
+<p>Contrary to the dominance motivation of using intimidation and aggression to gain more power, a prestige motivation or prestige in general is bestowed upon an individual from others in the community (citation needed). Differently from the dominance motivation, a prestige motivation is generally unique to the human species (citation needed). Do in part to ancestral human groups being smaller hunter-gatherer societies, individuals that displayed and used important behaviors beneficial to the larger group were often valued and admired by the group. Therein, the social group bestows the authority onto the individual. Generally, this type of behavior can be passively achieved by the prestigious individual. However, this does not remove the intent of the actor in that they too can see prestige from the group, but method of achieving that social status greatly differs from that of dominance seeking individuals.<br>
+Apart from dominance motivated individuals that continually have to fight for their right to have power over others, individuals that seek or were given power through a prestige motivation are not generally challenged in the same sense as dominant individuals. Displaying behaviors that the community would see as beneficial would indere them into the community making the survival of the community as a whole better (citation needed). Evolutionarily this would increase viability of the prestigious individual and their genes. Similar to the dominance perspective, the prestige perspective overall increases the power and future survivability of the individual. However, due to the natural difference between prestige and dominance, dominance seeking individuals are challenged more often resulting in more danger to their position (citation).\</p>
+<h3 id="leadership">Leadership</h3>
+<p>Apart from dominance and prestige, leadership raises some interesting questions on deference and why individuals would defer to others in power. Psychologically, leadership is the deference to authority and working together towards a shared common goal [@vanvugt2006]. Research in animal behavior contends that leadership is a uniquely human trait due to the complexity of the human brain along with the ever growing size of social groups [@king2009].<br>
+Early human societies began to use cooperation strategies such as leadership and individuals taking leadership roles in order to accomplish a common task. Similar non-human primates developed similar tactics however as aforementioned, traits unique to humans allowed for more complex interactions in leadership furthering the differences. Unique to leadership apart from dominance and prestige orientation is the method of power control in a leadership dynamic system.</p>
+<h2 id="the-present-experiment">The Present Experiment</h2>
+<p>The present experiments sought to investigate a possible relationship between spitefulness and risky sexual behaviors. As with past experiments in moral judgment and decision making vignettes were used to create situations of interest. The present study comprises two experiments and a pilot study (pilot study data and results included in supplemental materials).<br>
+The pilot study sought to test out our materials and understanding of the literature. Statistical analyses followed the hypotheses laid out on our preregistration (insert preregistration)<br>
 Experiment one sought to build on from the pilot study and refine the materials used. Specifically the vignettes of the experiment. Experiment two then furthered our understanding and investigates spitefulness possible connection to dominance, prestige, and leadership orientation with risky sexual decision-making.<br>
 Based on the literature we predicted that individuals high in spitefulness would endorse spiteful actions and behaviors by rating such actions as justified. Furthermore, we predicted based on the literature that individuals high in dominance orientation would be more likely to justify spiteful behaviors with sexually spiteful behaviors being more dominant. These experiments seek to further our understanding of human behavior in the face of risky sexual/nonsexual decisions. These experiments were approved by the University of Edinburgh Psychology Research Ethics Committee (Approval Numbers 330-1920/1, 330-1920/2, 330-1920/3).</p>
-<h2 id="methodology">Methodology:</h2>
-<p><em>Demographic Questionnaire</em>:<br>
-Prior to the psychometric scales, participants are asked to share their demographic characteristics (e.g., age, gender, ethnicity, ethnic origin, and educational attainment).<br>
-[@]<br>
-<em>Dominance, Prestige, and Leadership Orientation</em>.<br>
-The 18-item Dominance, Prestige, and Leadership scale [DoPL; @suessenbach2019], is used to measure dominance, prestige, and leadership orientation. Each question corresponds to one of the three domains. Each domain is scored across six unique items related to those domains (e.g., &quot;I relish opportunities in which I can lead others&quot; for leadership) rated on a scale from 0 (Strongly disagree) to 5 (Strongly agree). Internal consistency reliability for the current sample is $</p>
-<p><em>Spitefulness Scale</em>.<br>
-The Spitefulness scale [@marcus2014] is a measure with seventeen one sentence vignettes to assess the spitefulness of participants. The original spitefulness scale has 31-items. In the original Marcus and colleagues’ paper, fifteen were removed. For the present study however, 4-items were removed because they did not meet the parameters for the study i.e., needed to be dyadic, more personal. Three reverse scored items from the original thirty-one were added after meeting the requirements. Example questions included, &quot;It might be worth risking my reputation in order to spread gossip about someone I did not like.&quot; ,and &quot;Part of me enjoys seeing the people I do not like fail even if their failure hurts me in some way.&quot; Items are scored on a 5-point scale ranging from 1 (“Strongly disagree”) to 5 (“Strongly agree”). Higher spitefulness scores represent higher acceptance of spiteful attitudes.</p>
-<p><em>Sexuality Self-Esteem Subscale</em>:<br>
-The Sexuality Self-Esteem subscale (SSES; @snell1989) is a subset of the Sexuality scale that measures the overall self-esteem of participants. Due to the nature of the study, the sexuality subscale was chosen from the overall 30-item scale. The 10-items chosen reflected questions on the sexual esteem of participants on a 5-point scale of +2 (Agree) and -2 (Disagree). For ease of online use the scale was changed to 1 (“Disagree”) and 5 (“Agree”), data analysis will follow the sexuality scale scoring procedure. Example questions are, “I am a good sexual partner,” and “I sometimes have doubts about my sexual competence.” Higher scores indicate a higher acceptance of high self-esteem statements.</p>
-<p><em>Sexual Jealousy Subscale</em>:<br>
-The Sexual Jealousy subscale by @worley2014 are 3-items from the 12-item Jealousy scale. The overall jealousy scale measures jealousy in friendships ranging from sexual to companionship. The 3-items are “I would worry about my partner being sexually unfaithful to me.”, “I would suspect there is something going on sexually between my partner and their friend.”, and “I would suspect sexual attraction between my partner and their friend.” The items are scored on a 5-point scale ranging from 1 (“Strongly disagree”) to 5 (“Strongly agree”). Higher scores indicate a tendency to be more sexually jealous.</p>
-<p><em>Sexual Relationship Power Scale</em>:<br>
-The Sexual Relationship Power Scale (SRPS; @pulerwitz2000) is a 23-item scale that measures the overall power distribution in a sexually active relationship. The SRPS is split into the Relationship Control Factor/Subscale (RCF) and the Decision-Making Dominance Factor/Subscale (DMDF). The RCF measures the relationship between the partners on their agreement with statements such as, “If I asked my partner to use a condom, he [they] would get violent.”, and “I feel trapped or stuck in our relationship.” Items from the RCF are scored on a 4-point scale ranging from 1 (“Strongly agree”) to 4 (“Strongly disagree”). Lower scores indicate an imbalance in the relationship where the participant indicates they believe they have less control in the relationship.<br>
+<h1 id="methods">Methods</h1>
+<h3 id="participants">Participants</h3>
+<p>Participants were a convenience sample of <code>r length(experiment_two_DS$ResponseId)</code> (Mage = <code>r mean(experiment_two_DS$Age)</code>, SD = <code>r sd(experiment_two_DS$Age)</code>) individuals from Prolific Academic crowdsourcing platform (“<a href="http://www.prolific.co">www.prolific.co</a>”). Requirements for participation were: (1) be 18 years of age or older and (2) and as part of Prolific Academics policy, have a prolific rating of 90 or above. Participants received £4 or £8 an hour as compensation for completing the survey.  Table 1 shows the demographic information for experiment one.</p>
+<h3 id="demographic-questionnaire">Demographic Questionnaire</h3>
+<p>Prior to the psychometric scales, participants are asked to share their demographic characteristics (e.g., age, gender, ethnicity, ethnic origin, and educational attainment).</p>
+<h3 id="dominance-prestige-and-leadership-orientation">Dominance, Prestige, and Leadership Orientation</h3>
+<p>The 18-item Dominance, Prestige, and Leadership scale [DoPL; @suessenbach2019], is used to measure dominance, prestige, and leadership orientation. Each question corresponds to one of the three domains. Each domain is scored across six unique items related to those domains (e.g., &quot;I relish opportunities in which I can lead others&quot; for leadership) rated on a scale from 0 (Strongly disagree) to 5 (Strongly agree). Internal consistency reliability for the current sample is $</p>
+<h3 id="spitefulness-scale">Spitefulness Scale</h3>
+<p>The Spitefulness scale [@marcus2014] is a measure with seventeen one sentence vignettes to assess the spitefulness of participants. The original spitefulness scale has 31-items. In the original Marcus and colleagues’ paper, fifteen were removed. For the present study however, 4-items were removed because they did not meet the parameters for the study i.e., needed to be dyadic, more personal. Three reverse scored items from the original thirty-one were added after meeting the requirements. Example questions included, &quot;It might be worth risking my reputation in order to spread gossip about someone I did not like.&quot; ,and &quot;Part of me enjoys seeing the people I do not like fail even if their failure hurts me in some way.&quot; Items are scored on a 5-point scale ranging from 1 (“Strongly disagree”) to 5 (“Strongly agree”). Higher spitefulness scores represent higher acceptance of spiteful attitudes.</p>
+<h3 id="sexuality-self-esteem-subscale">Sexuality Self-Esteem Subscale</h3>
+<p>The Sexuality Self-Esteem subscale (SSES; @snell1989) is a subset of the Sexuality scale that measures the overall self-esteem of participants. Due to the nature of the study, the sexuality subscale was chosen from the overall 30-item scale. The 10-items chosen reflected questions on the sexual esteem of participants on a 5-point scale of +2 (Agree) and -2 (Disagree). For ease of online use the scale was changed to 1 (“Disagree”) and 5 (“Agree”), data analysis will follow the sexuality scale scoring procedure. Example questions are, “I am a good sexual partner,” and “I sometimes have doubts about my sexual competence.” Higher scores indicate a higher acceptance of high self-esteem statements.</p>
+<h3 id="sexual-jealousy-subscale">Sexual Jealousy Subscale</h3>
+<p>The Sexual Jealousy subscale by @worley2014 are 3-items from the 12-item Jealousy scale. The overall jealousy scale measures jealousy in friendships ranging from sexual to companionship. The 3-items are “I would worry about my partner being sexually unfaithful to me.”, “I would suspect there is something going on sexually between my partner and their friend.”, and “I would suspect sexual attraction between my partner and their friend.” The items are scored on a 5-point scale ranging from 1 (“Strongly disagree”) to 5 (“Strongly agree”). Higher scores indicate a tendency to be more sexually jealous.</p>
+<h3 id="sexual-relationship-power-scale">Sexual Relationship Power Scale</h3>
+<p>The Sexual Relationship Power Scale (SRPS; @pulerwitz2000) is a 23-item scale that measures the overall power distribution in a sexually active relationship. The SRPS is split into the Relationship Control Factor/Subscale (RCF) and the Decision-Making Dominance Factor/Subscale (DMDF). The RCF measures the relationship between the partners on their agreement with statements such as, “If I asked my partner to use a condom, he [they] would get violent.”, and “I feel trapped or stuck in our relationship.” Items from the RCF are scored on a 4-point scale ranging from 1 (“Strongly agree”) to 4 (“Strongly disagree”). Lower scores indicate an imbalance in the relationship where the participant indicates they believe they have less control in the relationship.<br>
 The DMDF measures the dominance level of sexual and social decisions in the relationship. Example questions include, “Who usually has more say about whether you have sex?”, and “Who usually has more say about when you talk about serious things?” Items on the DMDF are scored on a 3-item scale of 1 (“Your Partner”), 2 (“Both of You Equally”), and 3 (“You”). Higher scores indicate more dominance by the participant in the relationship.</p>
-<p><em>Scenario Realism Question</em>:<br>
-Following Worley and Samp in their 2014 paper on using vignettes/scenarios in psychological studies, a question asking the participant how realistic or how much they can visualize the scenario is. The 1-item question is “This type of situation is realistic.” The item is scored on a 5-point scale of the participants agreement with the above statement, 1 (“Strongly agree”) to 5 (“Strongly disagree”). Higher scores indicate disagreement with the statement and reflects the belief that the scenario is not realistic.</p>
-<p><em>Spiteful Vignettes</em>:<br>
-After participants complete the above scales, they are presented with 10-hypothetical vignettes. Each vignette was written to reflect a dyadic or triadic relationship with androgynous names to control for gender. Five vignettes have a sexual component while five are sexually neutral. An example vignette is,</p>
+<h3 id="scenario-realism-question">Scenario Realism Question</h3>
+<p>Following Worley and Samp in their 2014 paper on using vignettes/scenarios in psychological studies, a question asking the participant how realistic or how much they can visualize the scenario is. The 1-item question is “This type of situation is realistic.” The item is scored on a 5-point scale of the participants agreement with the above statement, 1 (“Strongly agree”) to 5 (“Strongly disagree”). Higher scores indicate disagreement with the statement and reflects the belief that the scenario is not realistic.</p>
+<h3 id="spiteful-vignettes">Spiteful Vignettes</h3>
+<p>After participants complete the above scales, they are presented with 10-hypothetical vignettes. Each vignette was written to reflect a dyadic or triadic relationship with androgynous names to control for gender. Five vignettes have a sexual component while five are sexually neutral. An example vignette is,</p>
 <blockquote>
 <p>“Casey and Cole have been dating for 6 years. A year ago, they both moved into a new flat together just outside of the city. Casey had an affair with Cole's best-friend. Casey had recently found out that they had an STI that they had gotten from Cole's best-friend. Casey and Cole had sex and later Cole found out they had an STI.”</p>
 </blockquote>
 <p>For each vignette, the participant is asked to rate each vignette on how justified they believe the primary individual, Casey in the above, is with their spiteful reaction. Scoring ranges from 1 (“Not justified at all”) to 5 (“Being very justified”). Higher scores overall indicate higher agreement with spiteful behaviors.</p>
-<h3 id="procedure"><em>Procedure</em>:</h3>
+<h2 id="procedure">Procedure</h2>
 <p>Participants were recruited on Prolific Academic. Participants must be 18-years of age or older, restriction by study design and Prolific Academic’s user policy. The published study is titled, “Moral Choice and Behavior.” The study description follows the participant information sheet including participant compensation. Participants were asked to accept their participation in the study. Participants were then automatically sent to the main survey (Qualtrics, Inc.).<br>
-Once participants accessed the main survey, they were presented with the consent form for which to accept they responded with selecting “Yes.”. Participants were then asked to provide demographic characteristics such as gender, ethnicity, and educational attainment. Participants would then complete in order, the spitefulness scale, the sexual relationship power scale, the sexual jealousy subscale, and sexuality self-esteem subscale. Next, participants were presented ten vignettes where they were instructed to rate on the level of justification for the action carried out in the vignette. After each vignette, participants would rate the realism of the scenario. Upon completion of the survey (median completion time 20 minutes <em>SD</em> = 10 Minutes 30 seconds), participants were shown a debriefing message and shown the contact information of the Primary Investigator (Andrew Ithurburn). Participants were then compensated at £8/hr. via Prolific Academic.</p>
-<h3 id="data-analysis"><em>Data Analysis</em>:</h3>
+Once participants accessed the main survey, they were presented with the consent form for which to accept they responded with selecting “Yes.”. Participants were then asked to provide demographic characteristics such as gender, ethnicity, and educational attainment. Participants would then complete in order, the spitefulness scale, the sexual relationship power scale, the sexual jealousy subscale, and sexuality self-esteem subscale. Next, participants were presented ten vignettes where they were instructed to rate on the level of justification for the action carried out in the vignette. After each vignette, participants would rate the realism of the scenario. Upon completion of the survey (median completion time 20 minutes SD = 10 Minutes 30 seconds), participants were shown a debriefing message and shown the contact information of the Primary Investigator (Andrew Ithurburn). Participants were then compensated at £8/hr. via Prolific Academic.</p>
+<h2 id="data-analysis">Data Analysis</h2>
 <p>Demographic characteristics were analyzed using a one-way analysis for continuous variables (age) and Chi-squares tests for categorical variables (sex, ethnicity, ethnic origin, and educational attainment). Means and standard deviations were calculated for the surveys along with correlational analyses (e.g., spitefulness, SESS, SRPS, SJS).<br>
 Bayesian multilevel models were used to test differences between levels of justifications of vignettes that are either sexually or non-sexually vindictive in behavior. Model 1</p>
 <h1 id="results">Results</h1>
 <h1 id="discussion">Discussion</h1>
+<h2 id="limitations-and-future-directions">Limitations and Future Directions</h2>
 <p>\newpage</p>
 <h1 id="references">References</h1>
 <p>\begingroup<br>
@@ -201,6 +221,16 @@ Bayesian multilevel models were used to test differences between levels of justi
 \setlength{\leftskip}{0.5in}</p>
 <div id="refs" custom-style="Bibliography"></div>
 \endgroup
+<p>\newpage</p>
+<pre><code class="language-{r"><code><div>apa_table(
+ demographic_table, stub_indents = list(&quot;Age&quot; = c(2:3), &quot;Gender&quot; = c(4:6), &quot;Ethnicity&quot; = c(7:15), &quot;Education&quot; = c(16:21)), col.names = c(&quot;Demographic Characteristic&quot;, &quot;&quot;), cap = &quot;Participant Demographic Information (Experiment 1)&quot;
+)
+</div></code></code></pre>
+<pre><code class="language-{r}"><code><div>apa_table(corr_table)
+</div></code></code></pre>
+<pre><code class="language-{r}"><code><div>apa_table(dm5_hdi[sign(dm5_hdi$CI_low) == sign(dm5_hdi$CI_high),
+            c('Parameter', 'CI','CI_low', 'CI_high')])
+</div></code></code></pre>
 
     </body>
     </html>
