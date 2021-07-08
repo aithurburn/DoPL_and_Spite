@@ -402,6 +402,7 @@ dm4 <- brm(Justification ~ Dominance_z * Gender * Content + Prestige_z * Gender 
 
 summary(dm4)
 
+
 dm4_hdi <- bayestestR::hdi(dm4, effects = "fixed", component = "conditional", ci = .95)
 dm4_hdi[sign(dm4_hdi$CI_low) == sign(dm4_hdi$CI_high),
             c('Parameter', 'CI','CI_low', 'CI_high')]
