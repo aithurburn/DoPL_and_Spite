@@ -1,19 +1,19 @@
----
-title: "Experiment_2"
-author: "Andrew Ithurburn"
-date: "11/05/2021"
-output: 
-  html_document:
-    toc: yes
-    toc_float:
-      smooth_scroll: yes
-    code_folding: hide
-    fig_caption: yes
-    number_sections: yes
-    css: table_styling.css
-editor_options: 
-  chunk_output_type: console
----
+# ---
+# title: "Experiment_2"
+# author: "Andrew Ithurburn"
+# date: "11/05/2021"
+# output: 
+#   html_document:
+#     toc: yes
+#     toc_float:
+#       smooth_scroll: yes
+#     code_folding: hide
+#     fig_caption: yes
+#     number_sections: yes
+#     css: table_styling.css
+# editor_options: 
+#   chunk_output_type: console
+# ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -246,32 +246,7 @@ savedQuestionsAfter <- c('subjectID', "Age", "Duration..in.seconds.", "Gender", 
 ## Recoding variables
 ```{r recoding variables, message=FALSE, warning=FALSE}
 
-experiment_two_DS <- experiment_two_DS %>%
-  mutate_at(vars(locfunc(experiment_two_DS, "Gender")), ~as.numeric(recode(.,"Male" = 0, "Female" = 1))) %>%
-  mutate_at(vars(locfunc(experiment_two_DS, "Edu")), ~as.numeric(recode(., "Prefer not to answer" = 0, "Primary School" = 1, "GCSes or Equivalent" = 2, "A-Levels or Equivalent" = 3, "University Undergraduate Program" = 4, "University Post-Graduate Program" = 5, "Doctoral Degree" = 6))) %>%
-   mutate_at(vars(locfunc(experiment_two_DS, 'Ethnicity')), ~as.numeric(recode(., "Prefer not to answer" = 0, "White" = 1, "Mixed or Multiple ethnic origins" = 2, "Asian or Asian Scottish or Asian British" = 3, "African" = 4, "Caribbean or Black" = 5,"Arab" = 6, "Other ethnic group" = 7))) %>%
-  mutate_at(vars(locfunc(experiment_two_DS, 'Eth.ori')), ~as.numeric(recode(., "Prefer not to answer" = 0, "Scottish" = 1, "English" = 2, "European" = 3, "Latin American" = 4, "Asian" = 5, "Arab" = 6, 
-                             "African" = 7, "Other" = 8 ))) %>%
-  mutate_at(vars(locfunc(experiment_two_DS, "DoPL_1"):locfunc(experiment_two_DS, "DoPL_5")), ~as.numeric(recode(., "Strongly disagree" = 0, "Disagree" = 1, "Somewhat disagree" = 2, "Somewhat agree" = 3, "Agree" = 4, "Strongly agree" = 5)))  %>%
-  mutate_at(vars(locfunc(experiment_two_DS, "DoPL_6"), locfunc(experiment_two_DS, "DoPL_14")), ~as.numeric(recode(., "Strongly disagree" = 5, "Disagree" = 4, "Somewhat disagree" = 3, "Somewhat agree" = 2, "Agree" = 1, "Strongly agree" = 0))) %>%
-  mutate_at(vars(locfunc(experiment_two_DS, "DoPL_7"):locfunc(experiment_two_DS, "DoPL_13")), ~as.numeric(recode(., "Strongly disagree" = 0, "Disagree" = 1, "Somewhat disagree" = 2, "Somewhat agree" = 3, "Agree" = 4, "Strongly agree" = 5))) %>%
-  mutate_at(vars(locfunc(experiment_two_DS, "DoPL_15"):locfunc(experiment_two_DS, "DoPL_16")), ~as.numeric(recode(., "Strongly disagree" = 0, "Disagree" = 1, "Somewhat disagree" = 2, "Somewhat agree" = 3, "Agree" = 4, "Strongly agree" = 5))) %>%
-  mutate_at(vars(locfunc(experiment_two_DS, "UMS_1"):locfunc(experiment_two_DS, "UMS_9")), ~as.numeric(recode(., "Strongly disagree" = 0, "Disagree" = 1, "Somewhat disagree" = 2, "Somewhat agree" = 3, "Agree" = 4, "Strongly agree" = 5))) %>%
-  mutate_at(vars(locfunc(experiment_two_DS, "DoPL_17"):locfunc(experiment_two_DS, "DoPL_18")), ~as.numeric(recode(., "Not Important To Me" = 0, "Of Little Importance To me" = 1, "Of Some Importance To Me" = 2, "Important To Me" = 3, "Very Important To me" = 4, "Extremely Important To Me" = 5))) %>%
-  mutate_at(vars(locfunc(experiment_two_DS, "UMS_10"):locfunc(experiment_two_DS, "UMS_12")), ~as.numeric(recode(., "Not Important To Me" = 1, "Of Little Importance To me" = 2, "Of Some Importance To Me" = 3, "Important To Me" = 4, "Very Important To me" = 5, "Extremely Important To Me" = 6))) %>%
-  mutate_at(vars(locfunc(experiment_two_DS, "Spite.1"):locfunc(experiment_two_DS, "Spite.13")), ~as.numeric(recode(., "Strongly disagree" = 1, "Disagree" = 2, "Neither agree nor disagree" = 3, "Agree" = 4, "Strongly agree" = 5, "Strongly Disagree" = 1, "Somewhat disagree" = 2))) %>%
-  mutate_at(vars(locfunc(experiment_two_DS, "Spite.14"):locfunc(experiment_two_DS, "Spite.16")), ~as.numeric(recode(., "Strongly disagree" = 5, "Disagree" = 4, "Neither agree nor disagree" = 3, "Agree" = 2, "Strongly agree" = 1, "Strongly Disagree" = 5))) %>%
-  mutate_at(vars(locfunc(experiment_two_DS, "SSES.1"):locfunc(experiment_two_DS, "SSES.3")), ~as.numeric(recode(., "Agree" = 1, "Slightly agree" = 2, "Neither agree nor disagree" = 3, "Slightly Disagree" = 4, "Disagree" = 5, "Slight Disagree" = 4, "Slight disagree" = 4, "Slightly disagree" = 4))) %>%
-  mutate_at(vars(locfunc(experiment_two_DS, "SSES.4"):locfunc(experiment_two_DS, "SSES.5")), ~as.numeric(recode(., "Agree" = 5, "Slightly agree" = 4, "Neither agree nor disagree" = 3, "Slightly Disagree" = 2, "Disagree" = 1, "Slight Disagree" = 2, "Slight disagree" = 2, "Slightly disagree" = 2))) %>%
-   mutate_at(vars(locfunc(experiment_two_DS, "SSES.6")), ~as.numeric(recode(., "Agree" = 1, "Slightly agree" = 2, "Neither agree nor disagree" = 3, "Slightly Disagree" = 4, "Disagree" = 5, "Slight Disagree" = 4, "Slight disagree" = 4, "Slightly disagree" = 4))) %>%
-  mutate_at(vars(locfunc(experiment_two_DS, "SSES.7")), ~as.numeric(recode(., "Agree" = 5, "Slightly agree" = 4, "Neither agree nor disagree" = 3, "Slightly Disagree" = 2, "Disagree" = 1, "Slight Disagree" = 2, "Slight disagree" = 2, "Slightly disagree" = 2))) %>%
-mutate_at(vars(locfunc(experiment_two_DS, "SSES.8")), ~as.numeric(recode(., "Agree" = 1, "Slightly agree" = 2, "Neither agree nor disagree" = 3, "Slightly Disagree" = 4, "Disagree" = 5, "Slight Disagree" = 4, "Slight disagree" = 4, "Slightly disagree" = 4))) %>%
-mutate_at(vars(locfunc(experiment_two_DS, "SSES.9"):locfunc(experiment_two_DS, "SSES.10")), ~as.numeric(recode(., "Agree" = 5, "Slightly agree" = 4, "Neither agree nor disagree" = 3, "Slightly Disagree" = 2, "Disagree" = 1, "Slight Disagree" = 2, "Slight disagree" = 2,  "Slightly disagree" = 2))) %>%
-  mutate_at(vars(locfunc(experiment_two_DS, "SRPS.1"):locfunc(experiment_two_DS, "SRPS.15")), ~as.numeric(recode(., "Strongly agree" = 1, "Agree" = 2, "Disagree" = 3, "Strongly disagree" = 4))) %>%
-  mutate_at(vars(locfunc(experiment_two_DS, "SRPS.17"):locfunc(experiment_two_DS, "SRPS.24")), ~as.numeric(recode(., "Your Partner" = 1, "Both of You Equally" = 2, "You" = 3))) %>%
-  mutate_at(vars(locfunc(experiment_two_DS, "SJS.1"):locfunc(experiment_two_DS, "SJS.3")), ~as.numeric(recode(., "Strongly disagree" = 1, "Disagree" = 2, "Somewhat disagree" = 3, "Somewhat agree" = 4, "Agree" = 5, "Strongly agree" = 6))) %>%
-  mutate_at(vars(locfunc(experiment_two_DS, "Real.1"):locfunc(experiment_two_DS, "Real.10")), ~as.numeric(recode(., "Strongly agree" = 1, "Agree" = 2, "Neither agree nor disagree" = 3, "Disagree" = 4, "Strongly disagree" = 5))) %>%
-  mutate_at(vars(locfunc(experiment_two_DS, "Vign.1"):locfunc(experiment_two_DS, "Vign.10")), ~as.numeric(recode(., "Not justified at all" = 1, "Somewhat unjustified" = 2, "Neither justified or unjustified" = 3, "Slightly justified" = 4, "Very justified" = 5)))
+write.csv(experiment_two_DS, "new_DF.csv")
   
   
 ```
