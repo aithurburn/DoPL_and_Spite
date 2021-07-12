@@ -128,6 +128,20 @@
 % \setlength{\parindent}{0.5in}
 % \setlength{\parskip}{0pt plus 0pt minus 0pt}
 
+% Overwrite redefinition of paragraph and subparagraph by the default LaTeX template
+% See https://github.com/crsh/papaja/issues/292
+\makeatletter
+\renewcommand{\paragraph}{\@startsection{paragraph}{4}{\parindent}%
+  {0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
+  {-1em}%
+  {\normalfont\normalsize\bfseries\itshape\typesectitle}}
+
+\renewcommand{\subparagraph}[1]{\@startsection{subparagraph}{5}{1em}%
+  {0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
+  {-\z@\relax}%
+  {\normalfont\normalsize\itshape\hspace{\parindent}{#1}\textit{\addperi}}{\relax}}
+\makeatother
+
 % \usepackage{etoolbox}
 \makeatletter
 \patchcmd{\HyOrg@maketitle}
@@ -140,7 +154,7 @@
   {}{\typeout{Failed to patch title.}}
 \makeatother
 \shorttitle{Risk and Power}
-\keywords{keywords\newline\indent Word count: 2588}
+\keywords{keywords\newline\indent Word count: 2676}
 \usepackage{lineno}
 
 \linenumbers
@@ -204,7 +218,7 @@ Research in power desire motives have focused on three sub-domains: dominance, l
 
 The dominance motive is one of the more researched methods and well depicted power motives. Individuals with a dominance orientation display the more primal of human behavior. These individuals will seek power through direct methods such as asserting dominance, control over resources, or physically assaulting someone (Johnson et al., 2012; Winter, 1993). Early research in dominance motives has shown that acts of dominance ranging from asserting physical dominance over another to physical displays of violence has been shown in many mammalian species, including humans (Petersen et al., 2018; Witkower et al., 2020).
 
-Individuals high in dominance are often high in machiavellianism, narcissism, and often are prone to risky behavior (discussion further in the next section). Continued research has hinted at a possible tendency for males to display these dominant seeking traits more than females (citation needed). When high dominance individuals assert themselves they are doing so to increase their own individual sense of power (citation needed). Asserting ones own sense of dominance over another can be a dangerous task. In the animal kingdom it can often leader to injury. While, in humans asserting dominance can take a multitude of actions such as leering behaviors, physical distance, or other non-verbal methods to display dominance (citation needed). Power from a dominance perspective is often never bestowed upon someone. Often, high dominance individuals will take control and hold onto it.
+Individuals high in dominance are often high in machiavellianism, narcissism, and often are prone to risky behavior (discussion further in the next section). Continued research has hinted at a possible tendency for males to display these dominant seeking traits more than females (Suessenbach et al., 2019) When high dominance individuals assert themselves they are doing so to increase their own individual sense of power (Williams et al., 2017). Asserting ones own sense of dominance over another can be a dangerous task. In the animal kingdom it can often leader to injury. While, in humans asserting dominance can take a multitude of actions such as leering behaviors, physical distance, or other non-verbal methods to display dominance (citation needed). Power from a dominance perspective is often never bestowed upon someone. Often, high dominance individuals will take control and hold onto it.
 
 \hypertarget{prestige}{%
 \subsubsection{Prestige}\label{prestige}}
@@ -300,13 +314,17 @@ Once participants accessed the main survey, they were presented with the consent
 
 Demographic characteristics were analyzed using a one-way analysis for continuous variables (age) and Chi-squares tests for categorical variables (sex, ethnicity, ethnic origin, and educational attainment). Means and standard deviations were calculated for the surveys along with correlational analyses (e.g., spitefulness, SESS, SRPS, SJS).
 
-Bayesian multilevel models were used to test differences between levels of justifications of vignettes that are either sexually or non-sexually vindictive in behavior. Model 1
+Bayesian multilevel models were used to test differences between levels of justifications of vignettes that are either sexually or non-sexually vindictive in behavior.
 
-\hypertarget{results}{%
-\section{Results}\label{results}}
+\hypertarget{results-and-discussion}{%
+\subsection{Results and Discussion}\label{results-and-discussion}}
 
-\hypertarget{discussion}{%
-\section{Discussion}\label{discussion}}
+Ninety-Two individuals participated in the present experiment. A majority of the participants in experiment 1 identified as male (\emph{n} = 30). Table 1 shows the demographic information for experiment 1. Table 2 presents the results of a Bayesian correlational matrix of all measures. As evidenced in the Bayesian correlational matrix, most surveys positively correlated with one another.
+
+\hypertarget{spitefulness-1}{%
+\subsubsection{Spitefulness}\label{spitefulness-1}}
+
+On average, individuals were not rated as being more spiteful, (\emph{M} = 33.92, \emph{SD} = 9.32, Min-max = {[}16 - 57{]}). Justification as a function of the four indices was moderately explained by the model (\emph{R\textsuperscript{2}} = 0.54).
 
 \hypertarget{limitations-and-future-directions}{%
 \subsection{Limitations and Future Directions}\label{limitations-and-future-directions}}
@@ -364,6 +382,9 @@ Suessenbach, F., Loughnan, S., Schönbrodt, F. D., \& Moore, A. B. (2019). The d
 \leavevmode\vadjust pre{\hypertarget{ref-vanvugt2006}{}}%
 Van Vugt, M. (2006). Evolutionary origins of leadership and followership. \emph{Personality and Social Psychology Review}, \emph{10}(4), 354--371. \url{https://doi.org/10.1207/s15327957pspr1004_5}
 
+\leavevmode\vadjust pre{\hypertarget{ref-williams2017}{}}%
+Williams, M. J., Gruenfeld, D. H., \& Guillory, L. E. (2017). Sexual aggression when power is new: Effects of acute high power on chronically low-power individuals. \emph{Journal of Personality and Social Psychology}, \emph{112}(2), 201--223. \url{https://doi.org/10.1037/pspi0000068}
+
 \leavevmode\vadjust pre{\hypertarget{ref-winter1993}{}}%
 Winter, D. G. (1993). Power, affiliation, and war: Three tests of a motivational model. \emph{Journal of Personality and Social Psychology}, \emph{65}(3), 532--545. \url{https://doi.org/10.1037/0022-3514.65.3.532}
 
@@ -390,32 +411,33 @@ Worley, T., \& Samp, J. (2014). Exploring the associations between relational un
 \toprule
 Demographic Characteristic & \\
 \midrule
-Mean (SD) & 26.14 (8.69)\\
 Age & \\
+\ \ \ Mean (SD) & 26.14 (8.69)\\
 \ \ \ Median [Min, Max] & 23 [18,60]\\
-\ \ \ Female & 30 (32.6\%)\\
 Gender & \\
+\ \ \ Female & 30 (32.6\%)\\
 \ \ \ Male & 62 (67.4\%)\\
-\ \ \ A-Levels or Equivalent & 32 (34.8\%)\\
-\ \ \ GCSes or Equivalent & 8 (8.7\%)\\
-Ethnicity & \\
-\ \ \ Prefer not to answer & 1 (1.1\%)\\
-\ \ \ Primary School & 3 (3.3\%)\\
-\ \ \ University Post-Graduate Program & 17 (18.5\%)\\
-\ \ \ University Undergraduate Program & 31 (33.7\%)\\
-\ \ \ Arab & 1 (1.1\%)\\
-\ \ \ Asian & 5 (5.4\%)\\
+Ethnic Origin & \\
+\ \ \ Scottish & 2 (2.2\%)\\
 \ \ \ English & 10 (10.9\%)\\
 \ \ \ European & 69 (75.0\%)\\
 \ \ \ Latin American & 2 (2.2\%)\\
-Education & \\
+\ \ \ Asian & 5 (5.4\%)\\
+\ \ \ Arab & 1 (1.1\%)\\
 \ \ \ Other & 2 (2.2\%)\\
 \ \ \ Prefer not to answer & 1 (1.1\%)\\
-\ \ \ Scottish & 2 (2.2\%)\\
-\ \ \ Asian or Asian Scottish or Asian British & 5 (5.4\%)\\
+Education & \\
+\ \ \ Primary School & 3 (3.3\%)\\
+\ \ \ GCSes or Equivalent & 8 (8.7\%)\\
+\ \ \ A-Levels or Equivalent & 32 (34.8\%)\\
+\ \ \ University Undergraduate Program & 31 (33.7\%)\\
+\ \ \ University Post-Graduate Program & 17 (18.5\%)\\
+\ \ \ Prefer not to answer & 1 (1.1\%)\\
+Ethnicity & \\
+\ \ \ White & 82 (89.1\%)\\
 \ \ \ Mixed or Multiple ethnic origins & 4 (4.3\%)\\
+\ \ \ Asian or Asian Scottish or Asian British & 5 (5.4\%)\\
 \ \ \ Other ethnic group & 1 (1.1\%)\\
-White & 82 (89.1\%)\\
 \bottomrule
 \end{tabular}
 

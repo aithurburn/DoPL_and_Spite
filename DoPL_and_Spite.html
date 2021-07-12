@@ -214,9 +214,11 @@ analysisDF &lt;- read.csv(&quot;analysisDF.csv&quot;)
 <p>Once participants accessed the main survey, they were presented with the consent form for which to accept they responded with selecting “Yes.”. Participants were then asked to provide demographic characteristics such as gender, ethnicity, and educational attainment. Participants would then complete in order, the spitefulness scale, the sexual relationship power scale, the sexual jealousy subscale, and sexuality self-esteem subscale. Next, participants were presented ten vignettes where they were instructed to rate on the level of justification for the action carried out in the vignette. After each vignette, participants would rate the realism of the scenario. Upon completion of the survey (median completion time 20 minutes SD = 10 Minutes 30 seconds), participants were shown a debriefing message and shown the contact information of the Primary Investigator (Andrew Ithurburn). Participants were then compensated at £8/hr. via Prolific Academic.</p>
 <h2 id="data-analysis">Data Analysis</h2>
 <p>Demographic characteristics were analyzed using a one-way analysis for continuous variables (age) and Chi-squares tests for categorical variables (sex, ethnicity, ethnic origin, and educational attainment). Means and standard deviations were calculated for the surveys along with correlational analyses (e.g., spitefulness, SESS, SRPS, SJS).</p>
-<p>Bayesian multilevel models were used to test differences between levels of justifications of vignettes that are either sexually or non-sexually vindictive in behavior. Model 1</p>
-<h1 id="results">Results</h1>
-<h1 id="discussion">Discussion</h1>
+<p>Bayesian multilevel models were used to test differences between levels of justifications of vignettes that are either sexually or non-sexually vindictive in behavior.</p>
+<h2 id="results-and-discussion">Results and Discussion</h2>
+<p><code>r str_to_title(english::as.english(nrow(experiment_two_DS)))</code> individuals participated in the present experiment. A majority of the participants in experiment 1 identified as male (<em>n</em> = <code>r gender_results$freq[2]</code>). Table 1 shows the demographic information for experiment 1. Table 2 presents the results of a Bayesian correlational matrix of all measures. As evidenced in the Bayesian correlational matrix, most surveys positively correlated with one another.</p>
+<h3 id="spitefulness-1">Spitefulness</h3>
+<p>On average, individuals were not rated as being more spiteful, (<em>M</em> = <code>r mean(analysisDF$Spite)</code>, <em>SD</em> = <code>r sd(analysisDF$Spite)</code>, Min-max = [<code>r min(analysisDF$Spite)</code> - <code>r max(analysisDF$Spite)</code>]). Justification as a function of the four indices was moderately explained by the model (<em>R^2^</em> = <code>r bayes.dm5[1]</code>).</p>
 <h2 id="limitations-and-future-directions">Limitations and Future Directions</h2>
 <p>\newpage</p>
 <h1 id="references">References</h1>
@@ -227,7 +229,7 @@ analysisDF &lt;- read.csv(&quot;analysisDF.csv&quot;)
 \endgroup
 <p>\newpage</p>
 <pre><code class="language-{r"><code><div>apa_table(
- demographic_table, stub_indents = list(&quot;Age&quot; = c(2:3), &quot;Gender&quot; = c(4:6), &quot;Ethnicity&quot; = c(7:15), &quot;Education&quot; = c(16:21)), col.names = c(&quot;Demographic Characteristic&quot;, &quot;&quot;), cap = &quot;Participant Demographic Information (Experiment 1)&quot;
+ demographic_table, stub_indents = list(&quot;Age&quot; = c(1:2), &quot;Gender&quot; = c(3, 4), &quot;Ethnic Origin&quot; = c(5:12), &quot;Education&quot; = c(13:18), &quot;Ethnicity&quot; = c(19:22)), col.names = c(&quot;Demographic Characteristic&quot;, &quot;&quot;), cap = &quot;Participant Demographic Information (Experiment 1)&quot;
 )
 </div></code></code></pre>
 <pre><code class="language-{r}"><code><div>corr_table1 &lt;- corr_table[, -c(5, 6, 7)]
