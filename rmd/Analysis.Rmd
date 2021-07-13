@@ -38,7 +38,7 @@ library(ggprism)
 options(mc.corrs = parallel::detectCores()) # can run chains in parallel with each other
 rstan_options(auto_write = TRUE)
 options(control = list(adapt_delta = 0.99999))
-options(brms.backend = "cmdstanr")
+options(brms.backend = "rstan")
 source("prior_function_file.R")
 source("Priors.R")
 bayesplot::bayesplot_theme_set(theme_apa())
@@ -377,8 +377,7 @@ kable(corr_table, format = "html", booktabs = T, escape = F, longtabe = F, digit
 ## DoPL motives predicting risky behavior (by content) in addition to spitefulness
 
 ```{r Bayesian Analysis, eval = F, message=FALSE, warning=FALSE, class.source = "fold-show"}
-dm0 <- brm(Justification ~ 1 + (1|Vignette) + (1|subjectID), data = analysisDF, iter = 8000, warmup = 500, chains = 4, cores = 6
-           ,prior = prior_dm0, save_all_pars = T)
+dm0 <- brm(Justification ~ 1, data = analysisDF, iter = 8000, warmup = 500, chains = 4, cores = 6,prior = prior_dm0, save_all_pars = T)
 
 summary(dm0)
 
@@ -412,6 +411,8 @@ dm5 <- brm(Justification ~ Dominance_z * Realism_z * Content * Gender + Prestige
            ,prior = prior_dm5, save_all_pars = T)
 
 summary(dm5)
+
+bayestestR::bayesfactor_parameters(dm5, dm0, null = 0)
 
 bm4 <- brm(Justification ~ Dominance_z * Realism_z * Content * Gender + Prestige_z * Realism_z * Content * Gender + Leadership_z * Realism_z * Content * Gender + Spite_z * Content * Gender + (1|Vignette) + (1|subjectID), control = list(adapt_delta = 0.99), data = analysisDF, iter = 8000, warmup = 500, chains = 4, cores = 6, save_all_pars = T)
 

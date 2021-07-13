@@ -1,21 +1,21 @@
-# ---
-# title: "Experiment_2"
-# author: "Andrew Ithurburn"
-# date: "11/05/2021"
-# output: 
-#   html_document:
-#     toc: yes
-#     toc_float:
-#       smooth_scroll: yes
-#     code_folding: hide
-#     fig_caption: yes
-#     number_sections: yes
-#     css: table_styling.css
-# editor_options: 
-#   chunk_output_type: console
-# ---
+ ---
+ title: "Experiment_2"
+ author: "Andrew Ithurburn"
+ date: "11/05/2021"
+ output: 
+   html_document:
+     toc: yes
+     toc_float:
+       smooth_scroll: yes
+     code_folding: hide
+     fig_caption: yes
+     number_sections: yes
+     css: table_styling.css
+ editor_options: 
+   chunk_output_type: console
+ ---
 
-# ```{r setup, include=FALSE}
+```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
 library(DT)
@@ -53,11 +53,11 @@ lfunc <- function(dataset, to, from) {
 }
 theme_set(theme_apa(base_size = 12))
 
-# ```
+```
 
 ## Cleanup
 
-# ```{r, cleanup, message=FALSE, warning=FALSE}
+```{r, cleanup, message=FALSE, warning=FALSE}
 experiment_two_DS_time <- read.csv("Experiment_2_Dataset_clean.csv")
 experiment_two_DS <- read.csv("Experiment_2_Dataset_clean_noTime.csv")
 m2prior <- readRDS("m2prior.rds")
@@ -241,19 +241,19 @@ savedQuestionsAfter <- c('subjectID', "Age", "Duration..in.seconds.", "Gender", 
 "Justification",
 "Realism",
 "Power")
-# ```
+```
 
 ## Recoding variables
-# ```{r recoding variables, message=FALSE, warning=FALSE}
+```{r recoding variables, message=FALSE, warning=FALSE}
 
 write.csv(experiment_two_DS, "new_DF.csv")
   
   
-# ```
+```
 
 ## Summing data
 
-# ```{r, message=FALSE, warning=FALSE}
+```{r, message=FALSE, warning=FALSE}
 # DOPL----
 experiment_two_DS$DoPLSum  <- rowSums(experiment_two_DS[, doplQuestions])
 experiment_two_DS$dominanceSum <-
@@ -303,11 +303,11 @@ experiment_two_DS <- experiment_two_DS %>% mutate(Power = case_when(
   experiment_two_DS$srps.sum.rescale > 2.420 & experiment_two_DS$srps.sum.rescale < 2.820   ~ "Medium",
   experiment_two_DS$srps.sum.rescale > 2.820 ~ "High"
 ))
-# ```
+```
 
 ## Renaming
 
-# ```{r Experiment 2 dataset for analysis, message=FALSE, warning=FALSE}
+```{r Experiment 2 dataset for analysis, message=FALSE, warning=FALSE}
 
 experiment_two_DS <- rowid_to_column(experiment_two_DS, "subjectID")
 
@@ -381,10 +381,10 @@ rename("Vignette" = "Vignette") %>%
 rename("Justification" = "Justification") %>%
 rename("Realism" = "Realism") %>%
 rename("Content" = "Content")
-# ```
+```
 ## Fixing class
 
-# ```{r Analysis, message=FALSE, warning=FALSE}
+```{r Analysis, message=FALSE, warning=FALSE}
 analysisDF$Vignette <- factor(analysisDF$Vignette)
 analysisDF$subjectID <- factor(analysisDF$subjectID)
 analysisDF$Spite_z <- scale(analysisDF$Spite)
@@ -400,23 +400,23 @@ analysisDF$Prestige_z <- scale(analysisDF$Prestige)
 analysisDF$UMS_z <- scale(analysisDF$UMS)
 analysisDF$UMS_Intimacy_z <- scale(analysisDF$UMS_Intimacy)
 analysisDF$UMS_Affiliation_z <- scale(analysisDF$UMS_Affiliation)
-# ```
+```
 
 ## Basic gglots
-# ```{r Basic ggplots, echo=TRUE, message=FALSE, warning=FALSE}
+```{r Basic ggplots, echo=TRUE, message=FALSE, warning=FALSE}
 ggplot(analysisDF, aes(x = DoPL, y = Justification, color = Content)) + geom_point() + geom_smooth(method = "lm")
 ggplot(analysisDF, aes(x = Dominance, y = Justification, color = Content)) + geom_point() + geom_smooth(method = "lm")
 ggplot(analysisDF, aes(x = Leadership, y = Justification, color = Content)) + geom_point() + geom_smooth(method = "lm")
 ggplot(analysisDF, aes(x = Prestige, y = Justification, color = Content)) + geom_point() + geom_smooth(method = "lm")
 
-# ```
+```
 
 # Initial Bayesian Analysis
-# ```{r}
+```{r}
 
-# ```
+```
 
-# ```{r Bayesian, eval = F, message=FALSE, warning=FALSE, class.source = "fold-show"}
+```{r Bayesian, eval = F, message=FALSE, warning=FALSE, class.source = "fold-show"}
 
 
 
@@ -454,28 +454,28 @@ m4 <- brm(Justification ~ Spite_z * Content * Realism_z + SSES_z + SRPS_z + SJS_
                    prior(normal(0,1), class = 'b'),
                    prior(normal(0.151, 0.0723), class = b, coef = "Spite_z:ContentSexual")))
 
-# ```
+```
 
 ### Bayesian Correlation
 
-# ```{r, eval = F, message=FALSE, warning=FALSE, class.source = "fold-show"}
+```{r, eval = F, message=FALSE, warning=FALSE, class.source = "fold-show"}
 scale_corr <- brm(mvbind(SSES, SRPS, Spite, SJS, Dominance, Prestige, Leadership) ~ 1, data = analysisDF, iter = 8000, warmup = 500, chains = 4, cores = 6, 
                   prior = c(prior(normal(0, 1), class = "Intercept")), save_all_pars = T)
 cor_1 <- summary(scale_corr)
 corr_table <- cor_1[["rescor_pars"]]
-# ```
+```
 
 
-# ```{r}
-kable(corr_table, format = "html", booktabs = T, escape = F, longtabe = F, digits = 2, col.names = c('Estimate',	'Est.Error',	'l-95% CI',	'u-95% CI',	'Rhat',	'Bulk_ESS',	'Tail_ESS')) %>%
+```{r}
+kable(corr_table, format = "html", booktabs = T, escape = F, longtabe = F, digits = 2, col.names = c('Estimate',	'Est.Error',	'l-95% CI',	'u-95% CI',	'Rhat',	'Bulk_ESS',	'Tail_ESS')) %>% 
   kable_styling(full_width = F)  %>%
  
-# ```
+```
 
 ### DoPL motives predicting risky behavior (by content) in addition to spitefulness
 
-# ```{r Bayesian Analysis, eval = F, message=FALSE, warning=FALSE, class.source = "fold-show"}
-dm0 <- brm(Justification ~ 1 + (1|Vignette) + (1|subjectID), data = analysisDF, iter = 8000, warmup = 500, chains = 4, cores = 6
+```{r Bayesian Analysis, eval = F, message=FALSE, warning=FALSE, class.source = "fold-show"}
+dm0 <- brm(Justification ~ 1, data = analysisDF, iter = 8000, warmup = 500, chains = 4, cores = 6
            ,prior = c(prior(normal(0, 1), class = "Intercept")), save_all_pars = T)
 
 summary(dm0)
@@ -534,32 +534,32 @@ dm5 <- brm(Justification ~ Dominance_z * Realism_z * Content * Gender + Prestige
 summary(dm5)
 
 loo(dm1, dm2, dm4, dm5)
-# ```
+```
 
 ### DoPL motives predicting risky behavior (by content) in addition to spitefulness HDI
 
-# ```{r Bayesian Analysis HDI, message=FALSE, warning=FALSE}
+```{r Bayesian Analysis HDI, message=FALSE, warning=FALSE}
 dm5_hdi <- bayestestR::hdi(dm5, effects = "fixed", component = "conditional", ci = .95)
 kable(dm5_hdi[sign(dm5_hdi$CI_low) == sign(dm5_hdi$CI_high),
             c('Parameter', 'CI','CI_low', 'CI_high')], format = "html", booktabs = T, escape = F, longtable = F, digits = 2) %>% kable_styling(full_width = T)
 
 
-# ```
+```
 
 
 
 
 ### Bayesian analysis m4
 
-# ```{r}
+```{r}
 summary(m4)
 
 m4_hdi <- bayestestR::hdi(m4, effects = "fixed", component = "conditional", ci = .95)
 kable(m4_hdi[sign(m4_hdi$CI_low) == sign(m4_hdi$CI_high),
             c('Parameter', 'CI','CI_low', 'CI_high')] , format = "html", booktabs = T, escape = F, longtable = F, digits = 2) %>% kable_styling(full_width = T)
-# ```
+```
 
-# ```{r, eval = F, message=FALSE, warning=FALSE, class.source = "fold-show"}
+```{r, eval = F, message=FALSE, warning=FALSE, class.source = "fold-show"}
 m5 <- brm(Justification ~ Dominance_z + Leadership_z + Prestige_z + (1|Vignette) + (1|subjectID), data = analysisDF,warmup = 500, control = list(adapt_delta = 0.95), iter = 8000, chains = 4, cores = 6, prior = c(prior(normal(0,1), class = 'Intercept'),
                    prior(normal(0,1), class = 'b')))
 summary(m5)
@@ -572,11 +572,11 @@ m5_gen <- brm(Justification_z ~ Dominance_z*Gender + Leadership_z*Gender + Prest
                    save_all_pars = T)
 summary(m5_gen)
 
-# ```
+```
 
 ### DoPL and Justification
 
-# ```{r}
+```{r}
 summary(m5_gen)
 
 m5_gen_hdi <- bayestestR::hdi(m5_gen, effects = "fixed", component = "conditional", ci = .95)
@@ -584,11 +584,11 @@ kable(m5_gen_hdi[sign(m5_gen_hdi$CI_low) == sign(m5_gen_hdi$CI_high),
             c('Parameter', 'CI','CI_low', 'CI_high')] , format = "html", booktabs = T, escape = F, longtable = F, digits = 2) %>% kable_styling(full_width = T)
 
 
-# ```
+```
 
 ### Spite and DoPL
 
-# ```{r Exploratory Analyses, eval = F, message=FALSE, warning=FALSE, class.source = "fold-show"}
+```{r Exploratory Analyses, eval = F, message=FALSE, warning=FALSE, class.source = "fold-show"}
 m7 <- brm(Spite_z ~ Dominance_z*Gender + Leadership_z*Gender + Prestige_z*Gender, data = analysisDF, warmup = 500, iter = 8000, chains = 4, cores = 6,
           prior = c(prior(normal(0, 1), class = "Intercept"),
                    prior(normal(3, 1), class = "b", coef = "Dominance_z:Gender"),
@@ -596,27 +596,27 @@ m7 <- brm(Spite_z ~ Dominance_z*Gender + Leadership_z*Gender + Prestige_z*Gender
                    prior(normal(0, 1), class = 'b', coef = "Gender:Prestige_z")),
                    save_all_pars = T)
 
-# ```
+```
 
 
-# ```{r Exploratory Analyses HDI}
+```{r Exploratory Analyses HDI}
 m7_hdi <- bayestestR::hdi(m7, effects = "fixed", component = "conditional", ci = .95)
 kable(m7_hdi[sign(m7_hdi$CI_low) == sign(m7_hdi$CI_high),
             c('Parameter', 'CI','CI_low', 'CI_high')] , format = "html", booktabs = T, escape = F, longtable = F, digits = 2) %>% kable_styling(full_width = T)
 
 summary(m7)
-# ```
+```
 
 ### DoPL and Measures
 
-# ```{r DoPL and measures, eval = F, message=FALSE, warning=FALSE, class.source = "fold-show"}
+```{r DoPL and measures, eval = F, message=FALSE, warning=FALSE, class.source = "fold-show"}
 m8 <- brm(mvbind(Dominance, Prestige, Leadership) ~ Spite_z + SSES + SRPS + SJS, data = analysisDF, iter = 8000, warmup = 500, chains = 4, cores = 6, 
           prior = c(prior(normal(0, 1), class = "Intercept")), save_all_pars = T)
 
-# ```
+```
 
 
-# ```{r DoPL and measures HDI}
+```{r DoPL and measures HDI}
 
 summary(m8)
 
@@ -624,46 +624,46 @@ m8_hdi <- bayestestR::hdi(m8, effects = "fixed", component = "conditional", ci =
 kable(m8_hdi[sign(m8_hdi$CI_low) == sign(m8_hdi$CI_high),
             c('Parameter', 'CI','CI_low', 'CI_high')] , format = "html", booktabs = T, escape = F, longtable = F, digits = 2) %>% kable_styling(full_width = T)
 
-# ```
+```
 
 ### DoPL and Measures * Gender
-# ```{r m8 with gender interaction, eval = F, message=FALSE, warning=FALSE, class.source = "fold-show"}
+```{r m8 with gender interaction, eval = F, message=FALSE, warning=FALSE, class.source = "fold-show"}
 m8_gen <- brm(mvbind(Dominance, Prestige, Leadership) ~ Spite_z*Gender + SSES*Gender + SRPS*Gender + SJS*Gender, data = analysisDF, iter = 8000, warmup = 500, chains = 4, cores = 6, 
           prior = c(prior(normal(0, 1), class = "Intercept")), save_all_pars = T)
 
 
-# ```
+```
 
 
-# ```{r m8 with gender interaction HDI}
+```{r m8 with gender interaction HDI}
 m8_gen_hdi <- bayestestR::hdi(m8_gen, effects = "fixed", component = "conditional", ci = .95)
 kable(m8_gen_hdi[sign(m8_gen_hdi$CI_low) == sign(m8_gen_hdi$CI_high),
             c('Parameter', 'CI','CI_low', 'CI_high')] , format = "html", booktabs = T, escape = F, longtable = F, digits = 2) %>% kable_styling(full_width = T)
 
 summary(m8_gen)
 
-# ```
+```
 
 ### DoPL and Measures * Age
 
-# ```{r m8*Age, eval = F, message=FALSE, warning=FALSE, class.source = "fold-show"}
+```{r m8*Age, eval = F, message=FALSE, warning=FALSE, class.source = "fold-show"}
 m8_Age <- brm(mvbind(Dominance, Prestige, Leadership) ~ Spite_z*Age + SSES*Age + SRPS*Age + SJS*Age, data = analysisDF, iter = 8000, warmup = 500, chains = 4, cores = 6, 
           prior = c(prior(normal(0, 1), class = "Intercept")), save_all_pars = T)
 
-# ```
+```
 
 
-# ```{r m8*Age HDI}
+```{r m8*Age HDI}
 m8_Age_hdi <- bayestestR::hdi(m8_Age, effects = "fixed", component = "conditional", ci = .95)
 kable(m8_Age_hdi[sign(m8_Age_hdi$CI_low) == sign(m8_Age_hdi$CI_high),
             c('Parameter', 'CI','CI_low', 'CI_high')] , format = "html", booktabs = T, escape = F, longtable = F, digits = 2) %>% kable_styling(full_width = T)
 
 summary(m8_Age)
-# ```
+```
 
 # Justification and Content type
 
-# ```{r message=FALSE, warning=FALSE}
+```{r message=FALSE, warning=FALSE}
 
 ggplot(analysisDF, aes(y = Justification, x = Vignette, fill = Content, group = Vignette)) +
        geom_violin() +  
@@ -673,17 +673,17 @@ ggplot(analysisDF, aes(y = Justification, x = Vignette, fill = Content, group = 
 
 timstop <- 2 + 3
 
-# ```
+```
 # Demographic Information
 
 
-# ```{r message=FALSE, warning=FALSE}
+```{r message=FALSE, warning=FALSE}
 ggplotimage <- ggplot(experiment_two_DS, aes(x = Age)) + 
   geom_histogram(stat = "count") +
 scale_fill_gradient("Count", low = "#FFEDA0", high = "#800F26")  + aes(fill = ..count..) + scale_shape_prism() + scale_y_continuous(limits = c(0, 10), guide = "prism_offset") + scale_x_continuous(guide = "prism_offset")
-# ```
+```
 
-# ```{r Demographic table, message=FALSE, warning=FALSE, include=FALSE}
+```{r Demographic table, message=FALSE, warning=FALSE, include=FALSE}
 
 demo_table_1 <- experiment_two_DS[, demographicQuestions]
 
@@ -767,9 +767,9 @@ demographic_table$new <- paste(demographic_table$Freq, demographic_table$Percent
 
 demographic_table <- demographic_table[, -c(2:3)]
 demographic_table <- rbind(age_demo_table_1, age_demo_table_2, demographic_table)
-# ```
+```
 
-# ```{r}
+```{r}
 kable(demographic_table, format = "html", bootabs = T, escape = F, longtable = T,
       col.names = c("", "Overall *n* = 92"),
       align = c("l", "c"),
@@ -784,7 +784,7 @@ kable(demographic_table, format = "html", bootabs = T, escape = F, longtable = T
   pack_rows("Ethnic Origin", 18, 22)%>%
   pack_rows("Educational Attainment", 5, 10)
 
-# ```
+```
 
 
 

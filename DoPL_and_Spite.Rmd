@@ -32,7 +32,7 @@ abstract: |
 keywords          : "keywords"
 wordcount         : !expr wordcountaddin::word_count("DoPL_and_Spite.Rmd")
 
-bibliography      : [C:\\Users\\s1932788\\OneDrive\\Documents\\1_UoE\\Research\\PhD\\LiteratureReview\\bibtex\\Library.bib]
+bibliography      : [C:\\Users\\s1932788\\OneDrive\\Documents\\1_UoE\\Research\\PhD\\LiteratureReview\\bibtex\\Library.bib, C:\\Users\\s1932788\\OneDrive\\Documents\\1_UoE\\Research\\PhD\\LiteratureReview\\bibtex\\r-references.bib]
 
 floatsintext      : no
 figurelist        : no
@@ -58,6 +58,7 @@ library("papaja")
 r_refs("r-references.bib")
 analysisDF <- read.csv("analysisDF.csv")
 df_time <- read.csv("Experiment_2_Dataset_clean.csv")
+experiment_two_DS <- read.csv("Experiment_2_Dataset.csv")
 df_time <- df_time[-1:-2,]
 library(lubridate) 
 average_completion <- mean(as.numeric(df_time$Duration..in.seconds.))
@@ -120,6 +121,8 @@ dm2 <- readRDS("dm2.rds")
 dm3 <- readRDS("dm3.rds")
 dm4 <- readRDS("dm4.rds")
 dm5 <- readRDS("dm5.rds")
+newDF <- read.csv("newDF.csv")
+bayes.dm5 <- bayes_R2(dm5)
 demographic_table <- readRDS("demographic_table.rds")
 m2prior <- readRDS("m2prior.rds")
 dopl_1_prior <- readRDS("m4prior.rds")
@@ -130,11 +133,11 @@ analysisDF <- read.csv("analysisDF.csv")
 
 # Introduction
 
-Every day individuals make decisions be they mundane such as which cereal to eat in the morning to the more complex of which job should they accept. The consequences for making those decisions can be equally complex. Some decisions are more difficult to quantify and understand while others can be relatively easy like choosing what cereal to eat in the morning. However, some are increasingly more difficult to statistically model. For example, two adult males (or a man and a woman) who are intending to have sex must decide whether to have sex with or without a condom. The consequences can have lasting effects depending on what the couple chooses [General risk: @kusev2017; Sexual Risk: @desiderato1995; Risky Decisions: @vankleef20210128]
+Every day individuals make decisions be they mundane such as which cereal to eat in the morning to the more complex of which job should they accept. The consequences for making those decisions can be equally complex. Some decisions are more difficult to quantify and understand while others can be relatively easy like choosing what cereal to eat in the morning. However, some are increasingly more difficult to statistically model. For example, two adult males (or a man and a woman) who are intending to have sex must decide whether to have sex with or without a condom. The consequences can have lasting effects depending on what the couple chooses [General risk: @kusev2017; Sexual Risk: @desiderato1995; Risky Decisions: @vankleef20210128] 
 
 ## Spitefulness
 
-These lasting effects can be twofold. For example, deciding not to wear a condom could result in an unplanned pregnancy or exposing one or another person to a sexually transmitted infection. Behaviors/decisions that have negative consequences for both individuals is the original understanding of spite to where psychologically spite is understood as intentionally harming oneself to punish another [@marcus2014; @critchfield2008]. Spiteful behavior that has often been overlooked in psychological research. Spite has been seen in behavioral economic experiments, preschoolers with ultimatum games, and daily life [@marcus2014; @bauer2014; @bugelmayer2014a]. Preschool boys tended to be more spiteful than their female counterparts. Younger men followed suit and tended to be more spiteful than their counterparts [@marcus2014]. Age plays a role whereas people age they tend to be less spiteful and more egalitarian [@bugelmayer2014a].
+These lasting effects can be twofold. For example, deciding not to wear a condom could result in an unplanned pregnancy or exposing one or another person to a sexually transmitted infection. Behaviors/decisions that have negative consequences for both individuals is the original understanding of spite to where psychologically spite is understood as intentionally harming oneself to punish another [@marcus2014; @critchfield2008]. Spiteful behavior has often been overlooked in psychological research. Spite has been seen in behavioral economic experiments, preschoolers with ultimatum games, and daily life [@marcus2014; @bauer2014; @bugelmayer2014a]. Preschool boys tended to be more spiteful than their female counterparts. Younger men followed suit and tended to be more spiteful than their counterparts [@marcus2014]. Age plays a role whereas people age they tend to be less spiteful and more egalitarian [@bugelmayer2014a].
 
 ## DoPL
 
@@ -230,8 +233,7 @@ Bayesian multilevel models were used to test differences between levels of justi
 
 ### Spitefulness
 
-On average, individuals were not rated as being more spiteful, (*M* = `r mean(analysisDF$Spite)`, *SD* = `r sd(analysisDF$Spite)`, Min-max = [`r min(analysisDF$Spite)` - `r max(analysisDF$Spite)`]). Justification as a function of the four indices was moderately explained by the model (*R^2^* = `r bayes.dm5[1]`). 
-
+For this analysis we used the Bayesian parameter estimation using R and brms [@rcore2021; @burkner2018]. An annotated r script file, including all necessary information is available at [https://osf.io/jz6qb](https://osf.io/jz6qb). On average, individuals were not rated as being more spiteful, (*M* = `r mean(analysisDF$Spite)`, *SD* = `r sd(analysisDF$Spite)`, Min-max = [`r min(analysisDF$Spite)` - `r max(analysisDF$Spite)`]). Justification as a function of the four indices was moderately explained by the model (*R^2^* = `r bayes.dm5[1]`). 
 
 ## Limitations and Future Directions
 

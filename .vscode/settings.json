@@ -1,3 +1,22 @@
 {
-    "python.pythonPath": "c:\\Users\\s1932788\\AppData\\Local\\Programs\\Python\\Python39\\python.exe"
+    "python.pythonPath": "c:\\Users\\s1932788\\AppData\\Local\\Programs\\Python\\Python39\\python.exe",
+    "grammarly.overrides": [
+        {
+            "files": [
+                "**/DoPL_and_Spite.Rmd"
+            ],
+            "config": {
+                "audience": "expert",
+                "dialect": "american",
+                "domain": "academic",
+                "emotions": [
+                    "neutral",
+                    "respectful"
+                ],
+                "goals": [
+                    "inform"
+                ]
+            }
+        }
+    ]
 }

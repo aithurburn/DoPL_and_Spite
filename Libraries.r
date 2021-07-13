@@ -35,3 +35,15 @@ lfunc <- function(dataset, to, from) {
   length({{dataset}}[loc1:loc2])
 }
 theme_set(theme_apa(base_size = 12))
+
+bibfile <- RefManageR::BibEntry(bibtype = "manual",
+    title        = "R: A Language and Environment for Statistical
+                  Computing",
+  key = "rcore2021",
+  author       = "{R Core Team}",
+  organization = "R Foundation for Statistical Computing",
+  address      = "Vienna, Austria",
+  year         = "2021",
+  url          = "https://www.R-project.org"
+)
+RefManageR::WriteBib(bibfile, file = 'C:\\Users\\s1932788\\OneDrive\\Documents\\1_UoE\\Research\\PhD\\LiteratureReview\\bibtex\\Library.bib', biblatex = T, append = T, verbose = T)

@@ -10,3 +10,7 @@ library(brms)
   bayes.dm5 <- bayes_R2(dm5)
 bayes.dm5[1]
   conditional_effects(dm5)
+
+result <- regressionBF(mvbind(SSES, SRPS, Spite, SJS, Dominance, Prestige, Leadership) ~ 1, data = analysisDF)
+
+bayesfactor_parameters(dm5, direction = ">")

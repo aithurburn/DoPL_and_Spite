@@ -2,7 +2,7 @@
     <html>
     <head>
         <meta charset="UTF-8">
-        <title>Seed for random number generation</title>
+        <title>Experiment 2</title>
         <style>
 /* From extension vscode.markdown-math */
 @font-face{font-family:KaTeX_AMS;src:url(fonts/KaTeX_AMS-Regular.woff2) format("woff2"),url(fonts/KaTeX_AMS-Regular.woff) format("woff"),url(fonts/KaTeX_AMS-Regular.ttf) format("truetype");font-weight:400;font-style:normal}@font-face{font-family:KaTeX_Caligraphic;src:url(fonts/KaTeX_Caligraphic-Bold.woff2) format("woff2"),url(fonts/KaTeX_Caligraphic-Bold.woff) format("woff"),url(fonts/KaTeX_Caligraphic-Bold.ttf) format("truetype");font-weight:700;font-style:normal}@font-face{font-family:KaTeX_Caligraphic;src:url(fonts/KaTeX_Caligraphic-Regular.woff2) format("woff2"),url(fonts/KaTeX_Caligraphic-Regular.woff) format("woff"),url(fonts/KaTeX_Caligraphic-Regular.ttf) format("truetype");font-weight:400;font-style:normal}@font-face{font-family:KaTeX_Fraktur;src:url(fonts/KaTeX_Fraktur-Bold.woff2) format("woff2"),url(fonts/KaTeX_Fraktur-Bold.woff) format("woff"),url(fonts/KaTeX_Fraktur-Bold.ttf) format("truetype");font-weight:700;font-style:normal}@font-face{font-family:KaTeX_Fraktur;src:url(fonts/KaTeX_Fraktur-Regular.woff2) format("woff2"),url(fonts/KaTeX_Fraktur-Regular.woff) format("woff"),url(fonts/KaTeX_Fraktur-Regular.ttf) format("truetype");font-weight:400;font-style:normal}@font-face{font-family:KaTeX_Main;src:url(fonts/KaTeX_Main-Bold.woff2) format("woff2"),url(fonts/KaTeX_Main-Bold.woff) format("woff"),url(fonts/KaTeX_Main-Bold.ttf) format("truetype");font-weight:700;font-style:normal}@font-face{font-family:KaTeX_Main;src:url(fonts/KaTeX_Main-BoldItalic.woff2) format("woff2"),url(fonts/KaTeX_Main-BoldItalic.woff) format("woff"),url(fonts/KaTeX_Main-BoldItalic.ttf) format("truetype");font-weight:700;font-style:italic}@font-face{font-family:KaTeX_Main;src:url(fonts/KaTeX_Main-Italic.woff2) format("woff2"),url(fonts/KaTeX_Main-Italic.woff) format("woff"),url(fonts/KaTeX_Main-Italic.ttf) format("truetype");font-weight:400;font-style:italic}@font-face{font-family:KaTeX_Main;src:url(fonts/KaTeX_Main-Regular.woff2) format("woff2"),url(fonts/KaTeX_Main-Regular.woff) format("woff"),url(fonts/KaTeX_Main-Regular.ttf) format("truetype");font-weight:400;font-style:normal}@font-face{font-family:KaTeX_Math;src:url(fonts/KaTeX_Math-BoldItalic.woff2) format("woff2"),url(fonts/KaTeX_Math-BoldItalic.woff) format("woff"),url(fonts/KaTeX_Math-BoldItalic.ttf) format("truetype");font-weight:700;font-style:italic}@font-face{font-family:KaTeX_Math;src:url(fonts/KaTeX_Math-Italic.woff2) format("woff2"),url(fonts/KaTeX_Math-Italic.woff) format("woff"),url(fonts/KaTeX_Math-Italic.ttf) format("truetype");font-weight:400;font-style:italic}@font-face{font-family:"KaTeX_SansSerif";src:url(fonts/KaTeX_SansSerif-Bold.woff2) format("woff2"),url(fonts/KaTeX_SansSerif-Bold.woff) format("woff"),url(fonts/KaTeX_SansSerif-Bold.ttf) format("truetype");font-weight:700;font-style:normal}@font-face{font-family:"KaTeX_SansSerif";src:url(fonts/KaTeX_SansSerif-Italic.woff2) format("woff2"),url(fonts/KaTeX_SansSerif-Italic.woff) format("woff"),url(fonts/KaTeX_SansSerif-Italic.ttf) format("truetype");font-weight:400;font-style:italic}@font-face{font-family:"KaTeX_SansSerif";src:url(fonts/KaTeX_SansSerif-Regular.woff2) format("woff2"),url(fonts/KaTeX_SansSerif-Regular.woff) format("woff"),url(fonts/KaTeX_SansSerif-Regular.ttf) format("truetype");font-weight:400;font-style:normal}@font-face{font-family:KaTeX_Script;src:url(fonts/KaTeX_Script-Regular.woff2) format("woff2"),url(fonts/KaTeX_Script-Regular.woff) format("woff"),url(fonts/KaTeX_Script-Regular.ttf) format("truetype");font-weight:400;font-style:normal}@font-face{font-family:KaTeX_Size1;src:url(fonts/KaTeX_Size1-Regular.woff2) format("woff2"),url(fonts/KaTeX_Size1-Regular.woff) format("woff"),url(fonts/KaTeX_Size1-Regular.ttf) format("truetype");font-weight:400;font-style:normal}@font-face{font-family:KaTeX_Size2;src:url(fonts/KaTeX_Size2-Regular.woff2) format("woff2"),url(fonts/KaTeX_Size2-Regular.woff) format("woff"),url(fonts/KaTeX_Size2-Regular.ttf) format("truetype");font-weight:400;font-style:normal}@font-face{font-family:KaTeX_Size3;src:url(fonts/KaTeX_Size3-Regular.woff2) format("woff2"),url(fonts/KaTeX_Size3-Regular.woff) format("woff"),url(fonts/KaTeX_Size3-Regular.ttf) format("truetype");font-weight:400;font-style:normal}@font-face{font-family:KaTeX_Size4;src:url(fonts/KaTeX_Size4-Regular.woff2) format("woff2"),url(fonts/KaTeX_Size4-Regular.woff) format("woff"),url(fonts/KaTeX_Size4-Regular.ttf) format("truetype");font-weight:400;font-style:normal}@font-face{font-family:KaTeX_Typewriter;src:url(fonts/KaTeX_Typewriter-Regular.woff2) format("woff2"),url(fonts/KaTeX_Typewriter-Regular.woff) format("woff"),url(fonts/KaTeX_Typewriter-Regular.ttf) format("truetype");font-weight:400;font-style:normal}.katex{font:normal 1.21em KaTeX_Main,Times New Roman,serif;line-height:1.2;text-indent:0;text-rendering:auto;border-color:currentColor}.katex *{-ms-high-contrast-adjust:none!important}.katex .katex-version:after{content:"0.13.0"}.katex .katex-mathml{position:absolute;clip:rect(1px,1px,1px,1px);padding:0;border:0;height:1px;width:1px;overflow:hidden}.katex .katex-html>.newline{display:block}.katex .base{position:relative;white-space:nowrap;width:-webkit-min-content;width:-moz-min-content;width:min-content}.katex .base,.katex .strut{display:inline-block}.katex .textbf{font-weight:700}.katex .textit{font-style:italic}.katex .textrm{font-family:KaTeX_Main}.katex .textsf{font-family:KaTeX_SansSerif}.katex .texttt{font-family:KaTeX_Typewriter}.katex .mathnormal{font-family:KaTeX_Math;font-style:italic}.katex .mathit{font-family:KaTeX_Main;font-style:italic}.katex .mathrm{font-style:normal}.katex .mathbf{font-family:KaTeX_Main;font-weight:700}.katex .boldsymbol{font-family:KaTeX_Math;font-weight:700;font-style:italic}.katex .amsrm,.katex .mathbb,.katex .textbb{font-family:KaTeX_AMS}.katex .mathcal{font-family:KaTeX_Caligraphic}.katex .mathfrak,.katex .textfrak{font-family:KaTeX_Fraktur}.katex .mathtt{font-family:KaTeX_Typewriter}.katex .mathscr,.katex .textscr{font-family:KaTeX_Script}.katex .mathsf,.katex .textsf{font-family:KaTeX_SansSerif}.katex .mathboldsf,.katex .textboldsf{font-family:KaTeX_SansSerif;font-weight:700}.katex .mathitsf,.katex .textitsf{font-family:KaTeX_SansSerif;font-style:italic}.katex .mainrm{font-family:KaTeX_Main;font-style:normal}.katex .vlist-t{display:inline-table;table-layout:fixed;border-collapse:collapse}.katex .vlist-r{display:table-row}.katex .vlist{display:table-cell;vertical-align:bottom;position:relative}.katex .vlist>span{display:block;height:0;position:relative}.katex .vlist>span>span{display:inline-block}.katex .vlist>span>.pstrut{overflow:hidden;width:0}.katex .vlist-t2{margin-right:-2px}.katex .vlist-s{display:table-cell;vertical-align:bottom;font-size:1px;width:2px;min-width:2px}.katex .vbox{display:inline-flex;flex-direction:column;align-items:baseline}.katex .hbox{width:100%}.katex .hbox,.katex .thinbox{display:inline-flex;flex-direction:row}.katex .thinbox{width:0;max-width:0}.katex .msupsub{text-align:left}.katex .mfrac>span>span{text-align:center}.katex .mfrac .frac-line{display:inline-block;width:100%;border-bottom-style:solid}.katex .hdashline,.katex .hline,.katex .mfrac .frac-line,.katex .overline .overline-line,.katex .rule,.katex .underline .underline-line{min-height:1px}.katex .mspace{display:inline-block}.katex .clap,.katex .llap,.katex .rlap{width:0;position:relative}.katex .clap>.inner,.katex .llap>.inner,.katex .rlap>.inner{position:absolute}.katex .clap>.fix,.katex .llap>.fix,.katex .rlap>.fix{display:inline-block}.katex .llap>.inner{right:0}.katex .clap>.inner,.katex .rlap>.inner{left:0}.katex .clap>.inner>span{margin-left:-50%;margin-right:50%}.katex .rule{display:inline-block;border:0 solid;position:relative}.katex .hline,.katex .overline .overline-line,.katex .underline .underline-line{display:inline-block;width:100%;border-bottom-style:solid}.katex .hdashline{display:inline-block;width:100%;border-bottom-style:dashed}.katex .sqrt>.root{margin-left:.27777778em;margin-right:-.55555556em}.katex .fontsize-ensurer.reset-size1.size1,.katex .sizing.reset-size1.size1{font-size:1em}.katex .fontsize-ensurer.reset-size1.size2,.katex .sizing.reset-size1.size2{font-size:1.2em}.katex .fontsize-ensurer.reset-size1.size3,.katex .sizing.reset-size1.size3{font-size:1.4em}.katex .fontsize-ensurer.reset-size1.size4,.katex .sizing.reset-size1.size4{font-size:1.6em}.katex .fontsize-ensurer.reset-size1.size5,.katex .sizing.reset-size1.size5{font-size:1.8em}.katex .fontsize-ensurer.reset-size1.size6,.katex .sizing.reset-size1.size6{font-size:2em}.katex .fontsize-ensurer.reset-size1.size7,.katex .sizing.reset-size1.size7{font-size:2.4em}.katex .fontsize-ensurer.reset-size1.size8,.katex .sizing.reset-size1.size8{font-size:2.88em}.katex .fontsize-ensurer.reset-size1.size9,.katex .sizing.reset-size1.size9{font-size:3.456em}.katex .fontsize-ensurer.reset-size1.size10,.katex .sizing.reset-size1.size10{font-size:4.148em}.katex .fontsize-ensurer.reset-size1.size11,.katex .sizing.reset-size1.size11{font-size:4.976em}.katex .fontsize-ensurer.reset-size2.size1,.katex .sizing.reset-size2.size1{font-size:.83333333em}.katex .fontsize-ensurer.reset-size2.size2,.katex .sizing.reset-size2.size2{font-size:1em}.katex .fontsize-ensurer.reset-size2.size3,.katex .sizing.reset-size2.size3{font-size:1.16666667em}.katex .fontsize-ensurer.reset-size2.size4,.katex .sizing.reset-size2.size4{font-size:1.33333333em}.katex .fontsize-ensurer.reset-size2.size5,.katex .sizing.reset-size2.size5{font-size:1.5em}.katex .fontsize-ensurer.reset-size2.size6,.katex .sizing.reset-size2.size6{font-size:1.66666667em}.katex .fontsize-ensurer.reset-size2.size7,.katex .sizing.reset-size2.size7{font-size:2em}.katex .fontsize-ensurer.reset-size2.size8,.katex .sizing.reset-size2.size8{font-size:2.4em}.katex .fontsize-ensurer.reset-size2.size9,.katex .sizing.reset-size2.size9{font-size:2.88em}.katex .fontsize-ensurer.reset-size2.size10,.katex .sizing.reset-size2.size10{font-size:3.45666667em}.katex .fontsize-ensurer.reset-size2.size11,.katex .sizing.reset-size2.size11{font-size:4.14666667em}.katex .fontsize-ensurer.reset-size3.size1,.katex .sizing.reset-size3.size1{font-size:.71428571em}.katex .fontsize-ensurer.reset-size3.size2,.katex .sizing.reset-size3.size2{font-size:.85714286em}.katex .fontsize-ensurer.reset-size3.size3,.katex .sizing.reset-size3.size3{font-size:1em}.katex .fontsize-ensurer.reset-size3.size4,.katex .sizing.reset-size3.size4{font-size:1.14285714em}.katex .fontsize-ensurer.reset-size3.size5,.katex .sizing.reset-size3.size5{font-size:1.28571429em}.katex .fontsize-ensurer.reset-size3.size6,.katex .sizing.reset-size3.size6{font-size:1.42857143em}.katex .fontsize-ensurer.reset-size3.size7,.katex .sizing.reset-size3.size7{font-size:1.71428571em}.katex .fontsize-ensurer.reset-size3.size8,.katex .sizing.reset-size3.size8{font-size:2.05714286em}.katex .fontsize-ensurer.reset-size3.size9,.katex .sizing.reset-size3.size9{font-size:2.46857143em}.katex .fontsize-ensurer.reset-size3.size10,.katex .sizing.reset-size3.size10{font-size:2.96285714em}.katex .fontsize-ensurer.reset-size3.size11,.katex .sizing.reset-size3.size11{font-size:3.55428571em}.katex .fontsize-ensurer.reset-size4.size1,.katex .sizing.reset-size4.size1{font-size:.625em}.katex .fontsize-ensurer.reset-size4.size2,.katex .sizing.reset-size4.size2{font-size:.75em}.katex .fontsize-ensurer.reset-size4.size3,.katex .sizing.reset-size4.size3{font-size:.875em}.katex .fontsize-ensurer.reset-size4.size4,.katex .sizing.reset-size4.size4{font-size:1em}.katex .fontsize-ensurer.reset-size4.size5,.katex .sizing.reset-size4.size5{font-size:1.125em}.katex .fontsize-ensurer.reset-size4.size6,.katex .sizing.reset-size4.size6{font-size:1.25em}.katex .fontsize-ensurer.reset-size4.size7,.katex .sizing.reset-size4.size7{font-size:1.5em}.katex .fontsize-ensurer.reset-size4.size8,.katex .sizing.reset-size4.size8{font-size:1.8em}.katex .fontsize-ensurer.reset-size4.size9,.katex .sizing.reset-size4.size9{font-size:2.16em}.katex .fontsize-ensurer.reset-size4.size10,.katex .sizing.reset-size4.size10{font-size:2.5925em}.katex .fontsize-ensurer.reset-size4.size11,.katex .sizing.reset-size4.size11{font-size:3.11em}.katex .fontsize-ensurer.reset-size5.size1,.katex .sizing.reset-size5.size1{font-size:.55555556em}.katex .fontsize-ensurer.reset-size5.size2,.katex .sizing.reset-size5.size2{font-size:.66666667em}.katex .fontsize-ensurer.reset-size5.size3,.katex .sizing.reset-size5.size3{font-size:.77777778em}.katex .fontsize-ensurer.reset-size5.size4,.katex .sizing.reset-size5.size4{font-size:.88888889em}.katex .fontsize-ensurer.reset-size5.size5,.katex .sizing.reset-size5.size5{font-size:1em}.katex .fontsize-ensurer.reset-size5.size6,.katex .sizing.reset-size5.size6{font-size:1.11111111em}.katex .fontsize-ensurer.reset-size5.size7,.katex .sizing.reset-size5.size7{font-size:1.33333333em}.katex .fontsize-ensurer.reset-size5.size8,.katex .sizing.reset-size5.size8{font-size:1.6em}.katex .fontsize-ensurer.reset-size5.size9,.katex .sizing.reset-size5.size9{font-size:1.92em}.katex .fontsize-ensurer.reset-size5.size10,.katex .sizing.reset-size5.size10{font-size:2.30444444em}.katex .fontsize-ensurer.reset-size5.size11,.katex .sizing.reset-size5.size11{font-size:2.76444444em}.katex .fontsize-ensurer.reset-size6.size1,.katex .sizing.reset-size6.size1{font-size:.5em}.katex .fontsize-ensurer.reset-size6.size2,.katex .sizing.reset-size6.size2{font-size:.6em}.katex .fontsize-ensurer.reset-size6.size3,.katex .sizing.reset-size6.size3{font-size:.7em}.katex .fontsize-ensurer.reset-size6.size4,.katex .sizing.reset-size6.size4{font-size:.8em}.katex .fontsize-ensurer.reset-size6.size5,.katex .sizing.reset-size6.size5{font-size:.9em}.katex .fontsize-ensurer.reset-size6.size6,.katex .sizing.reset-size6.size6{font-size:1em}.katex .fontsize-ensurer.reset-size6.size7,.katex .sizing.reset-size6.size7{font-size:1.2em}.katex .fontsize-ensurer.reset-size6.size8,.katex .sizing.reset-size6.size8{font-size:1.44em}.katex .fontsize-ensurer.reset-size6.size9,.katex .sizing.reset-size6.size9{font-size:1.728em}.katex .fontsize-ensurer.reset-size6.size10,.katex .sizing.reset-size6.size10{font-size:2.074em}.katex .fontsize-ensurer.reset-size6.size11,.katex .sizing.reset-size6.size11{font-size:2.488em}.katex .fontsize-ensurer.reset-size7.size1,.katex .sizing.reset-size7.size1{font-size:.41666667em}.katex .fontsize-ensurer.reset-size7.size2,.katex .sizing.reset-size7.size2{font-size:.5em}.katex .fontsize-ensurer.reset-size7.size3,.katex .sizing.reset-size7.size3{font-size:.58333333em}.katex .fontsize-ensurer.reset-size7.size4,.katex .sizing.reset-size7.size4{font-size:.66666667em}.katex .fontsize-ensurer.reset-size7.size5,.katex .sizing.reset-size7.size5{font-size:.75em}.katex .fontsize-ensurer.reset-size7.size6,.katex .sizing.reset-size7.size6{font-size:.83333333em}.katex .fontsize-ensurer.reset-size7.size7,.katex .sizing.reset-size7.size7{font-size:1em}.katex .fontsize-ensurer.reset-size7.size8,.katex .sizing.reset-size7.size8{font-size:1.2em}.katex .fontsize-ensurer.reset-size7.size9,.katex .sizing.reset-size7.size9{font-size:1.44em}.katex .fontsize-ensurer.reset-size7.size10,.katex .sizing.reset-size7.size10{font-size:1.72833333em}.katex .fontsize-ensurer.reset-size7.size11,.katex .sizing.reset-size7.size11{font-size:2.07333333em}.katex .fontsize-ensurer.reset-size8.size1,.katex .sizing.reset-size8.size1{font-size:.34722222em}.katex .fontsize-ensurer.reset-size8.size2,.katex .sizing.reset-size8.size2{font-size:.41666667em}.katex .fontsize-ensurer.reset-size8.size3,.katex .sizing.reset-size8.size3{font-size:.48611111em}.katex .fontsize-ensurer.reset-size8.size4,.katex .sizing.reset-size8.size4{font-size:.55555556em}.katex .fontsize-ensurer.reset-size8.size5,.katex .sizing.reset-size8.size5{font-size:.625em}.katex .fontsize-ensurer.reset-size8.size6,.katex .sizing.reset-size8.size6{font-size:.69444444em}.katex .fontsize-ensurer.reset-size8.size7,.katex .sizing.reset-size8.size7{font-size:.83333333em}.katex .fontsize-ensurer.reset-size8.size8,.katex .sizing.reset-size8.size8{font-size:1em}.katex .fontsize-ensurer.reset-size8.size9,.katex .sizing.reset-size8.size9{font-size:1.2em}.katex .fontsize-ensurer.reset-size8.size10,.katex .sizing.reset-size8.size10{font-size:1.44027778em}.katex .fontsize-ensurer.reset-size8.size11,.katex .sizing.reset-size8.size11{font-size:1.72777778em}.katex .fontsize-ensurer.reset-size9.size1,.katex .sizing.reset-size9.size1{font-size:.28935185em}.katex .fontsize-ensurer.reset-size9.size2,.katex .sizing.reset-size9.size2{font-size:.34722222em}.katex .fontsize-ensurer.reset-size9.size3,.katex .sizing.reset-size9.size3{font-size:.40509259em}.katex .fontsize-ensurer.reset-size9.size4,.katex .sizing.reset-size9.size4{font-size:.46296296em}.katex .fontsize-ensurer.reset-size9.size5,.katex .sizing.reset-size9.size5{font-size:.52083333em}.katex .fontsize-ensurer.reset-size9.size6,.katex .sizing.reset-size9.size6{font-size:.5787037em}.katex .fontsize-ensurer.reset-size9.size7,.katex .sizing.reset-size9.size7{font-size:.69444444em}.katex .fontsize-ensurer.reset-size9.size8,.katex .sizing.reset-size9.size8{font-size:.83333333em}.katex .fontsize-ensurer.reset-size9.size9,.katex .sizing.reset-size9.size9{font-size:1em}.katex .fontsize-ensurer.reset-size9.size10,.katex .sizing.reset-size9.size10{font-size:1.20023148em}.katex .fontsize-ensurer.reset-size9.size11,.katex .sizing.reset-size9.size11{font-size:1.43981481em}.katex .fontsize-ensurer.reset-size10.size1,.katex .sizing.reset-size10.size1{font-size:.24108004em}.katex .fontsize-ensurer.reset-size10.size2,.katex .sizing.reset-size10.size2{font-size:.28929605em}.katex .fontsize-ensurer.reset-size10.size3,.katex .sizing.reset-size10.size3{font-size:.33751205em}.katex .fontsize-ensurer.reset-size10.size4,.katex .sizing.reset-size10.size4{font-size:.38572806em}.katex .fontsize-ensurer.reset-size10.size5,.katex .sizing.reset-size10.size5{font-size:.43394407em}.katex .fontsize-ensurer.reset-size10.size6,.katex .sizing.reset-size10.size6{font-size:.48216008em}.katex .fontsize-ensurer.reset-size10.size7,.katex .sizing.reset-size10.size7{font-size:.57859209em}.katex .fontsize-ensurer.reset-size10.size8,.katex .sizing.reset-size10.size8{font-size:.69431051em}.katex .fontsize-ensurer.reset-size10.size9,.katex .sizing.reset-size10.size9{font-size:.83317261em}.katex .fontsize-ensurer.reset-size10.size10,.katex .sizing.reset-size10.size10{font-size:1em}.katex .fontsize-ensurer.reset-size10.size11,.katex .sizing.reset-size10.size11{font-size:1.19961427em}.katex .fontsize-ensurer.reset-size11.size1,.katex .sizing.reset-size11.size1{font-size:.20096463em}.katex .fontsize-ensurer.reset-size11.size2,.katex .sizing.reset-size11.size2{font-size:.24115756em}.katex .fontsize-ensurer.reset-size11.size3,.katex .sizing.reset-size11.size3{font-size:.28135048em}.katex .fontsize-ensurer.reset-size11.size4,.katex .sizing.reset-size11.size4{font-size:.32154341em}.katex .fontsize-ensurer.reset-size11.size5,.katex .sizing.reset-size11.size5{font-size:.36173633em}.katex .fontsize-ensurer.reset-size11.size6,.katex .sizing.reset-size11.size6{font-size:.40192926em}.katex .fontsize-ensurer.reset-size11.size7,.katex .sizing.reset-size11.size7{font-size:.48231511em}.katex .fontsize-ensurer.reset-size11.size8,.katex .sizing.reset-size11.size8{font-size:.57877814em}.katex .fontsize-ensurer.reset-size11.size9,.katex .sizing.reset-size11.size9{font-size:.69453376em}.katex .fontsize-ensurer.reset-size11.size10,.katex .sizing.reset-size11.size10{font-size:.83360129em}.katex .fontsize-ensurer.reset-size11.size11,.katex .sizing.reset-size11.size11{font-size:1em}.katex .delimsizing.size1{font-family:KaTeX_Size1}.katex .delimsizing.size2{font-family:KaTeX_Size2}.katex .delimsizing.size3{font-family:KaTeX_Size3}.katex .delimsizing.size4{font-family:KaTeX_Size4}.katex .delimsizing.mult .delim-size1>span{font-family:KaTeX_Size1}.katex .delimsizing.mult .delim-size4>span{font-family:KaTeX_Size4}.katex .nulldelimiter{display:inline-block;width:.12em}.katex .delimcenter,.katex .op-symbol{position:relative}.katex .op-symbol.small-op{font-family:KaTeX_Size1}.katex .op-symbol.large-op{font-family:KaTeX_Size2}.katex .accent>.vlist-t,.katex .op-limits>.vlist-t{text-align:center}.katex .accent .accent-body{position:relative}.katex .accent .accent-body:not(.accent-full){width:0}.katex .overlay{display:block}.katex .mtable .vertical-separator{display:inline-block;min-width:1px}.katex .mtable .arraycolsep{display:inline-block}.katex .mtable .col-align-c>.vlist-t{text-align:center}.katex .mtable .col-align-l>.vlist-t{text-align:left}.katex .mtable .col-align-r>.vlist-t{text-align:right}.katex .svg-align{text-align:left}.katex svg{display:block;position:absolute;width:100%;height:inherit;fill:currentColor;stroke:currentColor;fill-rule:nonzero;fill-opacity:1;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1}.katex svg path{stroke:none}.katex img{border-style:none;min-width:0;min-height:0;max-width:none;max-height:none}.katex .stretchy{width:100%;display:block;position:relative;overflow:hidden}.katex .stretchy:after,.katex .stretchy:before{content:""}.katex .hide-tail{width:100%;position:relative;overflow:hidden}.katex .halfarrow-left{position:absolute;left:0;width:50.2%;overflow:hidden}.katex .halfarrow-right{position:absolute;right:0;width:50.2%;overflow:hidden}.katex .brace-left{position:absolute;left:0;width:25.1%;overflow:hidden}.katex .brace-center{position:absolute;left:25%;width:50%;overflow:hidden}.katex .brace-right{position:absolute;right:0;width:25.1%;overflow:hidden}.katex .x-arrow-pad{padding:0 .5em}.katex .cd-arrow-pad{padding:0 .55556em 0 .27778em}.katex .mover,.katex .munder,.katex .x-arrow{text-align:center}.katex .boxpad{padding:0 .3em}.katex .fbox,.katex .fcolorbox{box-sizing:border-box;border:.04em solid}.katex .cancel-pad{padding:0 .2em}.katex .cancel-lap{margin-left:-.2em;margin-right:-.2em}.katex .sout{border-bottom-style:solid;border-bottom-width:.08em}.katex .angl{box-sizing:border-content;border-top:.049em solid;border-right:.049em solid;margin-right:.03889em}.katex .anglpad{padding:0 .03889em}.katex .eqn-num:before{counter-increment:katexEqnNo;content:"(" counter(katexEqnNo) ")"}.katex .mml-eqn-num:before{counter-increment:mmlEqnNo;content:"(" counter(mmlEqnNo) ")"}.katex .mtr-glue{width:50%}.katex .cd-vert-arrow{display:inline-block;position:relative}.katex .cd-label-left{display:inline-block;position:absolute;right:calc(50% + .3em);text-align:left}.katex .cd-label-right{display:inline-block;position:absolute;left:calc(50% + .3em);text-align:right}.katex-display{display:block;margin:1em 0;text-align:center}.katex-display>.katex{display:block;text-align:center;white-space:nowrap}.katex-display>.katex>.katex-html{display:block;position:relative}.katex-display>.katex>.katex-html>.tag{position:absolute;right:0}.katex-display.leqno>.katex>.katex-html>.tag{left:0;right:auto}.katex-display.fleqn>.katex{text-align:left;padding-left:2em}body{counter-reset:katexEqnNo mmlEqnNo}
@@ -37,80 +37,24 @@
     </head>
     <body class="vscode-body">
         <hr>
-<p>title             : &quot;The psychology of risk and power: Power desires and sexual choices&quot;<br>
-shorttitle        : &quot;Risk and Power&quot;</p>
-<p>author:</p>
-<ul>
-<li>name          : &quot;Ithurburn, Andrew&quot;<br>
-affiliation   : &quot;1&quot;<br>
-corresponding : yes    # Define only one corresponding author<br>
-address       : &quot;7 George Square, Edinburgh, EH8 9JZ&quot;<br>
-email         : &quot;<a href="mailto:a.ithurburn@sms.ed.ac.uk">a.ithurburn@sms.ed.ac.uk</a>&quot;<br>
-role:         # Contributorship roles (e.g., CRediT, <a href="https://casrai.org/credit/">https://casrai.org/credit/</a>)
-<ul>
-<li>Conceptualization</li>
-<li>Writing - Original Draft Preparation</li>
-<li>Writing - Review &amp; Editing</li>
-</ul>
-</li>
-<li>name          : &quot;Moore, Adam&quot;<br>
-affiliation   : &quot;1&quot;<br>
-role:
-<ul>
-<li>Writing - Review &amp; Editing</li>
-</ul>
-</li>
-</ul>
-<p>affiliation:</p>
-<ul>
-<li>id            : &quot;1&quot;<br>
-institution   : &quot;The University of Edinburgh&quot;</li>
-</ul>
-<p>authornote: |<br>
-University of Edinburgh Department of Psychology</p>
-<p>abstract: |<br>
-Placeholder Text</p>
-  <!-- https://tinyurl.com/ybremelq -->
-<p>keywords          : &quot;keywords&quot;<br>
-wordcount         : !expr wordcountaddin::word_count(&quot;DoPL_and_Spite.Rmd&quot;)</p>
-<p>bibliography      : [C:\Users\s1932788\OneDrive\Documents\1_UoE\Research\PhD\LiteratureReview\bibtex\Library.bib, C:\Users\s1932788\OneDrive\Documents\1_UoE\Research\PhD\LiteratureReview\bibtex\r-references.bib]</p>
-<p>floatsintext      : no<br>
-figurelist        : no<br>
-tablelist         : no<br>
-footnotelist      : no<br>
-linenumbers       : yes<br>
-mask              : no<br>
-draft             : no<br>
-mainfont: &quot;Times New Roman&quot;<br>
-always_allow_html: true<br>
-header-includes:</p>
-<ul>
-<li>\raggedbottom</li>
-<li>\setlength{\parindent}{2em}</li>
-<li>\setlength{\parskip}{0em}<br>
-documentclass     : &quot;apa7&quot;<br>
-csl               : &quot;apa-cv.csl&quot;<br>
-classoption       : &quot;a4paper&quot;<br>
-output            : papaja::apa6_pdf</li>
-</ul>
-<hr>
-<pre><code class="language-{r"><code><div>library(&quot;papaja&quot;)
-r_refs(&quot;r-references.bib&quot;)
-analysisDF &lt;- read.csv(&quot;analysisDF.csv&quot;)
-df_time &lt;- read.csv(&quot;Experiment_2_Dataset_clean.csv&quot;)
-experiment_two_DS &lt;- read.csv(&quot;Experiment_2_Dataset.csv&quot;)
-df_time &lt;- df_time[-1:-2,]
-library(lubridate) 
-average_completion &lt;- mean(as.numeric(df_time$Duration..in.seconds.))
-stdv_DF &lt;- sd(as.numeric(df_time$Duration..in.seconds.))
-new_DF &lt;- read.csv(&quot;new_DF.csv&quot;)
+<h2 id="title-experiment-2-analysisauthor-andrew-ithurburndate-23062021outputhtml_documenttoc-yestoc_floatsmooth_scroll-yescode_folding-hidefig_caption-yesnumber_sections-yescss-table_stylingcsstheme-papereditor_optionschunk_output_type-inline">title: &quot;Experiment 2 Analysis&quot;<br>
+author: &quot;Andrew Ithurburn&quot;<br>
+date: &quot;23/06/2021&quot;<br>
+output:<br>
+html_document:<br>
+toc: yes<br>
+toc_float:<br>
+smooth_scroll: yes<br>
+code_folding: hide<br>
+fig_caption: yes<br>
+number_sections: yes<br>
+css: table_styling.css<br>
+theme: paper<br>
+editor_options:<br>
+chunk_output_type: inline</h2>
+<h1 id="experiment-2">Experiment 2</h1>
+<pre><code class="language-{r"><code><div>knitr::opts_chunk$set(echo = TRUE)
 
-</div></code></code></pre>
-<pre><code class="language-{r"><code><div># Seed for random number generation
-source(&quot;index_file.r&quot;)
-library('languageserver')
-set.seed(42)
-knitr::opts_chunk$set(cache.extra = knitr::rand_seed)
 library(DT)
 library(ggplot2)
 library(ggthemes)
@@ -129,8 +73,9 @@ library(ggprism)
 options(mc.corrs = parallel::detectCores()) # can run chains in parallel with each other
 rstan_options(auto_write = TRUE)
 options(control = list(adapt_delta = 0.99999))
-options(brms.backend = &quot;cmdstanr&quot;)
-
+options(brms.backend = &quot;rstan&quot;)
+source(&quot;prior_function_file.R&quot;)
+source(&quot;Priors.R&quot;)
 bayesplot::bayesplot_theme_set(theme_apa())
 locfunc &lt;- function(data, to){
   which(colnames({{data}})=={{to}})
@@ -142,7 +87,9 @@ lfunc &lt;- function(dataset, to, from) {
   length({{dataset}}[loc1:loc2])
 }
 theme_set(theme_apa(base_size = 12))
-experiment_two_DS_time &lt;- read.csv(&quot;Experiment_2_Dataset_clean.csv&quot;)
+
+</div></code></code></pre>
+<pre><code class="language-{r"><code><div>experiment_two_DS_time &lt;- read.csv(&quot;Experiment_2_Dataset_clean.csv&quot;)
 experiment_two_DS &lt;- read.csv(&quot;Experiment_2_Dataset_clean_noTime.csv&quot;)
 df1 &lt;- read.csv(&quot;df1.csv&quot;)
 corr_table &lt;- readRDS(&quot;corr_table.rds&quot;)
@@ -159,89 +106,358 @@ dm2 &lt;- readRDS(&quot;dm2.rds&quot;)
 dm3 &lt;- readRDS(&quot;dm3.rds&quot;)
 dm4 &lt;- readRDS(&quot;dm4.rds&quot;)
 dm5 &lt;- readRDS(&quot;dm5.rds&quot;)
-newDF &lt;- read.csv(&quot;newDF.csv&quot;)
-bayes.dm5 &lt;- bayes_R2(dm5)
 demographic_table &lt;- readRDS(&quot;demographic_table.rds&quot;)
 m2prior &lt;- readRDS(&quot;m2prior.rds&quot;)
 dopl_1_prior &lt;- readRDS(&quot;m4prior.rds&quot;)
 m7prior &lt;- readRDS(&quot;m7prior.rds&quot;)
 m1_intPrior &lt;- readRDS(&quot;m1_intPrior.rds&quot;)
 analysisDF &lt;- read.csv(&quot;analysisDF.csv&quot;)
+demographicQuestions &lt;- c(&quot;Age&quot;, &quot;Gender&quot;, &quot;Ethnicity&quot;, &quot;Eth.ori&quot;, &quot;Edu&quot;)
+sjsQuestions &lt;- c(&quot;SJS.1&quot;, &quot;SJS.2&quot;, &quot;SJS.3&quot;)
+srpsQuestions &lt;- c(&quot;SRPS.1&quot;
+, &quot;SRPS.2&quot;
+, &quot;SRPS.3&quot;
+, &quot;SRPS.4&quot;
+, &quot;SRPS.5&quot;
+, &quot;SRPS.6&quot;
+, &quot;SRPS.7&quot;
+, &quot;SRPS.8&quot;
+, &quot;SRPS.9&quot;
+, &quot;SRPS.10&quot;
+, &quot;SRPS.11&quot;
+, &quot;SRPS.12&quot;
+, &quot;SRPS.13&quot;
+, &quot;SRPS.14&quot;
+, &quot;SRPS.15&quot;
+, &quot;SRPS.17&quot;
+, &quot;SRPS.18&quot;
+, &quot;SRPS.19&quot;
+, &quot;SRPS.20&quot;
+, &quot;SRPS.21&quot;
+, &quot;SRPS.22&quot;
+, &quot;SRPS.23&quot;
+, &quot;SRPS.24&quot;)
+
+srps.rcQuestions &lt;- c(&quot;SRPS.1&quot;
+, &quot;SRPS.2&quot;
+, &quot;SRPS.3&quot;
+, &quot;SRPS.4&quot;
+, &quot;SRPS.5&quot;
+, &quot;SRPS.6&quot;
+, &quot;SRPS.7&quot;
+, &quot;SRPS.8&quot;
+, &quot;SRPS.9&quot;
+, &quot;SRPS.10&quot;
+, &quot;SRPS.11&quot;
+, &quot;SRPS.12&quot;
+, &quot;SRPS.13&quot;
+, &quot;SRPS.14&quot;
+, &quot;SRPS.15&quot;)
+
+srps.dmQuestions &lt;- c(&quot;SRPS.17&quot;
+, &quot;SRPS.18&quot;
+, &quot;SRPS.19&quot;
+, &quot;SRPS.20&quot;
+, &quot;SRPS.21&quot;
+, &quot;SRPS.22&quot;
+, &quot;SRPS.23&quot;
+, &quot;SRPS.24&quot;)
+
+ssesQuestions &lt;- c(&quot;SSES.1&quot;
+, &quot;SSES.2&quot;
+, &quot;SSES.3&quot;
+, &quot;SSES.4&quot;
+, &quot;SSES.5&quot;
+, &quot;SSES.6&quot;
+, &quot;SSES.7&quot;
+, &quot;SSES.8&quot;
+, &quot;SSES.9&quot;
+, &quot;SSES.10&quot;)
+
+spiteQuestions &lt;- c(&quot;Spite.1&quot;
+, &quot;Spite.2&quot;
+, &quot;Spite.3&quot;
+, &quot;Spite.4&quot;
+, &quot;Spite.5&quot;
+, &quot;Spite.6&quot;
+, &quot;Spite.7&quot;
+, &quot;Spite.8&quot;
+, &quot;Spite.9&quot;
+, &quot;Spite.10&quot;
+, &quot;Spite.11&quot;
+, &quot;Spite.12&quot;
+, &quot;Spite.13&quot;
+, &quot;Spite.14&quot;
+, &quot;Spite.15&quot;
+, &quot;Spite.16&quot;)
+
+Vign.Sex &lt;- c(&quot;Vign.1&quot;, &quot;Vign.2&quot;, &quot;Vign.4&quot;, &quot;Vign.7&quot;, &quot;Vign.10&quot;)
+Vign.noSex &lt;- c(&quot;Vign.3&quot;, &quot;Vign.5&quot;, &quot;Vign.6&quot;, &quot;Vign.8&quot;, &quot;Vign.9&quot;)
+Vign.Overall &lt;- c(&quot;Vign.1&quot;, &quot;Vign.2&quot;, &quot;Vign.4&quot;, &quot;Vign.7&quot;, &quot;Vign.10&quot;, &quot;Vign.3&quot;, &quot;Vign.5&quot;, &quot;Vign.6&quot;, &quot;Vign.8&quot;, &quot;Vign.9&quot;)
+
+Real.Sex &lt;- c(&quot;Real.1&quot;, &quot;Real.2&quot;, &quot;Real.4&quot;, &quot;Real.7&quot;, &quot;Real.10&quot;)
+Real.noSex &lt;- c(&quot;Real.3&quot;, &quot;Real.5&quot;, &quot;Real.6&quot;, &quot;Real.8&quot;, &quot;Real.9&quot;)
+Real.Overall &lt;- c(&quot;Real.1&quot;, &quot;Real.2&quot;, &quot;Real.4&quot;, &quot;Real.7&quot;, &quot;Real.10&quot;, &quot;Real.3&quot;, &quot;Real.5&quot;, &quot;Real.6&quot;, &quot;Real.8&quot;, &quot;Real.9&quot;)
+
+doplQuestions &lt;- c('DoPL_1', 'DoPL_6', 'DoPL_11', 'DoPL_13', 'DoPL_14', 'DoPL_16', 'DoPL_5', 'DoPL_7', 'DoPL_8', 'DoPL_12', 'DoPL_17', 'DoPL_18', 'DoPL_2', 'DoPL_3', 'DoPL_4', 'DoPL_9', 'DoPL_10', 'DoPL_15')
+
+dominanceQuestions &lt;- c('DoPL_2','DoPL_3','DoPL_4','DoPL_9','DoPL_10','DoPL_15')
+prestigeQuestions &lt;- c('DoPL_5','DoPL_7','DoPL_8','DoPL_12','DoPL_17','DoPL_18')
+leadershipQuestions &lt;- c('DoPL_1','DoPL_6','DoPL_11','DoPL_13','DoPL_14','DoPL_16')
+
+UMSQuestions &lt;- c('UMS_1', 'UMS_2', 'UMS_3', 'UMS_4','UMS_5','UMS_6','UMS_7','UMS_8','UMS_9','UMS_11', 'UMS_12')
+UMSIntimacyQuestions &lt;- c('UMS_11', 'UMS_12')
+UMSAffiliationQuestions &lt;- c('UMS_1', 'UMS_2', 'UMS_3', 'UMS_4','UMS_5','UMS_6','UMS_7','UMS_8','UMS_9')
+
+savedQuestionsBefore &lt;- c('subjectID', &quot;Age&quot;, &quot;Duration..in.seconds.&quot;, &quot;Gender&quot;, &quot;Ethnicity&quot;, &quot;Eth.ori&quot;, &quot;Edu&quot;,
+                     &quot;DoPLSum&quot;
+,&quot;dominanceSum&quot;
+,&quot;prestigeSum&quot;
+,&quot;leadershipSum&quot;
+,&quot;UMSSum&quot;
+,&quot;UMSIntimacySum&quot;
+,&quot;UMSAffiliationSum&quot;
+,&quot;sjsSum&quot;
+,&quot;ssesSum&quot;
+, &quot;Spite&quot;
+,&quot;Vign.Sex&quot;
+,&quot;Vign.noSex&quot;
+,&quot;Vign.Ovr.Score&quot;
+,&quot;Real.Sex&quot;
+,&quot;Real.noSex&quot;
+,&quot;Real.Ovr.Score&quot;
+,&quot;srps.rc.rescale&quot;
+,&quot;srps.dm.rescale&quot;
+,&quot;srps.sum.rescale&quot;,
+&quot;Power&quot;,
+&quot;Vign.1&quot;,
+&quot;Vign.2&quot;,
+&quot;Vign.3&quot;,
+&quot;Vign.4&quot;,
+&quot;Vign.5&quot;,
+&quot;Vign.6&quot;,
+&quot;Vign.7&quot;,
+&quot;Vign.8&quot;,
+&quot;Vign.9&quot;,
+&quot;Vign.10&quot;,
+&quot;Real.1&quot;,
+&quot;Real.2&quot;,
+&quot;Real.3&quot;,
+&quot;Real.4&quot;,
+&quot;Real.5&quot;,
+&quot;Real.6&quot;,
+&quot;Real.7&quot;,
+&quot;Real.8&quot;,
+&quot;Real.9&quot;,
+&quot;Real.10&quot;)
+
+savedQuestionsAfter &lt;- c('subjectID', &quot;Age&quot;, &quot;Duration..in.seconds.&quot;, &quot;Gender&quot;, &quot;Ethnicity&quot;, &quot;Eth.ori&quot;, &quot;Edu&quot;,
+                     &quot;DoPLSum&quot;
+,&quot;dominanceSum&quot;
+,&quot;prestigeSum&quot;
+,&quot;leadershipSum&quot;
+,&quot;UMSSum&quot;
+,&quot;UMSIntimacySum&quot;
+,&quot;UMSAffiliationSum&quot;
+,&quot;sjsSum&quot;
+,&quot;ssesSum&quot;
+, &quot;Spite&quot;
+,&quot;Vign.Sex&quot;
+,&quot;Vign.noSex&quot;
+,&quot;Vign.Ovr.Score&quot;
+,&quot;Real.Sex&quot;
+,&quot;Real.noSex&quot;
+,&quot;Real.Ovr.Score&quot;
+,&quot;srps.rc.rescale&quot;
+,&quot;srps.dm.rescale&quot;
+,&quot;srps.sum.rescale&quot;
+,&quot;Content&quot;,
+&quot;Vignette&quot;,
+&quot;Justification&quot;,
+&quot;Realism&quot;,
+&quot;Power&quot;)
 </div></code></code></pre>
-<h1 id="introduction">Introduction</h1>
-<p>Every day individuals make decisions be they mundane such as which cereal to eat in the morning to the more complex of which job should they accept. The consequences for making those decisions can be equally complex. Some decisions are more difficult to quantify and understand while others can be relatively easy like choosing what cereal to eat in the morning. However, some are increasingly more difficult to statistically model. For example, two adult males (or a man and a woman) who are intending to have sex must decide whether to have sex with or without a condom. The consequences can have lasting effects depending on what the couple chooses [General risk: @kusev2017; Sexual Risk: @desiderato1995; Risky Decisions: @vankleef20210128]</p>
-<h2 id="spitefulness">Spitefulness</h2>
-<p>These lasting effects can be twofold. For example, deciding not to wear a condom could result in an unplanned pregnancy or exposing one or another person to a sexually transmitted infection. Behaviors/decisions that have negative consequences for both individuals is the original understanding of spite to where psychologically spite is understood as intentionally harming oneself to punish another [@marcus2014; @critchfield2008]. Spiteful behavior has often been overlooked in psychological research. Spite has been seen in behavioral economic experiments, preschoolers with ultimatum games, and daily life [@marcus2014; @bauer2014; @bugelmayer2014a]. Preschool boys tended to be more spiteful than their female counterparts. Younger men followed suit and tended to be more spiteful than their counterparts [@marcus2014]. Age plays a role whereas people age they tend to be less spiteful and more egalitarian [@bugelmayer2014a].</p>
-<h2 id="dopl">DoPL</h2>
-<p>Research in power desire motives have focused on three sub-domains: dominance, leadership, and prestige [@suessenbach2019]. Each of these three different power motives are explanations as to different ways or methods that individuals in power sought power or were bestowed upon them.</p>
+<h1 id="experiment-1-demographics">Experiment 1 Demographics</h1>
+<pre><code class="language-{r"><code><div>kable(demographic_table, format = &quot;html&quot;, bootabs = T, escape = F, longtable = T,
+      col.names = c(&quot;&quot;, &quot;Overall *n* = 92&quot;),
+      align = c(&quot;l&quot;, &quot;c&quot;),
+      caption = &quot;*Participant Demographic Information*&quot;) %&gt;%
+  kable_styling(full_width = F)%&gt;%
+  row_spec(row = 0, align = &quot;c&quot;)%&gt;%
+  column_spec(column = 1, width = &quot;1.5in&quot; )%&gt;%
+  column_spec(column = 2, width = &quot;1in&quot;) %&gt;%
+  pack_rows(&quot;Age&quot;,1, 2 )%&gt;%
+  pack_rows(&quot;Gender&quot;, 3, 4)%&gt;%
+  pack_rows(&quot;Ethnicity&quot;, 11, 17)%&gt;%
+  pack_rows(&quot;Ethnic Origin&quot;, 18, 22)%&gt;%
+  pack_rows(&quot;Educational Attainment&quot;, 5, 10)
+
+</div></code></code></pre>
+<h2 id="dopl-motives-predicting-risky-behavior-by-content-ggplot-tabset">DoPL motives predicting risky behavior (by content) ggplot {.tabset}</h2>
 <h3 id="dominance">Dominance</h3>
-<p>The dominance motive is one of the more researched methods and well depicted power motives. Individuals with a dominance orientation display the more primal of human behavior. These individuals will seek power through direct methods such as asserting dominance, control over resources, or physically assaulting someone [@johnson2012; @winter1993]. Early research in dominance motives has shown that acts of dominance ranging from asserting physical dominance over another to physical displays of violence has been shown in many mammalian species, including humans [@petersen2018; @witkower2020].</p>
-<p>Individuals high in dominance are often high in machiavellianism, narcissism, and often are prone to risky behavior (discussion further in the next section). Continued research has hinted at a possible tendency for males to display these dominant seeking traits more than females [@suessenbach2019] When high dominance individuals assert themselves they are doing so to increase their own individual sense of power [@williams2017]. Asserting ones own sense of dominance over another can be a dangerous task. In the animal kingdom it can often leader to injury. While, in humans asserting dominance can take a multitude of actions such as leering behaviors, physical distance, or other non-verbal methods to display dominance (citation needed). Power from a dominance perspective is often never bestowed upon someone. Often, high dominance individuals will take control and hold onto it.</p>
+<pre><code class="language-{r}"><code><div>ggplot(analysisDF, aes(x = Dominance, y = Justification, col = Content)) + 
+  geom_point(size = .7,
+             alpha = .8,
+             position = &quot;jitter&quot;) + 
+  geom_smooth(method = &quot;lm&quot;, 
+              se = F,
+              size = 2, 
+              alpha = .8)
+</div></code></code></pre>
 <h3 id="prestige">Prestige</h3>
-<p>Contrary to the dominance motivation of using intimidation and aggression to gain more power, a prestige motivation or prestige in general is bestowed upon an individual from others in the community (citation needed). Differently from the dominance motivation, a prestige motivation is generally unique to the human species (citation needed). Do in part to ancestral human groups being smaller hunter-gatherer societies, individuals that displayed and used important behaviors beneficial to the larger group were often valued and admired by the group. Therein, the social group bestows the authority onto the individual. Generally, this type of behavior can be passively achieved by the prestigious individual. However, this does not remove the intent of the actor in that they too can see prestige from the group, but method of achieving that social status greatly differs from that of dominance seeking individuals.</p>
-<p>Apart from dominance motivated individuals that continually have to fight for their right to have power over others, individuals that seek or were given power through a prestige motivation are not generally challenged in the same sense as dominant individuals. Displaying behaviors that the community would see as beneficial would indere them into the community making the survival of the community as a whole better (citation needed). Evolutionarily this would increase viability of the prestigious individual and their genes. Similar to the dominance perspective, the prestige perspective overall increases the power and future survivability of the individual. However, due to the natural difference between prestige and dominance, dominance seeking individuals are challenged more often resulting in more danger to their position (citation).</p>
+<pre><code class="language-{r}"><code><div>ggplot(analysisDF, aes(x = Prestige, y = Justification, col = Content)) + 
+  geom_point(size = .7,
+             alpha = .8,
+             position = &quot;jitter&quot;) + 
+  geom_smooth(method = &quot;lm&quot;, 
+              se = F,
+              size = 2, 
+              alpha = .8)
+</div></code></code></pre>
 <h3 id="leadership">Leadership</h3>
-<p>Apart from dominance and prestige, leadership raises some interesting questions on deference and why individuals would defer to others in power. Psychologically, leadership is the deference to authority and working together towards a shared common goal [@vanvugt2006]. Research in animal behavior contends that leadership is a uniquely human trait due to the complexity of the human brain along with the ever growing size of social groups [@king2009].</p>
-<p>Early human societies began to use cooperation strategies such as leadership and individuals taking leadership roles in order to accomplish a common task. Similar non-human primates developed similar tactics however as aforementioned, traits unique to humans allowed for more complex interactions in leadership furthering the differences. Unique to leadership apart from dominance and prestige orientation is the method of power control in a leadership dynamic system.</p>
-<h2 id="the-present-experiment">The Present Experiment</h2>
-<p>The present experiments sought to investigate a possible relationship between spitefulness and risky sexual behaviors. As with past experiments in moral judgment and decision-making vignettes were used to create situations of interest. The present study comprises two experiments and a pilot study (pilot study data and results included in supplemental materials).</p>
-<p>The pilot study sought to test out our materials and understanding of the literature. Statistical analyses followed the hypotheses laid out on our preregistration (<a href="https://osf.io/jz6qb">https://osf.io/jz6qb</a>). Experiment one sought to build on from the pilot study and refine the materials used. Specifically the vignettes of the experiment. Experiment two then furthered our understanding and investigates spitefulness possible connection to dominance, prestige, and leadership orientation with risky sexual decision-making (<a href="https://osf.io/5q84z">https://osf.io/5q84z</a>).</p>
-<p>Based on the literature we predicted that individuals high in spitefulness would endorse spiteful actions and behaviors by rating such actions as justified. Furthermore, we predicted based on the literature that individuals high in dominance orientation would be more likely to justify spiteful behaviors with sexually spiteful behaviors being more dominant. These experiments seek to further our understanding of human behavior in the face of risky sexual/nonsexual decisions. These experiments were approved by the University of Edinburgh Psychology Research Ethics Committee (Approval Numbers 330-1920/1, 330-1920/2, 330-1920/3).</p>
-<h1 id="experiment-one">Experiment One</h1>
-<h2 id="method">Method</h2>
-<h3 id="participants">Participants</h3>
-<p>Participants were a convenience sample of <code>r length(experiment_two_DS$ResponseId)</code> (Mage = <code>r mean(experiment_two_DS$Age)</code>, SD = <code>r sd(experiment_two_DS$Age)</code>) individuals from Prolific Academic crowdsourcing platform (“<a href="http://www.prolific.co">www.prolific.co</a>”). Requirements for participation were: (1) be 18 years of age or older and (2) and as part of Prolific Academics policy, have a prolific rating of 90 or above. Participants received £4 or £8 an hour as compensation for completing the survey.  Table 1 shows the demographic information for experiment one.</p>
-<h3 id="demographic-questionnaire">Demographic Questionnaire</h3>
-<p>Prior to the psychometric scales, participants are asked to share their demographic characteristics (e.g., age, gender, ethnicity, ethnic origin, and educational attainment).</p>
-<h3 id="dominance-prestige-and-leadership-orientation">Dominance, Prestige, and Leadership Orientation</h3>
-<p>The 18-item Dominance, Prestige, and Leadership scale [DoPL; @suessenbach2019], is used to measure dominance, prestige, and leadership orientation. Each question corresponds to one of the three domains. Each domain is scored across six unique items related to those domains (e.g., &quot;I relish opportunities in which I can lead others&quot; for leadership) rated on a scale from 0 (Strongly disagree) to 5 (Strongly agree). Internal consistency reliability for the current sample is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span></span></span></span> = <code>r psych::alpha(new_DF[,doplQuestions])$total$std.alpha</code>.</p>
-<h3 id="spitefulness-scale">Spitefulness Scale</h3>
-<p>The Spitefulness scale [@marcus2014] is a measure with seventeen one sentence vignettes to assess the spitefulness of participants. The original spitefulness scale has 31-items. In the original Marcus and colleagues’ paper, fifteen were removed. For the present study however, 4-items were removed because they did not meet the parameters for the study i.e., needed to be dyadic, more personal. Three reverse scored items from the original thirty-one were added after meeting the requirements. Example questions included, &quot;It might be worth risking my reputation in order to spread gossip about someone I did not like.&quot; ,and &quot;Part of me enjoys seeing the people I do not like fail even if their failure hurts me in some way.&quot; Items are scored on a 5-point scale ranging from 1 (“Strongly disagree”) to 5 (“Strongly agree”). Higher spitefulness scores represent higher acceptance of spiteful attitudes. Internal consistency reliability for the current sample is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span></span></span></span> = <code>r psych::alpha(new_DF[,spiteQuestions])$total$std.alpha</code>.</p>
-<h3 id="sexuality-self-esteem-subscale">Sexuality Self-Esteem Subscale</h3>
-<p>The Sexuality Self-Esteem subscale (SSES; @snell1989) is a subset of the Sexuality scale that measures the overall self-esteem of participants. Due to the nature of the study, the sexuality subscale was chosen from the overall 30-item scale. The 10-items chosen reflected questions on the sexual esteem of participants on a 5-point scale of +2 (Agree) and -2 (Disagree). For ease of online use the scale was changed to 1 (“Disagree”) and 5 (“Agree”), data analysis will follow the sexuality scale scoring procedure. Example questions are, “I am a good sexual partner,” and “I sometimes have doubts about my sexual competence.” Higher scores indicate a higher acceptance of high self-esteem statements. Internal consistency reliability for the current sample is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span></span></span></span> = <code>r psych::alpha(new_DF[,ssesQuestions])$total$std.alpha</code>.</p>
-<h3 id="sexual-jealousy-subscale">Sexual Jealousy Subscale</h3>
-<p>The Sexual Jealousy subscale by @worley2014 are 3-items from the 12-item Jealousy scale. The overall jealousy scale measures jealousy in friendships ranging from sexual to companionship. The 3-items are “I would worry about my partner being sexually unfaithful to me.”, “I would suspect there is something going on sexually between my partner and their friend.”, and “I would suspect sexual attraction between my partner and their friend.” The items are scored on a 5-point scale ranging from 1 (“Strongly disagree”) to 5 (“Strongly agree”). Higher scores indicate a tendency to be more sexually jealous. Internal consistency reliability for the current sample is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span></span></span></span> = <code>r psych::alpha(new_DF[,sjsQuestions])$total$std.alpha</code>.</p>
-<h3 id="sexual-relationship-power-scale">Sexual Relationship Power Scale</h3>
-<p>The Sexual Relationship Power Scale (SRPS; @pulerwitz2000) is a 23-item scale that measures the overall power distribution in a sexually active relationship. The SRPS is split into the Relationship Control Factor/Subscale (RCF) and the Decision-Making Dominance Factor/Subscale (DMDF). The RCF measures the relationship between the partners on their agreement with statements such as, “If I asked my partner to use a condom, he [they] would get violent.”, and “I feel trapped or stuck in our relationship.” Items from the RCF are scored on a 4-point scale ranging from 1 (“Strongly agree”) to 4 (“Strongly disagree”). Lower scores indicate an imbalance in the relationship where the participant indicates they believe they have less control in the relationship. Internal consistency reliability for the current sample is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span></span></span></span> = <code>r psych::alpha(new_DF[,srps.rcQuestions])$total$std.alpha</code>.</p>
-<p>The DMDF measures the dominance level of sexual and social decisions in the relationship. Example questions include, “Who usually has more say about whether you have sex?”, and “Who usually has more say about when you talk about serious things?” Items on the DMDF are scored on a 3-item scale of 1 (“Your Partner”), 2 (“Both of You Equally”), and 3 (“You”). Higher scores indicate more dominance by the participant in the relationship. Internal consistency reliability for the current sample is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span></span></span></span> = <code>r psych::alpha(new_DF[,srps.dmQuestions])$total$std.alpha</code>.</p>
-<h3 id="scenario-realism-question">Scenario Realism Question</h3>
-<p>Following Worley and Samp in their 2014 paper on using vignettes/scenarios in psychological studies, a question asking the participant how realistic or how much they can visualize the scenario is. The 1-item question is “This type of situation is realistic.” The item is scored on a 5-point scale of the participants agreement with the above statement, 1 (“Strongly agree”) to 5 (“Strongly disagree”). Higher scores indicate disagreement with the statement and reflects the belief that the scenario is not realistic.</p>
-<h3 id="spiteful-vignettes">Spiteful Vignettes</h3>
-<p>After participants complete the above scales, they are presented with 10-hypothetical vignettes. Each vignette was written to reflect a dyadic or triadic relationship with androgynous names to control for gender. Five vignettes have a sexual component while five are sexually neutral. An example vignette is,</p>
-<blockquote>
-<p>“Casey and Cole have been dating for 6 years. A year ago, they both moved into a new flat together just outside of the city. Casey had an affair with Cole's best-friend. Casey had recently found out that they had an STI that they had gotten from Cole's best-friend. Casey and Cole had sex and later Cole found out they had an STI.”</p>
-</blockquote>
-<p>For each vignette, the participant is asked to rate each vignette on how justified they believe the primary individual, Casey in the above, is with their spiteful reaction. Scoring ranges from 1 (“Not justified at all”) to 5 (“Being very justified”). Higher scores overall indicate higher agreement with spiteful behaviors.</p>
-<h2 id="procedure">Procedure</h2>
-<p>Participants were recruited on Prolific Academic. Participants must be 18-years of age or older, restriction by study design and Prolific Academic’s user policy. The published study is titled, “Moral Choice and Behavior.” The study description follows the participant information sheet including participant compensation. Participants were asked to accept their participation in the study. Participants were then automatically sent to the main survey (Qualtrics, Inc.).</p>
-<p>Once participants accessed the main survey, they were presented with the consent form for which to accept they responded with selecting “Yes.”. Participants were then asked to provide demographic characteristics such as gender, ethnicity, and educational attainment. Participants would then complete in order, the spitefulness scale, the sexual relationship power scale, the sexual jealousy subscale, and sexuality self-esteem subscale. Next, participants were presented ten vignettes where they were instructed to rate on the level of justification for the action carried out in the vignette. After each vignette, participants would rate the realism of the scenario. Upon completion of the survey (median completion time 20 minutes SD = 10 Minutes 30 seconds), participants were shown a debriefing message and shown the contact information of the Primary Investigator (Andrew Ithurburn). Participants were then compensated at £8/hr. via Prolific Academic.</p>
-<h2 id="data-analysis">Data Analysis</h2>
-<p>Demographic characteristics were analyzed using a one-way analysis for continuous variables (age) and Chi-squares tests for categorical variables (sex, ethnicity, ethnic origin, and educational attainment). Means and standard deviations were calculated for the surveys along with correlational analyses (e.g., spitefulness, SESS, SRPS, SJS).</p>
-<p>Bayesian multilevel models were used to test differences between levels of justifications of vignettes that are either sexually or non-sexually vindictive in behavior.</p>
-<h2 id="results-and-discussion">Results and Discussion</h2>
-<p><code>r str_to_title(english::as.english(nrow(experiment_two_DS)))</code> individuals participated in the present experiment. A majority of the participants in experiment 1 identified as male (<em>n</em> = <code>r gender_results$freq[2]</code>). Table 1 shows the demographic information for experiment 1. Table 2 presents the results of a Bayesian correlational matrix of all measures. As evidenced in the Bayesian correlational matrix, most surveys positively correlated with one another.</p>
-<h3 id="spitefulness-1">Spitefulness</h3>
-<p>For this analysis we used the Bayesian parameter estimation using R and brms [@rcore2021; @burkner2018]. An annotated r script file, including all necessary information is available at <a href="https://osf.io/jz6qb">https://osf.io/jz6qb</a>. On average, individuals were not rated as being more spiteful, (<em>M</em> = <code>r mean(analysisDF$Spite)</code>, <em>SD</em> = <code>r sd(analysisDF$Spite)</code>, Min-max = [<code>r min(analysisDF$Spite)</code> - <code>r max(analysisDF$Spite)</code>]). Justification as a function of the four indices was moderately explained by the model (<em>R^2^</em> = <code>r bayes.dm5[1]</code>).</p>
-<h2 id="limitations-and-future-directions">Limitations and Future Directions</h2>
-<p>\newpage</p>
-<h1 id="references">References</h1>
-<p>\begingroup<br>
-\setlength{\parindent}{-0.5in}<br>
-\setlength{\leftskip}{0.5in}</p>
-<div id="refs" custom-style="Bibliography"></div>
-\endgroup
-<p>\newpage</p>
-<pre><code class="language-{r"><code><div>apa_table(
- demographic_table, stub_indents = list(&quot;Age&quot; = c(1:2), &quot;Gender&quot; = c(3, 4), &quot;Ethnic Origin&quot; = c(5:12), &quot;Education&quot; = c(13:18), &quot;Ethnicity&quot; = c(19:22)), col.names = c(&quot;Demographic Characteristic&quot;, &quot;&quot;), cap = &quot;Participant Demographic Information (Experiment 1)&quot;
-)
+<pre><code class="language-{r}"><code><div>ggplot(analysisDF, aes(x = Leadership, y = Justification, col = Content)) + 
+  geom_point(size = .7,
+             alpha = .8,
+             position = &quot;jitter&quot;) + 
+  geom_smooth(method = &quot;lm&quot;, 
+              se = F,
+              size = 2, 
+              alpha = .8)
 </div></code></code></pre>
-<pre><code class="language-{r}"><code><div>corr_table1 &lt;- corr_table[, -c(5, 6, 7)]
-apa_table(corr_table1)
+<h3 id="spitefulness">Spitefulness</h3>
+<pre><code class="language-{r}"><code><div>ggplot(analysisDF, aes(x = Spite, y = Justification, col = Content)) + 
+  geom_point(size = .7,
+             alpha = .8,
+             position = &quot;jitter&quot;) + 
+  geom_smooth(method = &quot;lm&quot;, 
+              se = F,
+              size = 2, 
+              alpha = .8) 
 </div></code></code></pre>
-<pre><code class="language-{r}"><code><div>dm5_hdi &lt;- bayestestR::hdi(dm5, effects = &quot;fixed&quot;, component = &quot;conditional&quot;, ci = .95)
-apa_table(dm5_hdi[sign(dm5_hdi$CI_low) == sign(dm5_hdi$CI_high),
-            c('Parameter', 'CI','CI_low', 'CI_high')])
-  
+<h1 id="initial-bayesian-analysis">Initial Bayesian Analysis</h1>
+<pre><code class="language-{r"><code><div>
+
+
+m0 &lt;- brm(Justification_z ~ 1 + (1|Vignette) + (1|subjectID), data = analysisDF, 
+         warmup = 500, control = list(adapt_delta = 0.95), iter = 8000, chains = 4, cores = 6, save_all_pars = T,
+          prior = prior_m0)
+
+# models 
+m1 &lt;- brm(Justification_z ~ Spite_z * Content + (1|Vignette) + (1|subjectID), data = analysisDF, 
+        warmup = 500, control = list(adapt_delta = 0.95), iter = 8000, chains = 4, cores = 6, save_all_pars = T,
+         prior = prior_m1)
+summary(m1) 
+
+m2 &lt;- brm(Justification ~ Spite_z * Content + Realism_z + (1|Vignette) + (1|subjectID), data = analysisDF, 
+        warmup = 500, control = list(adapt_delta = 0.95), iter = 8000, chains = 4, cores = 4, save_all_pars = T,
+         prior = prior_m2)
+summary(m2)
+
+m3 &lt;- brm(Justification ~ Spite_z * Content + Realism_z + SSES + SRPS + SJS + (1|Vignette) + 
+           (1|subjectID), data = analysisDF,warmup = 500, control = list(adapt_delta = 0.95), iter = 8000, chains = 4, cores = 6, 
+         save_all_pars = T,
+         prior = prior_m3)
+summary(m3)
+
+m4 &lt;- brm(Justification ~ Spite_z * Content * Realism_z + SSES_z + SRPS_z + SJS_z + (1|Vignette) + 
+           (1|subjectID), data = analysisDF,warmup = 500, control = list(adapt_delta = 0.95), iter = 8000, chains = 4, cores = 6, 
+         save_all_pars = T,
+         prior = prior_m4)
+
+</div></code></code></pre>
+<pre><code class="language-{r"><code><div>experiment_1_priors &lt;- prior_function(m2prior)
+dopl_1_priors &lt;- prior_function(m7prior)
+m1_intPrior &lt;- prior_function(m1_intPrior)
+print(experiment_1_priors)
+
+</div></code></code></pre>
+<h2 id="bayesian-correlation">Bayesian Correlation</h2>
+<pre><code class="language-{r,"><code><div>scale_corr &lt;- brm(mvbind(SSES, SRPS, Spite, SJS, Dominance, Prestige, Leadership) ~ 1, data = analysisDF, iter = 8000, warmup = 500, chains = 4, cores = 6, 
+                  prior = c(prior(normal(0, 1), class = &quot;Intercept&quot;)), save_all_pars = T)
+cor_1 &lt;- summary(scale_corr)
+corr_table &lt;- cor_1[[&quot;rescor_pars&quot;]]
+</div></code></code></pre>
+<pre><code class="language-{r}"><code><div>kable(corr_table, format = &quot;html&quot;, booktabs = T, escape = F, longtabe = F, digits = 2, col.names = c('Estimate',	'Est.Error',	'l-95% CI',	'u-95% CI',	'Rhat',	'Bulk_ESS',	'Tail_ESS')) %&gt;%
+  kable_styling(full_width = F)  %&gt;%
+  remove_column(6:8)
+</div></code></code></pre>
+<h2 id="dopl-motives-predicting-risky-behavior-by-content-in-addition-to-spitefulness">DoPL motives predicting risky behavior (by content) in addition to spitefulness</h2>
+<pre><code class="language-{r"><code><div>dm0 &lt;- brm(Justification ~ 1, data = analysisDF, iter = 8000, warmup = 500, chains = 4, cores = 6,prior = prior_dm0, save_all_pars = T)
+
+summary(dm0)
+
+dm1 &lt;- brm(Justification ~ Dominance_z * Gender + Prestige_z * Gender + Leadership_z * Gender + (1|Vignette) + (1|subjectID), data = analysisDF, iter = 8000,control = list(adapt_delta = 0.99), warmup = 500, chains = 4, cores = 6
+           ,prior = prior_dm1, save_all_pars = T)
+
+summary(dm1)
+
+dm3 &lt;- brm(Justification ~ Dominance_z * Gender + Prestige_z * Gender + Leadership_z * Gender + Age + (1|Vignette) + (1|subjectID), data = analysisDF, iter = 8000, warmup = 500, chains = 4, cores = 6
+           ,prior = c(prior(normal(0, 1), class = &quot;Intercept&quot;)), save_all_pars = T)
+
+summary(dm3)
+
+dm2 &lt;- brm(Justification ~ Dominance_z * Gender + Prestige_z * Gender + Leadership_z * Gender + SJS_z + SRPS_z + SSES_z + Spite_z +  (1|Vignette) + (1|subjectID), control = list(adapt_delta = 0.99), data = analysisDF, iter = 8000, warmup = 500, chains = 4, cores = 6
+           ,prior = prior_dm2, save_all_pars = T)
+
+summary(dm2)
+
+dm4 &lt;- brm(Justification ~ Dominance_z * Gender * Content + Prestige_z * Gender * Content + Leadership_z * Gender * Content + SJS_z + SRPS_z + SSES_z + Spite_z +  (1|Vignette) + (1|subjectID), control = list(adapt_delta = 0.99), data = analysisDF, iter = 8000, warmup = 500, chains = 4, cores = 6
+           ,prior = prior_dm4, save_all_pars = T)
+
+summary(dm4)
+
+
+dm4_hdi &lt;- bayestestR::hdi(dm4, effects = &quot;fixed&quot;, component = &quot;conditional&quot;, ci = .95)
+dm4_hdi[sign(dm4_hdi$CI_low) == sign(dm4_hdi$CI_high),
+            c('Parameter', 'CI','CI_low', 'CI_high')]
+
+
+dm5 &lt;- brm(Justification ~ Dominance_z * Realism_z * Content * Gender + Prestige_z * Realism_z * Content * Gender + Leadership_z * Gender * Realism_z * Content + Spite_z * Content +  (1|Vignette) + (1|subjectID), control = list(adapt_delta = 0.99), data = analysisDF, iter = 8000, warmup = 500, chains = 4, cores = 6
+           ,prior = prior_dm5, save_all_pars = T)
+
+summary(dm5)
+
+bayestestR::bayesfactor_parameters(dm5, dm0, null = 0)
+
+bm4 &lt;- brm(Justification ~ Dominance_z * Realism_z * Content * Gender + Prestige_z * Realism_z * Content * Gender + Leadership_z * Realism_z * Content * Gender + Spite_z * Content * Gender + (1|Vignette) + (1|subjectID), control = list(adapt_delta = 0.99), data = analysisDF, iter = 8000, warmup = 500, chains = 4, cores = 6, save_all_pars = T)
+
+loo(dm1, dm2, dm4, dm5)
+</div></code></code></pre>
+<h2 id="dopl-motives-predicting-risky-behavior-by-content-in-addition-to-spitefulness-hdi">DoPL motives predicting risky behavior (by content) in addition to spitefulness HDI</h2>
+<pre><code class="language-{r"><code><div>dm5_hdi &lt;- bayestestR::hdi(dm5, effects = &quot;fixed&quot;, component = &quot;conditional&quot;, ci = .95)
+kable(dm5_hdi[sign(dm5_hdi$CI_low) == sign(dm5_hdi$CI_high),
+            c('Parameter', 'CI','CI_low', 'CI_high')], format = &quot;html&quot;, booktabs = T, escape = F, longtable = F, digits = 2) %&gt;% kable_styling(full_width = T)
+
+
+</div></code></code></pre>
+<h2 id="bayesian-analysis-m4">Bayesian analysis m4</h2>
+<pre><code class="language-{r}"><code><div>summary(m4)
+
+m4_hdi &lt;- bayestestR::hdi(m4, effects = &quot;fixed&quot;, component = &quot;conditional&quot;, ci = .95)
+kable(m4_hdi[sign(m4_hdi$CI_low) == sign(m4_hdi$CI_high),
+            c('Parameter', 'CI','CI_low', 'CI_high')] , format = &quot;html&quot;, booktabs = T, escape = F, longtable = F, digits = 2) %&gt;% kable_styling(full_width = T)
+</div></code></code></pre>
+<pre><code class="language-{r,"><code><div>m5 &lt;- brm(Justification ~ Dominance_z + Leadership_z + Prestige_z + (1|Vignette) + (1|subjectID), data = analysisDF,warmup = 500, control = list(adapt_delta = 0.95), iter = 8000, chains = 4, cores = 6, prior = c(prior(normal(0,1), class = 'Intercept'),
+                   prior(normal(0,1), class = 'b')))
+summary(m5)
+
+m5_gen &lt;- brm(Justification_z ~ Dominance_z*Gender + Leadership_z*Gender + Prestige_z*Gender + (1|Vignette) + (1|subjectID), data = analysisDF, warmup = 500, control = list(adapt_delta = 0.95), iter = 8000, chains = 4, cores = 6, 
+  prior = c(prior(normal(0,1), class = 'Intercept'), 
+                   prior(normal(3, 1), class = 'b', coef = &quot;Dominance_z:Gender&quot;),
+                   prior(normal(0, 1), class = 'b', coef = &quot;Gender:Leadership_z&quot;),
+                   prior(normal(0, 1), class = 'b', coef = &quot;Gender:Prestige_z&quot;)),
+                   save_all_pars = T)
+summary(m5_gen)
+
+</div></code></code></pre>
+<h2 id="dopl-and-justification">DoPL and Justification</h2>
+<pre><code class="language-{r}"><code><div>summary(m5_gen)
+
+m5_gen_hdi &lt;- bayestestR::hdi(m5_gen, effects = &quot;fixed&quot;, component = &quot;conditional&quot;, ci = .95)
+kable(m5_gen_hdi[sign(m5_gen_hdi$CI_low) == sign(m5_gen_hdi$CI_high),
+            c('Parameter', 'CI','CI_low', 'CI_high')] , format = &quot;html&quot;, booktabs = T, escape = F, longtable = F, digits = 2) %&gt;% kable_styling(full_width = T)
+
+
 </div></code></code></pre>
 
     </body>
