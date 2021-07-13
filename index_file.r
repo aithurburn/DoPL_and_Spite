@@ -85,18 +85,3 @@ savedQuestionsAfter <- c(
     "Content", "Vignette", "Justification", "Realism", "Power"
 )
 
-gender_results <- plyr::count(experiment_two_DS$Gender)
-gender_results$freq[2]
-
-library(english)
-
-mean(newDF$Spite)
-mean(analysisDF$Spite)
-
-bf1 <- BayesFactor::extractBF(dm5)
-describe_posterior(dm5)
-
-baye_formula <- Justification ~ Spite_z * Content * Realism_z + SSES_z + SRPS_z + SJS_z + (1 | Vignette) +
-    (1 | subjectID)
-
-bayestestR::bayesfactor()
