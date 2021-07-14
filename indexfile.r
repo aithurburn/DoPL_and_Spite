@@ -84,4 +84,10 @@ savedQuestionsAfter <- c(
     "Real.Ovr.Score", "srps.rc.rescale", "srps.dm.rescale", "srps.sum.rescale",
     "Content", "Vignette", "Justification", "Realism", "Power"
 )
+genderresults <- plyr::count(experimenttwoDS$Gender)
+genderresults$freq[2]
 
+library(english)
+
+mean(newDF$Spite)
+mean(analysisDF$Spite)

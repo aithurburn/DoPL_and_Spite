@@ -37,15 +37,15 @@
     </head>
     <body class="vscode-body">
         <hr>
-<p>title             : 'The psychology of risk and power: Power desires and sexual choices'<br>
-shorttitle        : 'Risk and Power'</p>
+<p>title             : &quot;The psychology of risk and power: Power desires and sexual choices&quot;<br>
+shorttitle        : &quot;Risk and Power&quot;</p>
 <p>author:</p>
 <ul>
-<li>name          : 'Ithurburn, Andrew'<br>
-affiliation   : '1'<br>
+<li>name          : &quot;Ithurburn, Andrew&quot;<br>
+affiliation   : &quot;1&quot;<br>
 corresponding : yes    # Define only one corresponding author<br>
-address       : '7 George Square, Edinburgh, EH8 9JZ'<br>
-email         : 'a.ithurburn@sms.ed.ac.uk'<br>
+address       : &quot;7 George Square, Edinburgh, EH8 9JZ&quot;<br>
+email         : &quot;<a href="mailto:a.ithurburn@sms.ed.ac.uk">a.ithurburn@sms.ed.ac.uk</a>&quot;<br>
 role:         # Contributorship roles (e.g., CRediT, <a href="https://casrai.org/credit/">https://casrai.org/credit/</a>)
 <ul>
 <li>Conceptualization</li>
@@ -53,8 +53,8 @@ role:         # Contributorship roles (e.g., CRediT, <a href="https://casrai.org
 <li>Writing - Review &amp; Editing</li>
 </ul>
 </li>
-<li>name          : 'Moore, Adam'<br>
-affiliation   : '1'<br>
+<li>name          : &quot;Moore, Adam&quot;<br>
+affiliation   : &quot;1&quot;<br>
 role:
 <ul>
 <li>Writing - Review &amp; Editing</li>
@@ -63,17 +63,17 @@ role:
 </ul>
 <p>affiliation:</p>
 <ul>
-<li>id            : '1'<br>
-institution   : 'The University of Edinburgh'</li>
+<li>id            : &quot;1&quot;<br>
+institution   : &quot;The University of Edinburgh&quot;</li>
 </ul>
 <p>authornote: |<br>
 University of Edinburgh Department of Psychology</p>
 <p>abstract: |<br>
 Placeholder Text</p>
   <!-- https://tinyurl.com/ybremelq -->
-<p>keywords          : 'keywords'<br>
-wordcount         : !expr wordcountaddin::word_count(&quot;../Experiment_2/DoPL_and_Spite.Rmd&quot;)</p>
-<p>bibliography      : [C:\Users\s1932788\OneDrive\Documents\1_UoE\Research\PhD\LiteratureReview\bibtex\Library.bib, C:\Users\s1932788\OneDrive\Documents\1_UoE\Research\PhD\LiteratureReview\bibtex\r-references.bib]</p>
+<p>keywords          : &quot;keywords&quot;<br>
+wordcount         : !expr wordcountaddin::wordcount(&quot;DoPLandSpite.rmd&quot;)</p>
+<p>bibliography      : [C:\Users\s1932788\OneDrive\Documents\1UoE\Research\PhD\LiteratureReview\bibtex\Library.bib, C:\Users\s1932788\OneDrive\Documents\1UoE\Research\PhD\LiteratureReview\bibtex\r-references.bib]</p>
 <p>floatsintext      : no<br>
 figurelist        : no<br>
 tablelist         : no<br>
@@ -82,7 +82,7 @@ linenumbers       : yes<br>
 mask              : no<br>
 draft             : no<br>
 mainfont: &quot;Times New Roman&quot;<br>
-always_allow_html: true<br>
+alwaysallowhtml: true<br>
 header-includes:</p>
 <ul>
 <li>\raggedbottom</li>
@@ -91,11 +91,11 @@ header-includes:</p>
 documentclass     : &quot;apa7&quot;<br>
 csl               : &quot;apa-cv.csl&quot;<br>
 classoption       : &quot;a4paper&quot;<br>
-output            : papaja::apa6_pdf</li>
+output            : papaja::apa6pdf</li>
 </ul>
 <hr>
 <pre><code class="language-{r"><code><div>library(&quot;papaja&quot;)
-r_refs(&quot;r-references.bib&quot;)
+rrefs(&quot;r-references.bib&quot;)
 analysisDF &lt;- read.csv(&quot;analysisDF.csv&quot;)
 dftime &lt;- read.csv(&quot;Experiment2Datasetclean.csv&quot;)
 experimenttwoDS &lt;- read.csv(&quot;Experiment2Dataset.csv&quot;)
@@ -103,14 +103,15 @@ dftime &lt;- dftime[-1:-2,]
 library(lubridate) 
 averagecompletion &lt;- mean(as.numeric(dftime$Duration..in.seconds.))
 stdvDF &lt;- sd(as.numeric(dftime$Duration..in.seconds.))
-newDF &lt;- read.csv(&quot;newDF2.csv&quot;)
+newDF &lt;- read.csv(&quot;newDF.csv&quot;)
+newDF &lt;- read.csv(&quot;newDF.csv&quot;)
 
 </div></code></code></pre>
 <pre><code class="language-{r"><code><div>
 source(&quot;indexfile.r&quot;)
 library(&quot;languageserver&quot;)
 set.seed(42)
-knitr::opts_chunk$set(cache.extra = knitr::rand_seed)
+knitr::optschunk$set(cache.extra = knitr::randseed)
 library(&quot;DT&quot;)
 library(&quot;ggplot2&quot;)
 library(&quot;ggthemes&quot;)
@@ -127,11 +128,11 @@ library(&quot;kableExtra&quot;)
 library(&quot;ggcorrplot&quot;)
 library(&quot;ggprism&quot;)
 options(mc.corrs = parallel::detectCores()) 
-rstan_options(auto_write = TRUE)
-options(control = list(adapt_delta = 0.99999))
+rstanoptions(autowrite = TRUE)
+options(control = list(adaptdelta = 0.99999&quot;))
 options(brms.backend = &quot;cmdstanr&quot;)
 
-bayesplot::bayesplot_theme_set(theme_apa())
+bayesplot::bayesplotthemeset(themeapa())
 locfunc &lt;- function(data, to){
   which(colnames({{data}})=={{to}})
 }
@@ -141,7 +142,7 @@ lfunc &lt;- function(dataset, to, from) {
   loc2 &lt;- which(colnames({{dataset}}) == {{from}})
   length({{dataset}}[loc1:loc2])
 }
-theme_set(theme_apa(base_size = 12))
+themeset(themeapa(basesize = 12))
 experimenttwoDStime &lt;- read.csv(&quot;Experiment2Datasetclean.csv&quot;)
 experimenttwoDS &lt;- read.csv(&quot;Experiment2DatasetcleannoTime.csv&quot;)
 df1 &lt;- read.csv(&quot;df1.csv&quot;)
@@ -159,7 +160,7 @@ dm2 &lt;- readRDS(&quot;dm2.rds&quot;)
 dm3 &lt;- readRDS(&quot;dm3.rds&quot;)
 dm4 &lt;- readRDS(&quot;dm4.rds&quot;)
 dm5 &lt;- readRDS(&quot;dm5.rds&quot;)
-bayes.dm5 &lt;- readRDS(&quot;bayes.dm5.rds&quot;)
+
 demographictable &lt;- readRDS(&quot;demographictable.rds&quot;)
 m2prior &lt;- readRDS(&quot;m2prior.rds&quot;)
 dopl1prior &lt;- readRDS(&quot;m4prior.rds&quot;)
@@ -195,7 +196,7 @@ analysisDF &lt;- read.csv(&quot;analysisDF.csv&quot;)
 <h3 id="dominance-prestige-and-leadership-orientation">Dominance, Prestige, and Leadership Orientation</h3>
 <p>The 18-item Dominance, Prestige, and Leadership scale [DoPL; @suessenbach2019], is used to measure dominance, prestige, and leadership orientation. Each question corresponds to one of the three domains. Each domain is scored across six unique items related to those domains (e.g., &quot;I relish opportunities in which I can lead others&quot; for leadership) rated on a scale from 0 (Strongly disagree) to 5 (Strongly agree). Internal consistency reliability for the current sample is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span></span></span></span> = <code>r psych::alpha(newDF[,doplQuestions])$total$std.alpha</code>.</p>
 <h3 id="spitefulness-scale">Spitefulness Scale</h3>
-<p>The Spitefulness scale [@marcus2014] is a measure with seventeen one sentence vignettes to assess the spitefulness of participants. The original spitefulness scale has 31-items. In the original Marcus and colleagues’ paper, fifteen were removed. For the present study however, 4-items were removed because they did not meet the parameters for the study i.e., needed to be dyadic, more personal. Three reverse scored items from the original thirty-one were added after meeting the requirements. Example questions included, &quot;It might be worth risking my reputation in order to spread gossip about someone I did not like., and &quot;Part of me enjoys seeing the people I do not like to fail even if their failure hurts me in some way.&quot; Items are scored on a 5-point scale ranging from 1 (&quot;Strongly disagree&quot;) to 5 (&quot;Strongly agree&quot;). Higher spitefulness scores represent higher acceptance of spiteful attitudes. Internal consistency reliability for the current sample is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span></span></span></span> = <code>r psych::alpha(newDF[,spiteQuestions])$total$std.alpha</code>.</p>
+<p>The Spitefulness scale [@marcus2014] is a measure with seventeen one sentence vignettes to assess the spitefulness of participants. The original spitefulness scale has 31-items. In the original Marcus and colleagues’ paper, fifteen were removed. For the present study however, 4-items were removed because they did not meet the parameters for the study i.e., needed to be dyadic, more personal. Three reverse scored items from the original thirty-one were added after meeting the requirements. Example questions included, &quot;It might be worth risking my reputation in order to spread gossip about someone I did not like.&quot;, and &quot;Part of me enjoys seeing the people I do not like to fail even if their failure hurts me in some way.&quot; Items are scored on a 5-point scale ranging from 1 (&quot;Strongly disagree&quot;) to 5 (&quot;Strongly agree&quot;). Higher spitefulness scores represent higher acceptance of spiteful attitudes. Internal consistency reliability for the current sample is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span></span></span></span> = <code>r psych::alpha(newDF[,spiteQuestions])$total$std.alpha</code>.</p>
 <h3 id="sexuality-self-esteem-subscale">Sexuality Self-Esteem Subscale</h3>
 <p>The Sexuality Self-Esteem subscale (SSES; @snell1989) is a subset of the Sexuality scale that measures the overall self-esteem of participants. Due to the nature of the study, the sexuality subscale was chosen from the overall 30-item scale. The 10-items chosen reflected questions on the sexual esteem of participants on a 5-point scale of +2 (Agree) and -2 (Disagree). For ease of online use the scale was changed to 1 (&quot;Disagree&quot;) and 5 (&quot;Agree&quot;), data analysis will follow the sexuality scale scoring procedure. Example questions are, &quot;I am a good sexual partner,&quot; and &quot;I sometimes have doubts about my sexual competence.&quot; Higher scores indicate a higher acceptance of high self-esteem statements. Internal consistency reliability for the current sample is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span></span></span></span> = <code>r psych::alpha(newDF[,ssesQuestions]) $total$std.alpha</code>.</p>
 <h3 id="sexual-jealousy-subscale">Sexual Jealousy Subscale</h3>
@@ -218,7 +219,7 @@ analysisDF &lt;- read.csv(&quot;analysisDF.csv&quot;)
 <p>Demographic characteristics were analyzed using a one-way analysis for continuous variables (age) and Chi-squares tests for categorical variables (sex, ethnicity, ethnic origin, and educational attainment). Means and standard deviations were calculated for the surveys along with correlational analyses (e.g., spitefulness, SESS, SRPS, SJS).</p>
 <p>Bayesian multilevel models were used to test differences between levels of justifications of vignettes that are either sexually or non-sexually vindictive in behavior.</p>
 <h2 id="results-and-discussion">Results and Discussion</h2>
-<p><code>r str_to_title(english::as.english(nrow(experimenttwoDS)))</code> individuals participated in the present experiment. A majority of the participants in experiment 1 identified as male (<em>n</em> = <code>r genderresults$freq[2]</code>). Table 1 shows the demographic information for experiment 1. Table 2 presents the results of a Bayesian correlational matrix of all measures. As evidenced in the Bayesian correlational matrix, most surveys positively correlated with one another.</p>
+<p><code>r strtotitle(english::as.english(nrow(experimenttwoDS)))</code> individuals participated in the present experiment. A majority of the participants in experiment 1 identified as male (<em>n</em> = <code>r genderresults$freq[2]</code>). Table 1 shows the demographic information for experiment 1. Table 2 presents the results of a Bayesian correlational matrix of all measures. As evidenced in the Bayesian correlational matrix, most surveys positively correlated with one another.</p>
 <h3 id="spitefulness-1">Spitefulness</h3>
 <p>For this analysis we used the Bayesian parameter estimation using R and brms [@rcore2021; @burkner2018]. An annotated r script file, including all necessary information is available at <a href="https://osf.io/jz6qb">https://osf.io/jz6qb</a>. On average, individuals were not rated as being more spiteful, (<em>M</em> = <code>r mean(analysisDF$Spite)</code>, <em>SD</em> = <code>r sd(analysisDF$Spite)</code>, Min-max = [<code>r min(analysisDF$Spite)</code> - <code>r max(analysisDF$Spite)</code>]). Justification as a function of the four indices was moderately explained by the model (<em>R^2^</em> = <code>r bayes.dm5[1]</code>).</p>
 <h2 id="limitations-and-future-directions">Limitations and Future Directions</h2>
@@ -230,16 +231,16 @@ analysisDF &lt;- read.csv(&quot;analysisDF.csv&quot;)
 <div id='refs' custom-style='Bibliography'></div>
 \endgroup
 <p>\newpage</p>
-<pre><code class="language-{r"><code><div>apa_table(
- demographictable, stub_indents = list('Age' = c(1:2), 'Gender' = c(3, 4), 'Ethnic Origin' = c(5:12), 'Education' = c(13:18), 'Ethnicity' = c(19:22)), col.names = c('Demographic Characteristic', ''), cap = 'Participant Demographic Information (Experiment 1)'
+<pre><code class="language-{r"><code><div>apatable(
+&gt;  demographictable, stubindents = list(&quot;Age&quot; = c(1:2), &quot;Gender&quot; = c(3, 4), &quot;Ethnic Origin&quot; = c(5:12), &quot;Education&quot; = c(13:18), &quot;Ethnicity&quot; = c(19:22)), col.names = c(&quot;Demographic Characteristic&quot;, &quot;&quot;), cap = &quot;Participant Demographic Information (Experiment 1)&quot;
 )
 </div></code></code></pre>
 <pre><code class="language-{r}"><code><div>corrtable1 &lt;- corrtable[, -c(5, 6, 7)]
-apa_table(corrtable1)
+apatable(corrtable1)
 </div></code></code></pre>
-<pre><code class="language-{r}"><code><div>dm5hdi &lt;- bayestestR::hdi(dm5, effects = 'fixed', component = 'conditional', ci = .95)
-apa_table(dm5hdi[sign(dm5hdi$CI_low) == sign(dm5hdi$CI_high),
-            c('Parameter', 'CI','CI_low', 'CI_high')])
+<pre><code class="language-{r}"><code><div>dm5hdi &lt;- bayestestR::hdi(dm5, effects = &quot;fixed&quot;, component = &quot;conditional&quot;, ci = .95)
+apatable(dm5hdi[sign(dm5hdi$CIlow) == sign(dm5hdi$CIhigh),
+            c('Parameter', 'CI','CIlow', 'CIhigh')])
   
 </div></code></code></pre>
 

@@ -506,7 +506,7 @@ dm2 <- brm(Justification ~ Dominance_z * Gender + Prestige_z * Gender + Leadersh
                       prior(normal(0, 1), class = "b", coef = "Prestige_z")), save_all_pars = T)
 
 summary(dm2)
-
+wordcountaddin::  
 dm4 <- brm(Justification ~ Dominance_z * Gender * Content + Prestige_z * Gender * Content + Leadership_z * Gender * Content + SJS_z + SRPS_z + SSES_z + Spite_z +  (1|Vignette) + (1|subjectID), control = list(adapt_delta = 0.99), data = analysisDF, iter = 8000, warmup = 500, chains = 4, cores = 6
            ,prior = c(prior(normal(0, 1), class = "Intercept"),
                       prior(normal(3, 1), class = "b", coef = "Dominance_z:Gender"),

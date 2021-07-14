@@ -14,3 +14,5 @@ bayes.dm5[1]
 result <- regressionBF(mvbind(SSES, SRPS, Spite, SJS, Dominance, Prestige, Leadership) ~ 1, data = analysisDF)
 
 bayesfactor_parameters(dm5, direction = ">")
+
+wordcountaddin::word_count("DoPL_and_Spite.Rmd")

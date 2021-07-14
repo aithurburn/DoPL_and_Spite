@@ -128,20 +128,6 @@
 % \setlength{\parindent}{0.5in}
 % \setlength{\parskip}{0pt plus 0pt minus 0pt}
 
-% Overwrite redefinition of paragraph and subparagraph by the default LaTeX template
-% See https://github.com/crsh/papaja/issues/292
-\makeatletter
-\renewcommand{\paragraph}{\@startsection{paragraph}{4}{\parindent}%
-  {0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
-  {-1em}%
-  {\normalfont\normalsize\bfseries\itshape\typesectitle}}
-
-\renewcommand{\subparagraph}[1]{\@startsection{subparagraph}{5}{1em}%
-  {0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
-  {-\z@\relax}%
-  {\normalfont\normalsize\itshape\hspace{\parindent}{#1}\textit{\addperi}}{\relax}}
-\makeatother
-
 % \usepackage{etoolbox}
 \makeatletter
 \patchcmd{\HyOrg@maketitle}
@@ -154,7 +140,7 @@
   {}{\typeout{Failed to patch title.}}
 \makeatother
 \shorttitle{Risk and Power}
-\keywords{keywords\newline\indent Word count: 2577}
+\keywords{keywords\newline\indent Word count: 2705}
 \usepackage{lineno}
 
 \linenumbers
@@ -201,7 +187,7 @@ Placeholder Text
 \hypertarget{introduction}{%
 \section{Introduction}\label{introduction}}
 
-Every day individuals make decisions be they mundane such as which cereal to eat in the morning to the more complex of which job should they accept. The consequences for making those decisions can be equally complex. Some decisions are more difficult to quantify and understand while others can be relatively easy like choosing what cereal to eat in the morning. However, some are increasingly more difficult to statistically model. For example, two adult males (or a man and a woman) who are intending to have sex must decide whether to have sex with or without a condom. The consequences can have lasting effects depending on what the couple chooses (General risk: Kusev et al., 2017; Sexual Risk: Desiderato \& Crawford, 1995; Risky Decisions: Kleef et al., n.d.).
+Every day individuals make decisions be they mundane such as which cereal to eat in the morning to the more complex of which job should they accept. The consequences for making those decisions can be equally complex. Some decisions are more difficult to quantify and understand while others can be relatively easy like choosing what cereal to eat in the morning. However, some are increasingly more difficult to statistically model. For example, two adult males (or a man and a woman) who are intending to have sex must decide whether to have sex with or without a condom. The consequences can have lasting effects depending on what the couple chooses (General risk: Kusev et al., 2017; Sexual Risk: Desiderato \& Crawford, 1995; Risky Decisions: Kleef et al., n.d.)
 
 \hypertarget{spitefulness}{%
 \subsection{Spitefulness}\label{spitefulness}}
@@ -265,7 +251,7 @@ The 18-item Dominance, Prestige, and Leadership scale {[}DoPL; Suessenbach et al
 \hypertarget{spitefulness-scale}{%
 \subsubsection{Spitefulness Scale}\label{spitefulness-scale}}
 
-The Spitefulness scale (Marcus et al., 2014) is a measure with seventeen one sentence vignettes to assess the spitefulness of participants. The original spitefulness scale has 31-items. In the original Marcus and colleagues' paper, fifteen were removed. For the present study however, 4-items were removed because they did not meet the parameters for the study i.e., needed to be dyadic, more personal. Three reverse scored items from the original thirty-one were added after meeting the requirements. Example questions included, ``It might be worth risking my reputation in order to spread gossip about someone I did not like., and''Part of me enjoys seeing the people I do not like to fail even if their failure hurts me in some way.'' Items are scored on a 5-point scale ranging from 1 (``Strongly disagree'') to 5 (``Strongly agree''). Higher spitefulness scores represent higher acceptance of spiteful attitudes. Internal consistency reliability for the current sample is \(\alpha\) = 0.84.
+The Spitefulness scale (Marcus et al., 2014) is a measure with seventeen one sentence vignettes to assess the spitefulness of participants. The original spitefulness scale has 31-items. In the original Marcus and colleagues' paper, fifteen were removed. For the present study however, 4-items were removed because they did not meet the parameters for the study i.e., needed to be dyadic, more personal. Three reverse scored items from the original thirty-one were added after meeting the requirements. Example questions included, ``It might be worth risking my reputation in order to spread gossip about someone I did not like.'' ,and ``Part of me enjoys seeing the people I do not like fail even if their failure hurts me in some way.'' Items are scored on a 5-point scale ranging from 1 (``Strongly disagree'') to 5 (``Strongly agree''). Higher spitefulness scores represent higher acceptance of spiteful attitudes. Internal consistency reliability for the current sample is \(\alpha\) = 0.84.
 
 \hypertarget{sexuality-self-esteem-subscale}{%
 \subsubsection{Sexuality Self-Esteem Subscale}\label{sexuality-self-esteem-subscale}}
@@ -295,7 +281,7 @@ Following Worley and Samp in their 2014 paper on using vignettes/scenarios in ps
 After participants complete the above scales, they are presented with 10-hypothetical vignettes. Each vignette was written to reflect a dyadic or triadic relationship with androgynous names to control for gender. Five vignettes have a sexual component while five are sexually neutral. An example vignette is,
 
 \begin{quote}
-Casey and Cole have been dating for 6 years. A year ago, they both moved into a new flat together just outside of the city. Casey had an affair with Cole's best-friend. Casey had recently found out that they had an STI that they had gotten from Cole's best-friend. Casey and Cole had sex and later Cole found out they had an STI.
+``Casey and Cole have been dating for 6 years. A year ago, they both moved into a new flat together just outside of the city. Casey had an affair with Cole's best-friend. Casey had recently found out that they had an STI that they had gotten from Cole's best-friend. Casey and Cole had sex and later Cole found out they had an STI.''
 \end{quote}
 
 For each vignette, the participant is asked to rate each vignette on how justified they believe the primary individual, Casey in the above, is with their spiteful reaction. Scoring ranges from 1 (``Not justified at all'') to 5 (``Being very justified''). Higher scores overall indicate higher agreement with spiteful behaviors.
@@ -322,7 +308,7 @@ Ninety-Two individuals participated in the present experiment. A majority of the
 \hypertarget{spitefulness-1}{%
 \subsubsection{Spitefulness}\label{spitefulness-1}}
 
-For this analysis we used the Bayesian parameter estimation using R and brms (Bürkner, 2018; R Core Team, 2021). An annotated r script file, including all necessary information is available at \url{https://osf.io/jz6qb}. On average, individuals were not rated as being more spiteful, (\emph{M} = 33.92, \emph{SD} = 9.32, Min-max = {[}16 - 57{]}). Justification as a function of the four indices was moderately explained by the model (\emph{R\textsuperscript{2}} = 0.54).
+For this analysis we used the Bayesian parameter estimation using R and brms (Bürkner, 2018; R Core Team, 2021). An annotated r script file, including all necessary information is available at \url{https://osf.io/jz6qb}. On average, individuals were not rated as being more spiteful, (\emph{M} = 33.92, \emph{SD} = 9.32, Min-max = {[}16 - 57{]}). Justification as a function of the four indices was moderately explained by the model (\emph{R\textsuperscript{2}} = ).
 
 \hypertarget{limitations-and-future-directions}{%
 \subsection{Limitations and Future Directions}\label{limitations-and-future-directions}}
