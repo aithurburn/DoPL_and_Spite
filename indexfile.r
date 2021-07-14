@@ -87,7 +87,4 @@ savedQuestionsAfter <- c(
 genderresults <- plyr::count(experimenttwoDS$Gender)
 genderresults$freq[2]
 
-apa_table(corr.mod, placement = "b")
-
-df1 <- data.frame(lapply(corr.mod, gsub, pattern = "rescor", replacement = ""))
 
