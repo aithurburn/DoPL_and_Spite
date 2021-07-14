@@ -361,7 +361,7 @@ print(experiment_1_priors)
 ## Bayesian Correlation
 
 ```{r, eval = F, message=FALSE, warning=FALSE, class.source = "fold-show"}
-scale_corr <- brm(mvbind(SSES, SRPS, Spite, SJS, Dominance, Prestige, Leadership) ~ 1, data = analysisDF, iter = 8000, warmup = 500, chains = 4, cores = 6, 
+scale_corr <- brm(mvbind(SSES_z, SRPS_z, Spite_z, SJS_z, Dominance_z, Prestige_z, Leadership_z) ~ 1, data = analysisDF, iter = 8000, warmup = 500, chains = 4, cores = 6, 
                   prior = c(prior(normal(0, 1), class = "Intercept")), save_all_pars = T)
 cor_1 <- summary(scale_corr)
 corr_table <- cor_1[["rescor_pars"]]

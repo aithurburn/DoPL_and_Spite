@@ -47,3 +47,14 @@ bibfile <- RefManageR::BibEntry(bibtype = "manual",
   url          = "https://www.R-project.org"
 )
 RefManageR::WriteBib(bibfile, file = 'C:\\Users\\s1932788\\OneDrive\\Documents\\1_UoE\\Research\\PhD\\LiteratureReview\\bibtex\\Library.bib', biblatex = T, append = T, verbose = T)
+
+testingbrms <- brms::VarCorr(scale_corr)
+options(scipen = 999, digits = 1)
+
+corr.mod <- summary(scale.corr)
+
+corr.mod <- corr.mod$rescor_pars
+
+corr.mod.df <- as.data.frame(corr.mod)
+
+corr_mod.df[, 3:4]
