@@ -32,7 +32,7 @@ abstract: |
 keywords          : 'keywords'
 wordcount         : !expr wordcountaddin::word_count("../Experiment_2/DoPL_and_Spite.Rmd")
 
-bibliography      : [C:\\Users\\s1932788\\OneDrive\\Documents\\1_UoE\\Research\\PhD\\LiteratureReview\\bibtex\\Library.bib, C:\\Users\\s1932788\\OneDrive\\Documents\\1_UoE\\Research\\PhD\\LiteratureReview\\bibtex\\r-references.bib]
+bibliography      : ["rmd/references.bib"]
 
 floatsintext      : yes
 figurelist        : no
@@ -54,88 +54,14 @@ csl               : "apa-cv.csl"
 classoption       : "a4paper"
 output            : papaja::apa6_pdf
 ---
-
 ```{r setup, include = FALSE}
-library("papaja")
-r_refs("r-references.bib")
-analysisDF <- read.csv("analysisDF.csv")
-dftime <- read.csv("Experiment2Datasetclean.csv")
-experimenttwoDS <- read.csv("Experiment2Dataset.csv")
-dftime <- dftime[-1:-2,]
-library(lubridate) 
-averagecompletion <- mean(as.numeric(dftime$Duration..in.seconds.))
-stdvDF <- sd(as.numeric(dftime$Duration..in.seconds.))
-newDF <- read.csv("newDF2.csv")
-options(digits = 2)
-
-```
-
-```{r analysis-preferences, include = FALSE}
 source("indexfile.r")
-library("languageserver")
-set.seed(42)
-knitr::opts_chunk$set(cache.extra = knitr::rand_seed)
-library("DT")
-library("ggplot2")
-library("ggthemes")
-library("tidyverse")
-library("papaja")
-library("brms")
-library("rstan")
-library("bayestestR")
-library("sjPlot")
-library("psych")
-library("BayesFactor")
-library("bayesplot")
-library("kableExtra")
-library("ggcorrplot")
-library("ggprism")
-options(mc.corrs = parallel::detectCores()) 
-rstan_options(auto_write = TRUE)
-options(control = list(adapt_delta = 0.99999))
-options(brms.backend = "cmdstanr")
 
-bayesplot::bayesplot_theme_set(theme_apa())
-locfunc <- function(data, to){
-  which(colnames({{data}})=={{to}})
-}
-
-lfunc <- function(dataset, to, from) {
-  loc1 <- which(colnames({{dataset}}) == {{to}})
-  loc2 <- which(colnames({{dataset}}) == {{from}})
-  length({{dataset}}[loc1:loc2])
-}
-theme_set(theme_apa(base_size = 12))
-experimenttwoDStime <- read.csv("Experiment2Datasetclean.csv")
-experimenttwoDS <- read.csv("Experiment2DatasetcleannoTime.csv")
-df1 <- read.csv("df1.csv")
-corrtable <- readRDS("corrtable.rds")
-m4 <- readRDS("m4.rds")
-m5 <- readRDS("m5.rds")
-m5gen <- readRDS("m5gen.rds")
-m7 <- readRDS("m7.rds")
-m8 <- readRDS("m8.rds")
-m8gen <- readRDS("m8gen.rds")
-m8Age <- readRDS("m8Age.rds")
-dm0 <- readRDS("dm0.rds")
-dm1 <- readRDS("dm1.rds")
-dm2 <- readRDS("dm2.rds")
-dm3 <- readRDS("dm3.rds")
-dm4 <- readRDS("dm4.rds")
-dm5 <- readRDS("dm5.rds")
-bayes.dm5 <- readRDS("bayes.dm5.rds")
-corr.mod <- readRDS("corrmod.rds")
-demographictable <- readRDS("demographictable.rds")
-m2prior <- readRDS("m2prior.rds")
-dopl1prior <- readRDS("m4prior.rds")
-m7prior <- readRDS("m7prior.rds")
-m1intPrior <- readRDS("m1intPrior.rds")
-analysisDF <- read.csv("analysisDF.csv")
 ```
 
 # Introduction
 
-Every day individuals make decisions be they mundane such as which cereal to eat in the morning to the more complex of which job should they accept. The consequences for making those decisions can be equally complex. Some decisions are more difficult to quantify and understand while others can be relatively easy like choosing what cereal to eat in the morning. However, some are increasingly more difficult to statistically model. For example, two adult males (or a man and a woman) who are intending to have sex must decide whether to have sex with or without a condom. The consequences can have lasting effects depending on what the couple chooses [General risk: @kusev2017; Sexual Risk: @desiderato1995; Risky Decisions: @vankleef20210128]. 
+Every day individuals make decisions be they mundane such as which cereal to eat in the morning to the more complex of which job should they accept. The consequences for making those decisions can be equally complex. Some decisions are more difficult to quantify and understand while others can be relatively easy like choosing what cereal to eat in the morning. However, some are increasingly more difficult to statistically model. For example, two adult males (or a man and a woman) who are intending to have sex must decide whether to have sex with or without a condom. The consequences can have lasting effects depending on what the couple chooses [General risk: @kusev2017; Sexual Risk: @desiderato1995; Risky Decisions: @vankleef20210128].
 
 ## Spitefulness
 
@@ -143,13 +69,13 @@ These lasting effects can be twofold. For example, deciding not to wear a condom
 
 ## DoPL
 
-Research in power desire motives have focused on three sub-domains: dominance, leadership, and prestige [@suessenbach2019]. Each of these three different power motives are explanations as to different ways or methods that individuals in power sought power or were bestowed upon them. 
+Research in power desire motives have focused on three sub-domains: dominance, leadership, and prestige [@suessenbach2019]. Each of these three different power motives are explanations as to different ways or methods that individuals in power sought power or were bestowed upon them.
 
 ### Dominance
 
 The dominance motive is one of the more researched methods and well depicted power motives. Individuals with a dominance orientation display the more primal of human behavior. These individuals will seek power through direct methods such as asserting dominance, control over resources, or physically assaulting someone [@johnson2012; @winter1993]. Early research in dominance motives has shown that acts of dominance ranging from asserting physical dominance over another to physical displays of violence has been shown in many mammalian species, including humans [@petersen2018; @witkower2020].
 
-Individuals high in dominance are often high in machiavellianism, narcissism, and often are prone to risky behavior (discussion further in the next section). Continued research has hinted at a possible tendency for males to display these dominant seeking traits more than females [@suessenbach2019] When high dominance individuals assert themselves they are doing so to increase their own individual sense of power [@williams2017]. Asserting ones own sense of dominance over another can be a dangerous task. In the animal kingdom it can often leader to injury. While, in humans asserting dominance can take a multitude of actions such as leering behaviors, physical distance, or other non-verbal methods to display dominance [@witkower2020]. Power from a dominance perspective is often never bestowed upon someone. Often, high dominance individuals will take control and hold onto it. 
+Individuals high in dominance are often high in machiavellianism, narcissism, and often are prone to risky behavior (discussion further in the next section). Continued research has hinted at a possible tendency for males to display these dominant seeking traits more than females [@suessenbach2019] When high dominance individuals assert themselves they are doing so to increase their own individual sense of power [@williams2017]. Asserting ones own sense of dominance over another can be a dangerous task. In the animal kingdom it can often leader to injury. While, in humans asserting dominance can take a multitude of actions such as leering behaviors, physical distance, or other non-verbal methods to display dominance [@witkower2020]. Power from a dominance perspective is often never bestowed upon someone. Often, high dominance individuals will take control and hold onto it.
 
 ### Prestige
 
@@ -161,7 +87,7 @@ Apart from dominance motivated individuals that continually have to fight for th
 
 Apart from dominance and prestige, leadership raises some interesting questions on deference and why individuals would defer to others in power. Psychologically, leadership is the deference to authority and working together towards a shared common goal [@vanvugt2006]. Research in animal behavior contends that leadership is a uniquely human trait due to the complexity of the human brain along with the ever growing size of social groups [@king2009].
 
-Early human societies began to use cooperation strategies such as leadership and individuals taking leadership roles in order to accomplish a common task. Similar non-human primates developed similar tactics however as aforementioned, traits unique to humans allowed for more complex interactions in leadership furthering the differences. Unique to leadership apart from dominance and prestige orientation is the method of power control in a leadership dynamic system. 
+Early human societies began to use cooperation strategies such as leadership and individuals taking leadership roles in order to accomplish a common task. Similar non-human primates developed similar tactics however as aforementioned, traits unique to humans allowed for more complex interactions in leadership furthering the differences. Unique to leadership apart from dominance and prestige orientation is the method of power control in a leadership dynamic system.
 
 ## The Present Experiment
 
@@ -203,7 +129,7 @@ The Sexual Jealousy subscale by @worley2014 are 3-items from the 12-item Jealous
 
 The Sexual Relationship Power Scale (SRPS; @pulerwitz2000) is a 23-item scale that measures the overall power distribution in a sexually active relationship. The SRPS is split into the Relationship Control Factor/Subscale (RCF) and the Decision-Making Dominance Factor/Subscale (DMDF). The RCF measures the relationship between the partners on their agreement with statements such as, "If I asked my partner to use a condom, he[they] would get violent.", and "I feel trapped or stuck in our relationship." Items from the RCF are scored on a 4-point scale ranging from 1 ("Strongly agree") to 4 ("Strongly disagree"). Lower scores indicate an imbalance in the relationship where the participant indicates they believe they have less control in the relationship. Internal consistency reliability for the current sample is $\alpha$ = `r psych::alpha(newDF[,srps.rcQuestions])$total$std.alpha`.
 
-The DMDF measures the dominance level of sexual and social decisions in the relationship. Example questions include, "Who usually has more say about whether you have sex?", and "Who usually has more say about when you talk about serious things?" Items on the DMDF are scored on a 3-item scale of 1 ("Your Partner"), 2 ("Both of You Equally"), and 3 ("You"). Higher scores indicate more dominance by the participant in the relationship. Internal consistency reliability for the current sample is $\alpha$ = `r psych::alpha(newDF[,srps.dmQuestions])$total$std.alpha`. 
+The DMDF measures the dominance level of sexual and social decisions in the relationship. Example questions include, "Who usually has more say about whether you have sex?", and "Who usually has more say about when you talk about serious things?" Items on the DMDF are scored on a 3-item scale of 1 ("Your Partner"), 2 ("Both of You Equally"), and 3 ("You"). Higher scores indicate more dominance by the participant in the relationship. Internal consistency reliability for the current sample is $\alpha$ = `r psych::alpha(newDF[,srps.dmQuestions])$total$std.alpha`.
 
 ### Scenario Realism Question
 
@@ -213,9 +139,9 @@ Following Worley and Samp in their 2014 paper on using vignettes/scenarios in ps
 
 After participants complete the above scales, they are presented with 10-hypothetical vignettes. Each vignette was written to reflect a dyadic or triadic relationship with androgynous names to control for gender. Five vignettes have a sexual component while five are sexually neutral. An example vignette is,
 
->"Casey and Cole have been dating for 6 years. A year ago, they both moved into a new flat together just outside of the city. Casey had an affair with Cole's best-friend. Casey had recently found out that they had an STI that they had gotten from Cole's best-friend. Casey and Cole had sex and later Cole found out they had an STI."
+> "Casey and Cole have been dating for 6 years. A year ago, they both moved into a new flat together just outside of the city. Casey had an affair with Cole's best-friend. Casey had recently found out that they had an STI that they had gotten from Cole's best-friend. Casey and Cole had sex and later Cole found out they had an STI."
 
-For each vignette, the participant is asked to rate each vignette on how justified they believe the primary individual, Casey in the above, is with their spiteful reaction. Scoring ranges from 1 ("Not justified at all") to 5 ("Being very justified"). Higher scores overall indicate higher agreement with spiteful behaviors. 
+For each vignette, the participant is asked to rate each vignette on how justified they believe the primary individual, Casey in the above, is with their spiteful reaction. Scoring ranges from 1 ("Not justified at all") to 5 ("Being very justified"). Higher scores overall indicate higher agreement with spiteful behaviors.
 
 ## Procedure
 
@@ -223,7 +149,7 @@ Participants were recruited on Prolific Academic. Participants must be 18-years 
 
 Once participants accessed the main survey, they were presented with the consent form for which to accept they responded with selecting "Yes". Participants were then asked to provide demographic characteristics such as gender, ethnicity, and educational attainment. Participants would then complete in order, the spitefulness scale, the sexual relationship power scale, the sexual jealousy subscale, and sexuality self-esteem subscale. Next, participants were presented ten vignettes where they were instructed to rate on the level of justification for the action carried out in the vignette. After each vignette, participants would rate the realism of the scenario. Upon completion of the survey (median completion time 20 minutes SD = 10 Minutes 30 seconds), participants were shown a debriefing message and shown the contact information of the Primary Investigator (Andrew Ithurburn). Participants were then compensated at £8/hr. via Prolific Academic.
 
-```{r table1, echo=FALSE, fig.pos='p', out.width='\\textwidth'}
+```{r table1, echo=FALSE, fig.pos='p', out.width='\textwidth'}
 apa_table(
  demographictable, stub_indents = list('Age' = c(1:2), 'Gender' = c(3, 4), 'Ethnic Origin' = c(5:12), 'Education' = c(13:18), 'Ethnicity' = c(19:22)), col.names = c('Demographic Characteristic', ''), cap = 'Participant Demographic Information (Experiment 1)'
 )
@@ -233,9 +159,9 @@ apa_table(
 
 Demographic characteristics were analyzed using a one-way analysis for continuous variables (age) and Chi-squares tests for categorical variables (sex, ethnicity, ethnic origin, and educational attainment). Means and standard deviations were calculated for the surveys along with correlational analyses (e.g., spitefulness, SESS, SRPS, SJS).
 
-Bayesian multilevel models were used to test differences between levels of justifications of vignettes that are either sexually or non-sexually vindictive in behavior. 
+Bayesian multilevel models were used to test differences between levels of justifications of vignettes that are either sexually or non-sexually vindictive in behavior.
 
-```{r, echo=FALSE, fig.pos='H', out.width='\\textwidth'}
+```{r, echo=FALSE, fig.pos='H', out.width='\textwidth'}
 
 corr.df <- corr.mod[, -c(2, 5, 6, 7)]
 apa_table(corr.df, align = c("l", "r", "r", "r"), col.name = c("", "Estimate", "Upper CI", "Lower CI"), caption = "Bayesian Correlation with 95% Crediblility Intervals")
@@ -243,13 +169,13 @@ apa_table(corr.df, align = c("l", "r", "r", "r"), col.name = c("", "Estimate", "
 
 ## Results and Discussion
 
-`r str_to_title(english::as.english(nrow(experimenttwoDS)))` individuals participated in the present experiment. A majority of the participants in experiment 1 identified as male (*n* = `r genderresults$freq[2]`). Table 1 shows the demographic information for experiment 1. Table 2 presents the results of a Bayesian correlational matrix of all measures. As evidenced in the Bayesian correlational matrix, most surveys positively correlated with one another.  
+`r str_to_title(english::as.english(nrow(experimenttwoDS)))` individuals participated in the present experiment. A majority of the participants in experiment 1 identified as male (*n* = `r genderresults$freq[2]`). Table 1 shows the demographic information for experiment 1. Table 2 presents the results of a Bayesian correlational matrix of all measures. As evidenced in the Bayesian correlational matrix, most surveys positively correlated with one another.
 
 ### Spitefulness
 
-For this analysis we used the Bayesian parameter estimation using R and brms [@rcoreteam2021; @burkner2018]. An annotated r script file, including all necessary information is available at [https://osf.io/jz6qb](https://osf.io/jz6qb). On average, individuals were not rated as being more spiteful, (*M* = `r mean(analysisDF$Spite)`, *SD* = `r sd(analysisDF$Spite)`, Min-max = [`r min(analysisDF$Spite)` - `r max(analysisDF$Spite)`]). Justification as a function of the four indices was moderately explained by the model (*R^2^* = `r bayes.dm5[1]`). We conducted an exploratory Bayesian correlation analysis on the data, where we investigated correlations between 8 of the indices (e.g., Spite, Dominance, Prestige, Leadership, Sexual Jealousy, Sexual Self-Esteem, and Sexual Relationship Power Scale). 
+For this analysis we used the Bayesian parameter estimation using R and brms [@rcoreteam2021; @burkner2018]. An annotated r script file, including all necessary information is available at [https://osf.io/jz6qb](https://osf.io/jz6qb). On average, individuals were not rated as being more spiteful, (*M* = `r mean(analysisDF$Spite)`, *SD* = `r sd(analysisDF$Spite)`, Min-max = [`r min(analysisDF$Spite)` - `r max(analysisDF$Spite)`]). Justification as a function of the four indices was moderately explained by the model (*R^2^* = `r bayes.dm5[1]`). We conducted an exploratory Bayesian correlation analysis on the data, where we investigated correlations between 8 of the indices (e.g., Spite, Dominance, Prestige, Leadership, Sexual Jealousy, Sexual Self-Esteem, and Sexual Relationship Power Scale).
 
-Selected notable non-null correlations were found between Spite and Sexual Jealousy (95% CI: [`r corr.mod["Spite * SJS", 3:4]`]), Spite and Dominance (95% CI: [`r corr.mod["Spite * Dominance", 3:4]`]), and Sexual Relationship Power and Dominance (95% CI: [`r corr.mod["SRPS * Dominance", 3:4]`]). Table 2 contains a complete list of all Bayesian correlations. 
+Selected notable non-null correlations were found between Spite and Sexual Jealousy (95% CI: [`r corr.mod["Spite * SJS", 3:4]`]), Spite and Dominance (95% CI: [`r corr.mod["Spite * Dominance", 3:4]`]), and Sexual Relationship Power and Dominance (95% CI: [`r corr.mod["SRPS * Dominance", 3:4]`]). Table 2 contains a complete list of all Bayesian correlations.
 
 ## Limitations and Future Directions
 
@@ -265,7 +191,6 @@ Selected notable non-null correlations were found between Spite and Sexual Jealo
 \endgroup
 
 \newpage
-
 
 ```{r}
 dm5hdi <- bayestestR::hdi(dm5, effects = 'fixed', component = 'conditional', ci = .95)

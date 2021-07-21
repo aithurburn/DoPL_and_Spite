@@ -1,0 +1,3 @@
+---
+bibliography: [rmd\references.bib]
+---
