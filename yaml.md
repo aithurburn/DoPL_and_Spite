@@ -1,3 +1,5 @@
 ---
-bibliography: [rmd\references.bib]
+bibliography: [library.yaml]
 ---
+
+[]

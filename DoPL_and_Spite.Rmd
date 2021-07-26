@@ -30,9 +30,9 @@ abstract: |
   <!-- https://tinyurl.com/ybremelq -->
   
 keywords          : 'keywords'
-wordcount         : !expr wordcountaddin::word_count("../Experiment_2/DoPL_and_Spite.Rmd")
+wordcount         : 
 
-bibliography      : ["rmd/references.bib"]
+bibliography      : ["rmd\\references.json"]
 
 floatsintext      : yes
 figurelist        : no
@@ -47,7 +47,7 @@ header-includes:
   - \raggedbottom
   - \setlength{\parindent}{2em}
   - \setlength{\parskip}{0em}
-  - \usepackage[switch]{lineno} 
+  - \usepackage[switch]{lineno}
   - \linenumbers
 documentclass     : "apa7"
 csl               : "apa-cv.csl"
@@ -61,21 +61,21 @@ source("indexfile.r")
 
 # Introduction
 
-Every day individuals make decisions be they mundane such as which cereal to eat in the morning to the more complex of which job should they accept. The consequences for making those decisions can be equally complex. Some decisions are more difficult to quantify and understand while others can be relatively easy like choosing what cereal to eat in the morning. However, some are increasingly more difficult to statistically model. For example, two adult males (or a man and a woman) who are intending to have sex must decide whether to have sex with or without a condom. The consequences can have lasting effects depending on what the couple chooses [General risk: @kusev2017; Sexual Risk: @desiderato1995; Risky Decisions: @vankleef20210128].
+Every day individuals make decisions be they mundane such as which cereal to eat in the morning to the more complex of which job should they accept. The consequences for making those decisions can be equally complex. Some decisions are more difficult to quantify and understand while others can be relatively easy like choosing what cereal to eat in the morning. However, some are increasingly more difficult to statistically model. For example, two adult males (or a man and a woman) who are intending to have sex must decide whether to have sex with or without a condom. The consequences can have lasting effects depending on what the couple chooses [General risk: @kusev2017; Sexual Risk: @desiderato1995; Risky Decisions: @vankleef2021].
 
 ## Spitefulness
 
-These lasting effects can be twofold. For example, deciding not to wear a condom could result in an unplanned pregnancy or exposing one or another person to a sexually transmitted infection. Behaviors/decisions that have negative consequences for both individuals is the original understanding of spite to where psychologically spite is understood as intentionally harming oneself to punish another [@marcus2014; @critchfield2008]. Spiteful behavior has often been overlooked in psychological research. Spite has been seen in behavioral economic experiments, preschoolers with ultimatum games, and daily life [@marcus2014; @bauer2014; @bugelmayer2014]. Preschool boys tended to be more spiteful than their female counterparts. Younger men followed suit and tended to be more spiteful than their counterparts [@marcus2014]. Age plays a role whereas people age they tend to be less spiteful and more egalitarian [@bugelmayer2014]. 
+These lasting effects can be twofold. For example, deciding not to wear a condom could result in an unplanned pregnancy or exposing one or another person to a sexually transmitted infection. Behaviors/decisions that have negative consequences for both individuals is the original understanding of spite to where psychologically spite is understood as intentionally harming oneself to punish another [@marcus2014; @critchfield2008]. Spiteful behavior has often been overlooked in psychological research. Spite has been seen in behavioral economic experiments, preschoolers with ultimatum games, and daily life [@marcus2014; @bauer2014; @bugelmayer2014]. Preschool boys tended to be more spiteful than their female counterparts. Younger men followed suit and tended to be more spiteful than their counterparts [@marcus2014]. Age plays a role whereas people age they tend to be less spiteful and more egalitarian [@bugelmayer2014].  
 
 ## DoPL
 
-Research in power desire motives have focused on three sub-domains: dominance, leadership, and prestige [@suessenbach2019]. Each of these three different power motives are explanations as to different ways or methods that individuals in power sought power or were bestowed upon them.
+Research in power desire motives have focused on three sub-domains: dominance, leadership, and prestige [@suessenbach2019]. Each of these three different power motives are explanations as to different ways or methods that individuals in power sought power or were bestowed upon them. 
 
 ### Dominance
 
-The dominance motive is one of the more researched methods and well depicted power motives. Individuals with a dominance orientation display the more primal of human behavior. These individuals will seek power through direct methods such as asserting dominance, control over resources, or physically assaulting someone [@johnson2012; @winter1993]. Early research in dominance motives has shown that acts of dominance ranging from asserting physical dominance over another to physical displays of violence has been shown in many mammalian species, including humans [@petersen2018; @witkower2020].
+The dominance motive is one of the more researched methods and well depicted power motives. Individuals with a dominance orientation display the more primal of human behavior. These individuals will seek power through direct methods such as asserting dominance, control over resources, or physically assaulting someone [@johnson2012; @winter1993;]. Early research in dominance motives has shown that acts of dominance ranging from asserting physical dominance over another to physical displays of violence has been shown in many mammalian species, including humans [@petersen2018; @witkower2020]. 
 
-Individuals high in dominance are often high in machiavellianism, narcissism, and often are prone to risky behavior (discussion further in the next section). Continued research has hinted at a possible tendency for males to display these dominant seeking traits more than females [@suessenbach2019] When high dominance individuals assert themselves they are doing so to increase their own individual sense of power [@williams2017]. Asserting ones own sense of dominance over another can be a dangerous task. In the animal kingdom it can often leader to injury. While, in humans asserting dominance can take a multitude of actions such as leering behaviors, physical distance, or other non-verbal methods to display dominance [@witkower2020]. Power from a dominance perspective is often never bestowed upon someone. Often, high dominance individuals will take control and hold onto it.
+Individuals high in dominance are often high in machiavellianism, narcissism, and often are prone to risky behavior (discussion further in the next section). Continued research has hinted at a possible tendency for males to display these dominant seeking traits more than females [@suessenbach2019] When high dominance individuals assert themselves they are doing so to increase their own individual sense of power [@williams2017]. Asserting ones own sense of dominance over another can be a dangerous task. In the animal kingdom it can often leader to injury. While, in humans asserting dominance can take a multitude of actions such as leering behaviors, physical distance, or other non-verbal methods to display dominance [@witkower2020]. Power from a dominance perspective is often never bestowed upon someone. Often, high dominance individuals will take control and hold onto it. 
 
 ### Prestige
 
@@ -85,13 +85,13 @@ Apart from dominance motivated individuals that continually have to fight for th
 
 ### Leadership
 
-Apart from dominance and prestige, leadership raises some interesting questions on deference and why individuals would defer to others in power. Psychologically, leadership is the deference to authority and working together towards a shared common goal [@vanvugt2006]. Research in animal behavior contends that leadership is a uniquely human trait due to the complexity of the human brain along with the ever growing size of social groups [@king2009].
+Apart from dominance and prestige, leadership raises some interesting questions on deference and why individuals would defer to others in power. Psychologically, leadership is the deference to authority and working together towards a shared common goal [@vanvugt2006]. Research in animal behavior contends that leadership is a uniquely human trait due to the complexity of the human brain along with the ever-growing size of social groups [@king2009].
 
-Early human societies began to use cooperation strategies such as leadership and individuals taking leadership roles in order to accomplish a common task. Similar non-human primates developed similar tactics however as aforementioned, traits unique to humans allowed for more complex interactions in leadership furthering the differences. Unique to leadership apart from dominance and prestige orientation is the method of power control in a leadership dynamic system.
+Early human societies began to use cooperation strategies such as leadership and individuals taking leadership roles in order to accomplish a common task. Similar non-human primates developed similar tactics however as aforementioned, traits unique to humans allowed for more complex interactions in leadership furthering the differences. Unique to leadership apart from dominance and prestige orientation is the method of power control in a leadership dynamic system. 
 
 ## The Present Experiment
 
-The present experiments sought to investigate a possible relationship between spitefulness and risky sexual behaviors. As with past experiments in moral judgment and decision-making, vignettes were used to create situations of interest. The present study comprises two experiments and a pilot study (pilot study data and results included in supplemental materials).
+The present experiments sought to investigate a possible relationship between spitefulness and risky sexual behaviors. As with past experiments in moral judgment and decision-making, vignettes were used to create situations of interest. The present study comprises two experiments and a pilot study (pilot study data and results included in supplemental materials). 
 
 The pilot study sought to test out our materials and understanding of the literature. Statistical analyses followed the hypotheses laid out on our preregistration ([https://osf.io/jz6qb](https://osf.io/jz6qb)). Experiment one sought to build on from the pilot study and refine the materials used. Specifically the vignettes of the experiment. Experiment two then furthered our understanding and investigates spitefulness possible connection to dominance, prestige, and leadership orientation with risky sexual decision-making ([https://osf.io/5q84z](https://osf.io/5q84z)).
 
@@ -103,7 +103,7 @@ Based on the literature we predicted that individuals high in spitefulness would
 
 ### Participants
 
-Participants were a convenience sample of `r length(experimenttwoDS$ResponseId)` (Mage = `r mean(experimenttwoDS$Age)`, SD = `r sd(experimenttwoDS$Age)`) individuals from Prolific Academic crowdsourcing platform ("www.prolific.co"). Requirements for participation were: (1) be 18 years of age or older and (2) and as part of Prolific Academics policy, have a prolific rating of 90 or above. Participants received £4 or £8 an hour as compensation for completing the survey.  Table 1 shows the demographic information for experiment one.
+Participants were a convenience sample of `r length(experimenttwoDS$ResponseId)` (Mage = `r mean(experimenttwoDS$Age)`, SD = `r sd(experimenttwoDS$Age)`) individuals from Prolific Academic crowdsourcing platform ("www.prolific.co"). Requirements for participation were: (1) be 18 years of age or older and (2) and as part of Prolific Academics policy, have a prolific rating of 90 or above. Participants received £4 or £8 an hour as compensation for completing the survey.  Table 1 shows the demographic information for experiment one. 
 
 ### Demographic Questionnaire
 
@@ -145,9 +145,9 @@ For each vignette, the participant is asked to rate each vignette on how justifi
 
 ## Procedure
 
-Participants were recruited on Prolific Academic. Participants must be 18-years of age or older, restriction by study design and Prolific Academic’s user policy. The published study is titled, "Moral Choice and Behavior". The study description follows the participant information sheet including participant compensation. Participants were asked to accept their participation in the study. Participants were then automatically sent to the main survey (Qualtrics, Inc.).
+Participants were recruited on Prolific Academic. Participants must be 18-years of age or older, restriction by study design and Prolific Academic’s user policy. The published study is titled, "Moral Choice and Behavior". The study description follows the participant information sheet including participant compensation. Participants were asked to accept their participation in the study. Participants were then automatically sent to the main survey (Qualtrics, Inc.). 
 
-Once participants accessed the main survey, they were presented with the consent form for which to accept they responded with selecting "Yes". Participants were then asked to provide demographic characteristics such as gender, ethnicity, and educational attainment. Participants would then complete in order, the spitefulness scale, the sexual relationship power scale, the sexual jealousy subscale, and sexuality self-esteem subscale. Next, participants were presented ten vignettes where they were instructed to rate on the level of justification for the action carried out in the vignette. After each vignette, participants would rate the realism of the scenario. Upon completion of the survey (median completion time 20 minutes SD = 10 Minutes 30 seconds), participants were shown a debriefing message and shown the contact information of the Primary Investigator (Andrew Ithurburn). Participants were then compensated at £8/hr. via Prolific Academic.
+Once participants accessed the main survey, they were presented with the consent form for which to accept they responded with selecting "Yes". Participants were then asked to provide demographic characteristics such as gender, ethnicity, and educational attainment. Participants would then complete in order, the spitefulness scale, the sexual relationship power scale, the sexual jealousy subscale, and sexuality self-esteem subscale. Next, participants were presented ten vignettes where they were instructed to rate on the level of justification for the action carried out in the vignette. After each vignette, participants would rate the realism of the scenario. Upon completion of the survey (median completion time 20 minutes SD = 10 Minutes 30 seconds), participants were shown a debriefing message and shown the contact information of the Primary Investigator (Andrew Ithurburn). Participants were then compensated at £8/hr. via Prolific Academic. 
 
 ```{r table1, echo=FALSE, fig.pos='p', out.width='\textwidth'}
 apa_table(
