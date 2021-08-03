@@ -49,6 +49,8 @@ header-includes:
   - \setlength{\parskip}{0em}
   - \usepackage[switch]{lineno}
   - \linenumbers
+  - \usepackage{fancyhdr}
+  - \fancyhead[CE]{}
 documentclass     : "apa7"
 csl               : "apa-cv.csl"
 classoption       : "a4paper"
@@ -136,7 +138,7 @@ The DMDF measures the dominance level of sexual and social decisions in the rela
 
 ### Scenario Realism Question
 
-Following Worley and Samp in their 2014 paper on using vignettes/scenarios in psychological studies, a question asking the participant how realistic or how much they can visualize the scenario is. The 1-item question is "This type of situation is realistic." The item is scored on a 5-point scale of the participants agreement with the above statement, 1 ("Strongly agree") to 5 ("Strongly disagree"). Higher scores indicate disagreement with the statement and reflects the belief that the scenario is not realistic.
+Following Worley and Samp in their 2014 paper on using vignettes/scenarios in psychological studies, a question asking the participant how realistic or how much they can visualize the scenario is. The 1-item question is "This type of situation is realistic." The item is scored on a 5-point scale with how much the the participant's agreed with the above statement, 1 ("Strongly agree") to 5 ("Strongly disagree"). Higher scores indicate disagreement with the statement and reflect the belief that the scenario is not realistic.
 
 ### Spiteful Vignettes
 
@@ -150,7 +152,7 @@ For each vignette, the participant is asked to rate each vignette on how justifi
 
 Participants were recruited on Prolific Academic. Participants must be 18-years of age or older, restriction by study design and Prolific Academic’s user policy. The published study is titled, "Moral Choice and Behavior". The study description follows the participant information sheet including participant compensation. Participants were asked to accept their participation in the study. Participants were then automatically sent to the main survey (Qualtrics, Inc.). 
 
-Once participants accessed the main survey, they were presented with the consent form for which to accept they responded with selecting "Yes". Participants were then asked to provide demographic characteristics such as gender, ethnicity, and educational attainment. Participants would then complete in order, the spitefulness scale, the sexual relationship power scale, the sexual jealousy subscale, and sexuality self-esteem subscale. Next, participants were presented ten vignettes where they were instructed to rate on the level of justification for the action carried out in the vignette. After each vignette, participants would rate the realism of the scenario. Upon completion of the survey (median completion time 20 minutes SD = 10 Minutes 30 seconds), participants were shown a debriefing message and shown the contact information of the Primary Investigator (Andrew Ithurburn). Participants were then compensated at £8/hr. via Prolific Academic. 
+Once participants accessed the main survey, they were presented with the consent form for which to accept they responded by selecting "Yes". Participants were then asked to provide demographic characteristics such as gender, ethnicity, and educational attainment. Participants would then complete in order, the spitefulness scale, the sexual relationship power scale, the sexual jealousy subscale, and sexuality self-esteem subscale. Next, participants were presented ten vignettes where they were instructed to rate on the level of justification for the action carried out in the vignette. After each vignette, participants would rate the realism of the scenario. Upon completion of the survey (median completion time 20 minutes SD = 10 Minutes 30 seconds), participants were shown a debriefing message and shown the contact information of the Primary Investigator (Andrew Ithurburn). Participants were then compensated at £8/hr. via Prolific Academic. 
 
 ```{r table1, echo=FALSE, fig.pos='p', out.width='\textwidth'}
 apa_table(
